@@ -246,7 +246,7 @@ Mỗi epic ánh xạ trực tiếp tới một nhóm yêu cầu kinh doanh trong
 
 | Priority | Số lượng story | Ghi chú |
 |---|---|---|
-| P0 (Must) | 14 (US-A1–A4, B1–B2, C1–C5, C8, D1, E1–E2, F2) | Bắt buộc cho launch; US-A5, C5, C8, E2 có giá trị số/điều kiện chờ OQ |
+| P0 (Must) | 16 (US-A1–A4, B1–B2, C1–C5, C8, D1, E1–E2, F2) | Bắt buộc cho launch; US-C5, C8, E2 có giá trị số/điều kiện chờ OQ |
 | P1 (Should) | 4 (US-A5, C6, C7, F1) | Có giá trị rõ nhưng có thể trì hoãn nếu thời gian gấp |
 | P2 (Could) | 1 (US-D2) | Mong muốn, không chặn launch |
 
@@ -297,7 +297,7 @@ MVP **không được** đưa vào production nếu bất kỳ điều kiện n�
 
 | Hạng mục | Tiêu chí mở cổng | Nguồn |
 |---|---|---|
-| **Chức năng** | 100% user story P0 (14 story, §3.1) đạt Given-When-Then tương ứng trên môi trường staging | BRD §16.1 |
+| **Chức năng** | 100% user story P0 (16 story, §3.1) đạt Given-When-Then tương ứng trên môi trường staging | BRD §16.1 |
 | **Chất lượng câu trả lời** | Đạt mục tiêu MET-002 đã phê duyệt trên bộ câu hỏi kiểm thử (OQ-008) — AC-008, AC-009 | BO-002, OQ-007, OQ-008 |
 | **Chống bịa thông tin** | ≥ 95% trên ≥ 20 câu hỏi "không có đáp án trong tài liệu" được trả lời đúng là "không tìm thấy" (AC-011) | BR-011, RSK-001 |
 | **Hiệu năng** | ≥ 90% câu trả lời trong ngưỡng thời gian đã duyệt (AC-012) | BR-012, `[TBD: OQ-014]` |
@@ -384,7 +384,7 @@ Theo đúng ranh giới mà BRD đã đặt ra (BRD §15.2), các quyết địn
 **Trạng thái: `Draft — Ready for cross-functional review`**, chưa sẵn sàng để Engineering bắt đầu commit kế hoạch sprint, vì:
 
 - 1 story P0 (US-E2 / BR-020) bị **chặn cứng** bởi OQ-006.
-- 4 story P0 khác (US-A5, US-C5, US-C8, một phần US-A trong launch gate) phụ thuộc số liệu cụ thể từ OQ-009, OQ-013, OQ-014.
+- 2 story P0 khác (US-C5, US-C8) phụ thuộc số liệu cụ thể từ OQ-014, OQ-009; US-A5 (P1) phụ thuộc OQ-013.
 - OKR ở §1.2 dùng giá trị target chưa phê duyệt chính thức (OQ-007).
 
 **Khuyến nghị bước tiếp theo:** tổ chức một buổi review PRD + BRD cùng Sponsor, Business Owner và IT/Bảo mật tập trung đúng vào nhóm OQ-006, OQ-007, OQ-008, OQ-009, OQ-013, OQ-014 trước khi chuyển PRD sang Engineering để ước lượng.
