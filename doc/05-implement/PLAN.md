@@ -60,65 +60,67 @@ flowchart LR
 
 | Task | Tiêu đề | Lát | Cỡ | Trạng thái | Phụ thuộc |
 |---|---|---|---|---|---|
-| [T00-01](tasks/T00-01_khoi-tao-monorepo-va-cong-cu.md) | Khởi tạo monorepo và công cụ | VS-0 | S | Ready | – |
-| [T00-02](tasks/T00-02_docker-compose-moi-truong-dev.md) | docker-compose môi trường dev | VS-0 | S | Ready | T00-01 |
-| [T00-03](tasks/T00-03_migration-0001-tu-schema-sql-va-fixture-csdl-cho.md) | Migration 0001 từ schema.sql và fixture CSDL cho test | VS-0 | M | Ready | T00-02 |
-| [T00-04](tasks/T00-04_khung-api-settings-loi-rfc-9457-request-id-healt.md) | Khung API: settings, lỗi RFC 9457, request id, health | VS-0 | M | Ready | T00-01 |
-| [T00-05](tasks/T00-05_ha-tang-csdl-engine-theo-vai-tro-va-pham-vi-work.md) | Hạ tầng CSDL: engine theo vai trò và phạm vi workspace | VS-0 | M | Ready | T00-03, T00-04 |
-| [T00-06](tasks/T00-06_khung-spa-theo-thiet-ke-s01-va-client-api-sinh-t.md) | Khung SPA theo thiết kế S01 và client API sinh từ OpenAPI | VS-0 | M | Ready | T00-01 |
-| [T00-07](tasks/T00-07_pipeline-ci.md) | Pipeline CI | VS-0 | S | Ready | T00-03, T00-04, T00-06 |
-| [T01-01](tasks/T01-01_identityport-va-adapter-oidc-authorization-code.md) | IdentityPort và adapter OIDC (Authorization Code + PKCE) | VS-1 | M | Ready | T00-04 |
-| [T01-02](tasks/T01-02_phien-dang-nhap-va-cookie.md) | Phiên đăng nhập và cookie | VS-1 | M | Ready | T00-05, T01-01 |
-| [T01-03](tasks/T01-03_endpoint-auth-va-me.md) | Endpoint /auth/* và /me | VS-1 | M | Ready | T01-02 |
-| [T01-04](tasks/T01-04_middleware-csrf-va-thu-tu-middleware.md) | Middleware CSRF và thứ tự middleware | VS-1 | S | Ready | T01-02 |
-| [T01-05](tasks/T01-05_spa-phien-header-nguoi-dung-trang-loi-dang-nhap.md) | SPA: phiên, header người dùng, trang lỗi đăng nhập | VS-1 | M | Ready | T00-06, T01-03 |
-| [T02-01](tasks/T02-01_blobport-va-adapter-s3-minio.md) | BlobPort và adapter S3/MinIO | VS-2 | S | Ready | T00-02, T00-04 |
-| [T02-02](tasks/T02-02_sandbox-va-kiem-tra-pdf-khi-nhan-alg-02.md) | Sandbox và kiểm tra PDF khi nhận (ALG-02) | VS-2 | M | Ready | T00-04 |
-| [T02-03](tasks/T02-03_api-tao-lo-tai-len-va-han-muc-alg-01-create-batc.md) | API tạo lô tải lên và hạn mức (ALG-01 create_batch) | VS-2 | S | Ready | T01-03 |
-| [T02-04](tasks/T02-04_api-nhan-file-vao-lo-alg-01-accept-file-idempote.md) | API nhận file vào lô (ALG-01 accept_file, idempotent) | VS-2 | M | Ready | T02-01, T02-02, T02-03 |
-| [T02-05](tasks/T02-05_api-danh-sach-tai-lieu.md) | API danh sách tài liệu | VS-2 | S | Ready | T02-04 |
-| [T02-06](tasks/T02-06_spa-vung-tai-len-mot-file-va-danh-sach-tai-lieu.md) | SPA: vùng tải lên một file và danh sách tài liệu | VS-2 | M | Ready | T01-05, T02-05 |
-| [T03-01](tasks/T03-01_hang-doi-job-va-vong-lap-worker-alg-11.md) | Hàng đợi job và vòng lặp worker (ALG-11) | VS-3 | M | Ready | T00-05 |
-| [T03-02](tasks/T03-02_trich-van-ban-va-phan-loai-loi-alg-03-extract.md) | Trích văn bản và phân loại lỗi (ALG-03 extract) | VS-3 | M | Ready | T02-02 |
-| [T03-03](tasks/T03-03_chia-doan-trong-trang-alg-03-chunk.md) | Chia đoạn trong trang (ALG-03 chunk) | VS-3 | M | Ready | T03-02 |
-| [T03-04](tasks/T03-04_embedding-service-va-embeddingport.md) | Embedding service và EmbeddingPort | VS-3 | M | Ready (giả định) | T00-01 |
-| [T03-05](tasks/T03-05_pipeline-ingest-va-ghi-chi-muc-alg-04.md) | Pipeline ingest và ghi chỉ mục (ALG-04) | VS-3 | M | Ready | T03-01, T03-03, T03-04, T02-01 |
-| [T03-06](tasks/T03-06_sse-phat-trang-thai-tai-lieu-toi-giao-dien.md) | SSE: phát trạng thái tài liệu tới giao diện | VS-3 | M | Ready | T03-05, T02-06 |
-| [T04-01](tasks/T04-01_truy-xuat-ket-hop-va-cong-nguong-alg-05.md) | Truy xuất kết hợp và cổng ngưỡng (ALG-05) | VS-4 | M | Ready | T03-05 |
-| [T04-02](tasks/T04-02_llmport-adapter-gia-va-adapter-nha-cung-cap.md) | LlmPort, adapter giả và adapter nhà cung cấp | VS-4 | M | Ready (giả định) | T00-04 |
-| [T04-03](tasks/T04-03_sinh-cau-tra-loi-va-kiem-tra-trich-dan-alg-06.md) | Sinh câu trả lời và kiểm tra trích dẫn (ALG-06) | VS-4 | M | Ready | T04-01, T04-02 |
-| [T04-04](tasks/T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md) | Hội thoại và API đặt câu hỏi (ALG-08 cơ bản) | VS-4 | M | Ready | T04-03, T01-04 |
-| [T04-05](tasks/T04-05_spa-khung-chat-cau-tra-loi-va-nhan-nguon.md) | SPA: khung chat, câu trả lời và nhãn nguồn | VS-4 | M | Ready | T04-04, T03-06 |
-| [T04-06](tasks/T04-06_demo-lat-1-e2e-luong-xuyen-suot.md) | Demo lát 1: E2E luồng xuyên suốt | VS-4 | S | Ready | T04-05, T01-05 |
-| [TS-01](tasks/TS-01_spike-01-chat-luong-va-do-tre-rag-voi-llm-ung-vi.md) | SPIKE-01: chất lượng và độ trễ RAG với LLM ứng viên | SPIKE | M | Blocked | T04-04, T06-03 |
-| [TS-02](tasks/TS-02_spike-02-thong-luong-embedding.md) | SPIKE-02: thông lượng embedding | SPIKE | S | Ready | T03-04, T03-03 |
-| [TS-03](tasks/TS-03_spike-03-chat-luong-trich-van-ban-va-so-trang.md) | SPIKE-03: chất lượng trích văn bản và số trang | SPIKE | S | Blocked | T03-02 |
-| [TS-04](tasks/TS-04_spike-04-hieu-chinh-nguong-va-top-k.md) | SPIKE-04: hiệu chỉnh ngưỡng τ và top-k | SPIKE | S | Blocked | T04-01, T06-03 |
-| [T05-01](tasks/T05-01_hoan-thien-cac-duong-tu-choi-file-va-lo.md) | Hoàn thiện các đường từ chối file và lô | VS-5 | S | Ready | T02-04 |
-| [T05-02](tasks/T05-02_gioi-han-tan-suat-alg-09-cho-tai-file.md) | Giới hạn tần suất (ALG-09) cho tải file | VS-5 | S | Ready | T02-04 |
-| [T05-03](tasks/T05-03_spa-tai-nhieu-file-day-du-ca-01-va-thong-bao-gio.md) | SPA: tải nhiều file đầy đủ (CA-01) và thông báo giới hạn | VS-5 | M | Ready | T02-06, T05-01 |
-| [T06-01](tasks/T06-01_duong-chua-du-thong-tin-day-du.md) | Đường 'Chưa đủ thông tin' đầy đủ | VS-6 | S | Ready | T04-04, T04-05 |
-| [T06-02](tasks/T06-02_tong-hop-nhieu-tai-lieu-va-so-trang.md) | Tổng hợp nhiều tài liệu và số trang | VS-6 | S | Ready | T04-04 |
-| [T06-03](tasks/T06-03_bo-danh-gia-rag-de-22-va-dinh-dang-bo-cau-hoi.md) | Bộ đánh giá RAG (DE-22) và định dạng bộ câu hỏi | VS-6 | M | Ready | T04-04 |
-| [T07-01](tasks/T07-01_api-xoa-tai-lieu-alg-12.md) | API xóa tài liệu (ALG-12) | VS-7 | S | Ready | T03-05, T02-05 |
-| [T07-02](tasks/T07-02_worker-purge-va-luot-quet-alg-10.md) | Worker purge và lượt quét (ALG-10) | VS-7 | S | Ready | T07-01, T03-01 |
-| [T07-03](tasks/T07-03_spa-hop-xac-nhan-xoa-va-nguon-da-xoa.md) | SPA: hộp xác nhận xóa và nguồn đã xóa | VS-7 | S | Ready | T07-01, T04-05 |
-| [T08-01](tasks/T08-01_bo-test-phan-quyen-va-cach-ly-toan-he-thong.md) | Bộ test phân quyền và cách ly toàn hệ thống | VS-8 | M | Ready | T07-01, T04-04 |
-| [T08-02](tasks/T08-02_cung-hoa-bao-mat-http-va-chuoi-cung-ung.md) | Cứng hóa bảo mật HTTP và chuỗi cung ứng | VS-8 | S | Ready | T00-07 |
-| [T09-01](tasks/T09-01_circuit-breaker-llm-va-anh-xa-503-504-alg-07.md) | Circuit breaker LLM và ánh xạ 503/504 (ALG-07) | VS-9 | S | Ready | T04-03 |
-| [T09-02](tasks/T09-02_gioi-han-cau-hoi-va-dem-nguoc-tren-giao-dien.md) | Giới hạn câu hỏi và đếm ngược trên giao diện | VS-9 | S | Ready | T05-02, T04-05 |
-| [T09-03](tasks/T09-03_spa-the-loi-cau-tra-loi-canh-bao-het-phien.md) | SPA: thẻ lỗi câu trả lời, cảnh báo hết phiên | VS-9 | S | Ready | T09-01, T03-06, T01-05 |
-| [T10-01](tasks/T10-01_nhat-ky-kiem-toan-day-du.md) | Nhật ký kiểm toán đầy đủ | VS-10 | S | Ready | T07-01, T04-04, T01-03 |
-| [T10-02](tasks/T10-02_su-kien-analytics-evt-01-evt-11.md) | Sự kiện analytics EVT-01…EVT-11 | VS-10 | S | Ready | T07-01, T04-04, T06-01 |
-| [T10-03](tasks/T10-03_giam-sat-trace-metric-dashboard-canh-bao.md) | Giám sát: trace, metric, dashboard, cảnh báo | VS-10 | M | Ready | T04-04, T03-05 |
-| [T10-04](tasks/T10-04_tac-vu-bao-tri-dinh-ky.md) | Tác vụ bảo trì định kỳ | VS-10 | S | Ready | T03-01 |
-| [T10-05](tasks/T10-05_dong-goi-va-cau-hinh-trien-khai-staging.md) | Đóng gói và cấu hình triển khai staging | VS-10 | M | Ready (giả định) | T00-07, T10-03 |
-| [T10-06](tasks/T10-06_load-test-va-bao-cao-launch-gate.md) | Load test và báo cáo launch gate | VS-10 | M | Ready | T10-05, T06-03, T08-01 |
-| [T11-01](tasks/T11-01_xu-ly-lai-tai-lieu-loi-tam-thoi-us-009.md) | Xử lý lại tài liệu lỗi tạm thời (US-009) | VS-11 | S | Ready | T03-05, T02-06 |
-| [T11-02](tasks/T11-02_gui-lai-cau-hoi-bi-loi-us-027.md) | Gửi lại câu hỏi bị lỗi (US-027) | VS-11 | S | Ready | T09-03, T04-04 |
-| [T11-03](tasks/T11-03_neu-mau-thuan-giua-tai-lieu-us-018.md) | Nêu mâu thuẫn giữa tài liệu (US-018) | VS-11 | S | Ready | T06-02 |
-| [T11-04](tasks/T11-04_trinh-xem-pdf-tai-trang-us-022.md) | Trình xem PDF tại trang (US-022) | VS-11 | M | Blocked | T04-05 |
-| [T11-05](tasks/T11-05_cau-hoi-tiep-noi-hieu-ngu-canh-us-015.md) | Câu hỏi tiếp nối hiểu ngữ cảnh (US-015) | VS-11 | M | Blocked | T04-04, T06-03 |
+| [T00-01](tasks/T00-01_khoi-tao-monorepo-va-cong-cu.md) | Khởi tạo monorepo và công cụ | VS-0 | S | Done | – |
+| [T00-02](tasks/T00-02_docker-compose-moi-truong-dev.md) | docker-compose môi trường dev | VS-0 | S | Done | T00-01 |
+| [T00-03](tasks/T00-03_migration-0001-tu-schema-sql-va-fixture-csdl-cho.md) | Migration 0001 từ schema.sql và fixture CSDL cho test | VS-0 | M | Done | T00-02 |
+| [T00-04](tasks/T00-04_khung-api-settings-loi-rfc-9457-request-id-healt.md) | Khung API: settings, lỗi RFC 9457, request id, health | VS-0 | M | Done | T00-01 |
+| [T00-05](tasks/T00-05_ha-tang-csdl-engine-theo-vai-tro-va-pham-vi-work.md) | Hạ tầng CSDL: engine theo vai trò và phạm vi workspace | VS-0 | M | Done | T00-03, T00-04 |
+| [T00-06](tasks/T00-06_khung-spa-theo-thiet-ke-s01-va-client-api-sinh-t.md) | Khung SPA theo thiết kế S01 và client API sinh từ OpenAPI | VS-0 | M | Done | T00-01 |
+| [T00-07](tasks/T00-07_pipeline-ci.md) | Pipeline CI | VS-0 | S | Partial | T00-03, T00-04, T00-06 |
+| [T01-01](tasks/T01-01_identityport-va-adapter-oidc-authorization-code.md) | IdentityPort và adapter OIDC (Authorization Code + PKCE) | VS-1 | M | Done | T00-04 |
+| [T01-02](tasks/T01-02_phien-dang-nhap-va-cookie.md) | Phiên đăng nhập và cookie | VS-1 | M | Done | T00-05, T01-01 |
+| [T01-03](tasks/T01-03_endpoint-auth-va-me.md) | Endpoint /auth/* và /me | VS-1 | M | Done | T01-02 |
+| [T01-04](tasks/T01-04_middleware-csrf-va-thu-tu-middleware.md) | Middleware CSRF và thứ tự middleware | VS-1 | S | Done | T01-02 |
+| [T01-05](tasks/T01-05_spa-phien-header-nguoi-dung-trang-loi-dang-nhap.md) | SPA: phiên, header người dùng, trang lỗi đăng nhập | VS-1 | M | Done | T00-06, T01-03 |
+| [T02-01](tasks/T02-01_blobport-va-adapter-s3-minio.md) | BlobPort và adapter S3/MinIO | VS-2 | S | Partial | T00-02, T00-04 |
+| [T02-02](tasks/T02-02_sandbox-va-kiem-tra-pdf-khi-nhan-alg-02.md) | Sandbox và kiểm tra PDF khi nhận (ALG-02) | VS-2 | M | Done | T00-04 |
+| [T02-03](tasks/T02-03_api-tao-lo-tai-len-va-han-muc-alg-01-create-batc.md) | API tạo lô tải lên và hạn mức (ALG-01 create_batch) | VS-2 | S | Done | T01-03 |
+| [T02-04](tasks/T02-04_api-nhan-file-vao-lo-alg-01-accept-file-idempote.md) | API nhận file vào lô (ALG-01 accept_file, idempotent) | VS-2 | M | Done | T02-01, T02-02, T02-03 |
+| [T02-05](tasks/T02-05_api-danh-sach-tai-lieu.md) | API danh sách tài liệu | VS-2 | S | Done | T02-04 |
+| [T02-06](tasks/T02-06_spa-vung-tai-len-mot-file-va-danh-sach-tai-lieu.md) | SPA: vùng tải lên một file và danh sách tài liệu | VS-2 | M | Done | T01-05, T02-05 |
+| [T03-01](tasks/T03-01_hang-doi-job-va-vong-lap-worker-alg-11.md) | Hàng đợi job và vòng lặp worker (ALG-11) | VS-3 | M | Done | T00-05 |
+| [T03-02](tasks/T03-02_trich-van-ban-va-phan-loai-loi-alg-03-extract.md) | Trích văn bản và phân loại lỗi (ALG-03 extract) | VS-3 | M | Done | T02-02 |
+| [T03-03](tasks/T03-03_chia-doan-trong-trang-alg-03-chunk.md) | Chia đoạn trong trang (ALG-03 chunk) | VS-3 | M | Done | T03-02 |
+| [T03-04](tasks/T03-04_embedding-service-va-embeddingport.md) | Embedding service và EmbeddingPort | VS-3 | M | Done | T00-01 |
+| [T03-05](tasks/T03-05_pipeline-ingest-va-ghi-chi-muc-alg-04.md) | Pipeline ingest và ghi chỉ mục (ALG-04) | VS-3 | M | Done | T03-01, T03-03, T03-04, T02-01 |
+| [T03-06](tasks/T03-06_sse-phat-trang-thai-tai-lieu-toi-giao-dien.md) | SSE: phát trạng thái tài liệu tới giao diện | VS-3 | M | Done | T03-05, T02-06 |
+| [T04-01](tasks/T04-01_truy-xuat-ket-hop-va-cong-nguong-alg-05.md) | Truy xuất kết hợp và cổng ngưỡng (ALG-05) | VS-4 | M | Done | T03-05 |
+| [T04-02](tasks/T04-02_llmport-adapter-gia-va-adapter-nha-cung-cap.md) | LlmPort, adapter giả và adapter nhà cung cấp | VS-4 | M | Done | T00-04 |
+| [T04-03](tasks/T04-03_sinh-cau-tra-loi-va-kiem-tra-trich-dan-alg-06.md) | Sinh câu trả lời và kiểm tra trích dẫn (ALG-06) | VS-4 | M | Done | T04-01, T04-02 |
+| [T04-04](tasks/T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md) | Hội thoại và API đặt câu hỏi (ALG-08 cơ bản) | VS-4 | M | Done | T04-03, T01-04 |
+| [T04-05](tasks/T04-05_spa-khung-chat-cau-tra-loi-va-nhan-nguon.md) | SPA: khung chat, câu trả lời và nhãn nguồn | VS-4 | M | Done | T04-04, T03-06 |
+| [T04-06](tasks/T04-06_demo-lat-1-e2e-luong-xuyen-suot.md) | Demo lát 1: E2E luồng xuyên suốt | VS-4 | S | Done | T04-05, T01-05 |
+| [TS-01](tasks/TS-01_spike-01-chat-luong-va-do-tre-rag-voi-llm-ung-vi.md) | SPIKE-01: chất lượng và độ trễ RAG với LLM ứng viên | SPIKE | M | Deferred | T04-04, T06-03 |
+| [TS-02](tasks/TS-02_spike-02-thong-luong-embedding.md) | SPIKE-02: thông lượng embedding | SPIKE | S | Deferred | T03-04, T03-03 |
+| [TS-03](tasks/TS-03_spike-03-chat-luong-trich-van-ban-va-so-trang.md) | SPIKE-03: chất lượng trích văn bản và số trang | SPIKE | S | Partial | T03-02 |
+| [TS-04](tasks/TS-04_spike-04-hieu-chinh-nguong-va-top-k.md) | SPIKE-04: hiệu chỉnh ngưỡng τ và top-k | SPIKE | S | Deferred | T04-01, T06-03 |
+| [T05-01](tasks/T05-01_hoan-thien-cac-duong-tu-choi-file-va-lo.md) | Hoàn thiện các đường từ chối file và lô | VS-5 | S | Done | T02-04 |
+| [T05-02](tasks/T05-02_gioi-han-tan-suat-alg-09-cho-tai-file.md) | Giới hạn tần suất (ALG-09) cho tải file | VS-5 | S | Done | T02-04 |
+| [T05-03](tasks/T05-03_spa-tai-nhieu-file-day-du-ca-01-va-thong-bao-gio.md) | SPA: tải nhiều file đầy đủ (CA-01) và thông báo giới hạn | VS-5 | M | Done | T02-06, T05-01 |
+| [T06-01](tasks/T06-01_duong-chua-du-thong-tin-day-du.md) | Đường 'Chưa đủ thông tin' đầy đủ | VS-6 | S | Done | T04-04, T04-05 |
+| [T06-02](tasks/T06-02_tong-hop-nhieu-tai-lieu-va-so-trang.md) | Tổng hợp nhiều tài liệu và số trang | VS-6 | S | Done | T04-04 |
+| [T06-03](tasks/T06-03_bo-danh-gia-rag-de-22-va-dinh-dang-bo-cau-hoi.md) | Bộ đánh giá RAG (DE-22) và định dạng bộ câu hỏi | VS-6 | M | Deferred | T04-04 |
+| [T07-01](tasks/T07-01_api-xoa-tai-lieu-alg-12.md) | API xóa tài liệu (ALG-12) | VS-7 | S | Done | T03-05, T02-05 |
+| [T07-02](tasks/T07-02_worker-purge-va-luot-quet-alg-10.md) | Worker purge và lượt quét (ALG-10) | VS-7 | S | Done | T07-01, T03-01 |
+| [T07-03](tasks/T07-03_spa-hop-xac-nhan-xoa-va-nguon-da-xoa.md) | SPA: hộp xác nhận xóa và nguồn đã xóa | VS-7 | S | Done | T07-01, T04-05 |
+| [T08-01](tasks/T08-01_bo-test-phan-quyen-va-cach-ly-toan-he-thong.md) | Bộ test phân quyền và cách ly toàn hệ thống | VS-8 | M | Done | T07-01, T04-04 |
+| [T08-02](tasks/T08-02_cung-hoa-bao-mat-http-va-chuoi-cung-ung.md) | Cứng hóa bảo mật HTTP và chuỗi cung ứng | VS-8 | S | Partial | T00-07 |
+| [T09-01](tasks/T09-01_circuit-breaker-llm-va-anh-xa-503-504-alg-07.md) | Circuit breaker LLM và ánh xạ 503/504 (ALG-07) | VS-9 | S | Done | T04-03 |
+| [T09-02](tasks/T09-02_gioi-han-cau-hoi-va-dem-nguoc-tren-giao-dien.md) | Giới hạn câu hỏi và đếm ngược trên giao diện | VS-9 | S | Done | T05-02, T04-05 |
+| [T09-03](tasks/T09-03_spa-the-loi-cau-tra-loi-canh-bao-het-phien.md) | SPA: thẻ lỗi câu trả lời, cảnh báo hết phiên | VS-9 | S | Done | T09-01, T03-06, T01-05 |
+| [T10-01](tasks/T10-01_nhat-ky-kiem-toan-day-du.md) | Nhật ký kiểm toán đầy đủ | VS-10 | S | Done | T07-01, T04-04, T01-03 |
+| [T10-02](tasks/T10-02_su-kien-analytics-evt-01-evt-11.md) | Sự kiện analytics EVT-01…EVT-11 | VS-10 | S | Done | T07-01, T04-04, T06-01 |
+| [T10-03](tasks/T10-03_giam-sat-trace-metric-dashboard-canh-bao.md) | Giám sát: trace, metric, dashboard, cảnh báo | VS-10 | M | Partial | T04-04, T03-05 |
+| [T10-04](tasks/T10-04_tac-vu-bao-tri-dinh-ky.md) | Tác vụ bảo trì định kỳ | VS-10 | S | Done | T03-01 |
+| [T10-05](tasks/T10-05_dong-goi-va-cau-hinh-trien-khai-staging.md) | Đóng gói và cấu hình triển khai staging | VS-10 | M | Deferred | T00-07, T10-03 |
+| [T10-06](tasks/T10-06_load-test-va-bao-cao-launch-gate.md) | Load test và báo cáo launch gate | VS-10 | M | Deferred | T10-05, T06-03, T08-01 |
+| [T11-01](tasks/T11-01_xu-ly-lai-tai-lieu-loi-tam-thoi-us-009.md) | Xử lý lại tài liệu lỗi tạm thời (US-009) | VS-11 | S | Done | T03-05, T02-06 |
+| [T11-02](tasks/T11-02_gui-lai-cau-hoi-bi-loi-us-027.md) | Gửi lại câu hỏi bị lỗi (US-027) | VS-11 | S | Done | T09-03, T04-04 |
+| [T11-03](tasks/T11-03_neu-mau-thuan-giua-tai-lieu-us-018.md) | Nêu mâu thuẫn giữa tài liệu (US-018) | VS-11 | S | Partial | T06-02 |
+| [T11-04](tasks/T11-04_trinh-xem-pdf-tai-trang-us-022.md) | Trình xem PDF tại trang (US-022) | VS-11 | M | Done | T04-05 |
+| [T11-05](tasks/T11-05_cau-hoi-tiep-noi-hieu-ngu-canh-us-015.md) | Câu hỏi tiếp nối hiểu ngữ cảnh (US-015) | VS-11 | M | Deferred | T04-04, T06-03 |
+
+**Trạng thái triển khai (26/10/2026, bản demo trong `app/`):** *Done* = đã làm và có test; *Partial* = làm một phần, xem ghi chú trong task; *Deferred* = chưa làm (bị chặn hoặc cần hạ tầng/dữ liệu chưa có). Khác biệt so với kế hoạch: [app/README.md](../../app/README.md#khác-biệt-so-với-kế-hoạch).
 
 **Trạng thái:** *Ready* = làm được ngay; *Ready (giả định)* = làm được với giá trị đề xuất/bản giả, cần PO/IT-Security xác nhận trước production; *Blocked* = chờ câu hỏi mở hoặc dữ liệu (ghi trong task).
 

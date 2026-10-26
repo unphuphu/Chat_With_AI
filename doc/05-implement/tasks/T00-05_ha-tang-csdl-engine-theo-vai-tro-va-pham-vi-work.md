@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-0 – Nền tảng chạy được (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-03](T00-03_migration-0001-tu-schema-sql-va-fixture-csdl-cho.md), [T00-04](T00-04_khung-api-settings-loi-rfc-9457-request-id-healt.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | BLUEPRINT 3.2.3 (bất biến), 3.3; SAD 5.1 (vai trò CSDL); DATABASE_DESIGN A.10 (PgBouncer, LISTEN) |
@@ -42,3 +42,7 @@ make test-int -k db_scope
 ## Ngoài phạm vi
 
 - Không viết repository nghiệp vụ
+
+## Kết quả triển khai
+
+**Done** – `Database.tx(role, workspace_id)` với `SET LOCAL ROLE` + `app.workspace_id`; test không rò phạm vi.

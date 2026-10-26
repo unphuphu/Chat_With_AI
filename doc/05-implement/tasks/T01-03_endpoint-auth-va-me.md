@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-1 – Đăng nhập và phiên (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T01-02](T01-02_phien-dang-nhap-va-cookie.md) |
 | Story | US-023, US-C01, US-C03 |
 | Tài liệu tham chiếu | openapi.yaml `/auth/login`, `/auth/callback`, `/auth/logout`, `/me`; SAD 7.3a; USER_STORIES US-023 AC; html_design S09, S10 |
@@ -42,3 +42,7 @@ Luồng đăng nhập/đăng xuất đầy đủ: người thuộc nhóm vào đ
 ```bash
 make test-int -k auth_flow
 ```
+
+## Kết quả triển khai
+
+**Done** – `/auth/login`, `/auth/callback`, `/auth/logout`, `/me`; chặn open redirect; audit `login_denied`.

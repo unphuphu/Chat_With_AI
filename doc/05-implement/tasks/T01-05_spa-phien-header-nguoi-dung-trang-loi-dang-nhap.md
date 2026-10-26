@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-1 – Đăng nhập và phiên (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-06](T00-06_khung-spa-theo-thiet-ke-s01-va-client-api-sinh-t.md), [T01-03](T01-03_endpoint-auth-va-me.md) |
 | Story | US-023, US-C03 |
 | Tài liệu tham chiếu | API_DESIGN 3.4.3, 3.7.4, CA-03; html_design S09, S10, S11; BLUEPRINT DD-10 (nháp trong sessionStorage) |
@@ -39,3 +39,7 @@ Người dùng đăng nhập, thấy email, đăng xuất; hết phiên được
 ```bash
 make e2e -- auth.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – Header người dùng, đăng xuất, trang S09/S10/S11, lưu nháp khi hết phiên.

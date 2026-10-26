@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-0 – Nền tảng chạy được (Lát 1) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Partial** |
 | Phụ thuộc | [T00-03](T00-03_migration-0001-tu-schema-sql-va-fixture-csdl-cho.md), [T00-04](T00-04_khung-api-settings-loi-rfc-9457-request-id-healt.md), [T00-06](T00-06_khung-spa-theo-thiet-ke-s01-va-client-api-sinh-t.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | BLUEPRINT QA-10, QA-12; API_DESIGN AC-06 (oasdiff); SAD 8.1 (bí mật) |
@@ -43,3 +43,7 @@ Mỗi pull request được kiểm tra tự động đủ các cổng chất lư
 ## Ngoài phạm vi
 
 - Không triển khai tự động (T10-05)
+
+## Kết quả triển khai
+
+**Partial** – `app/.github/workflows/ci.yml` đã viết (PostgreSQL pgvector service), chưa chạy trên GitHub; cần chép ra `.github/` ở gốc repo.

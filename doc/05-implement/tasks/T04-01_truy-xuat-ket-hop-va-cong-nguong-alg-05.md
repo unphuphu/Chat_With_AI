@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-4 – Hỏi đáp có trích dẫn (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T03-05](T03-05_pipeline-ingest-va-ghi-chi-muc-alg-04.md) |
 | Story | US-013, US-017 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-05; DATABASE_DESIGN B.4, B.5; SAD ADR-009 |
@@ -37,3 +37,7 @@ Từ câu hỏi trả top-8 đoạn trong workspace (vector + full-text, RRF) v�
 ```bash
 make test-int -k retrieval
 ```
+
+## Kết quả triển khai
+
+**Done** – Vector + full-text (truy vấn OR từ có nghĩa) + RRF + cổng ngưỡng.

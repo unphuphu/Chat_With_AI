@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-3 – Xử lý tài liệu (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T03-01](T03-01_hang-doi-job-va-vong-lap-worker-alg-11.md), [T03-03](T03-03_chia-doan-trong-trang-alg-03-chunk.md), [T03-04](T03-04_embedding-service-va-embeddingport.md), [T02-01](T02-01_blobport-va-adapter-s3-minio.md) |
 | Story | US-005, US-008 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-04, 3.4.3; DATABASE_DESIGN A.7 (trigger bất biến) |
@@ -39,3 +39,7 @@ Job `ingest_document` biến tài liệu PROCESSING thành READY (có đoạn + 
 ```bash
 make test-int -k ingest
 ```
+
+## Kết quả triển khai
+
+**Done** – Pipeline ingest an toàn với xóa; ghi `chunk` bằng INSERT theo lô (COPY không dùng được với RLS).

@@ -1,0 +1,45 @@
+[importlinter]
+root_packages =
+    app
+    worker
+
+# BLUEPRINT 3.3 – quy tắc tầng
+[importlinter:contract:layers]
+name = API -> modules -> ports
+type = layers
+layers =
+    app.api
+    app.modules
+    app.ports
+ignore_imports =
+    app.api.** -> app.infra.**
+    app.modules.** -> app.infra.**
+
+[importlinter:contract:no-adapters-in-modules]
+name = Module nghiệp vụ không import adapter
+type = forbidden
+source_modules =
+    app.modules
+forbidden_modules =
+    app.adapters
+
+[importlinter:contract:ports-pure]
+name = Port không phụ thuộc hạ tầng
+type = forbidden
+source_modules =
+    app.ports
+forbidden_modules =
+    app.api
+    app.adapters
+    app.infra
+
+[importlinter:contract:api-not-adapters]
+name = Router không import adapter (chỉ composition root)
+type = forbidden
+source_modules =
+    app.api
+forbidden_modules =
+    app.adapters
+ignore_imports =
+    # app.container là composition root; router chỉ nhận Container qua Depends, không gọi adapter trực tiếp
+    app.api.** -> app.container

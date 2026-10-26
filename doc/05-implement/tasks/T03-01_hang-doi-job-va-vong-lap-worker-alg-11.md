@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-3 – Xử lý tài liệu (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-05](T00-05_ha-tang-csdl-engine-theo-vai-tro-va-pham-vi-work.md) |
 | Story | US-005 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-11, 3.7.1, DE-16; SAD ADR-006, 3.2 (tác vụ); schema.sql `job` |
@@ -39,3 +39,7 @@ Worker lấy job an toàn khi nhiều bản chạy song song, có heartbeat, th�
 ```bash
 make test-int -k jobs
 ```
+
+## Kết quả triển khai
+
+**Done** – Job queue SKIP LOCKED, heartbeat, retry/backoff; worker chạy trong tiến trình API ở chế độ single.

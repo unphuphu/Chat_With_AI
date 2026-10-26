@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-9 – Lỗi, giới hạn và phiên (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T05-02](T05-02_gioi-han-tan-suat-alg-09-cho-tai-file.md), [T04-05](T04-05_spa-khung-chat-cau-tra-loi-va-nhan-nguon.md) |
 | Story | US-026 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-09; html_design S05 (cảnh báo đếm ngược); API_DESIGN 3.6.3 `rate_limited` |
@@ -34,3 +34,7 @@
 ```bash
 make test-int -k ratelimit && make e2e -- ratelimit.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – 429 + đếm ngược trên ô hỏi, giữ nội dung câu hỏi.

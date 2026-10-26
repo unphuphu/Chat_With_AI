@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-10 – Vận hành và đo lường (Lát 2) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready (giả định)** |
+| Trạng thái | **Deferred** |
 | Phụ thuộc | [T00-07](T00-07_pipeline-ci.md), [T10-03](T10-03_giam-sat-trace-metric-dashboard-canh-bao.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | SAD 9.1, 9.2, ADR-013; DATABASE_DESIGN A.10 (sao lưu, tham số) |
@@ -42,3 +42,7 @@ trivy image aichat-api:latest
 ## Ngoài phạm vi
 
 - Hạ tầng production cụ thể chờ OQ-005, OQ-203
+
+## Kết quả triển khai
+
+**Deferred** – Chưa đóng gói container / staging (máy dev không có Docker).

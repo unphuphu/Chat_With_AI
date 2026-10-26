@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-2 – Tải lên một PDF (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T02-01](T02-01_blobport-va-adapter-s3-minio.md), [T02-02](T02-02_sandbox-va-kiem-tra-pdf-khi-nhan-alg-02.md), [T02-03](T02-03_api-tao-lo-tai-len-va-han-muc-alg-01-create-batc.md) |
 | Story | US-001 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-01 (pha 0–4); API_DESIGN AD-06; openapi.yaml `PUT /upload-batches/{batch_id}/files/{client_file_id}` |
@@ -42,3 +42,7 @@ Nhận một PDF, kiểm tra, lưu object, tạo tài liệu PROCESSING + job in
 ```bash
 make test-int -k accept_file
 ```
+
+## Kết quả triển khai
+
+**Done** – Nhận file 4 pha, idempotent theo `client_file_id`; test 201/200 và `batch_full`.

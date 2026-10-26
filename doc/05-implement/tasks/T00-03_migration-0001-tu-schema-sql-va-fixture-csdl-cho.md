@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-0 – Nền tảng chạy được (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-02](T00-02_docker-compose-moi-truong-dev.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | doc/04-design/schema.sql v0.3; doc/04-design/seed_dev.sql; DATABASE_DESIGN A.9 |
@@ -43,3 +43,7 @@ make test-int -k schema
 ## Ngoài phạm vi
 
 - Không viết repository/ORM model (task sau)
+
+## Kết quả triển khai
+
+**Done** – `migrations/sql/0001_initial.sql` + bộ chạy migration tối giản; fixture PGlite trong bộ nhớ; test schema/RLS/trigger trong `tests/integration/test_slice1.py`.

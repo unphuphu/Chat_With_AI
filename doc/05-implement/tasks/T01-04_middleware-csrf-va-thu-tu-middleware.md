@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-1 – Đăng nhập và phiên (Lát 1) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T01-02](T01-02_phien-dang-nhap-va-cookie.md) |
 | Story | US-023 |
 | Tài liệu tham chiếu | API_DESIGN 3.3 (thứ tự middleware), 2.6 (CSRF); SAD 8.1 (CSRF) |
@@ -37,3 +37,7 @@ Mọi request POST/PUT/DELETE có phiên phải có `X-CSRF-Token` hợp lệ.
 ```bash
 make test-unit -k csrf
 ```
+
+## Kết quả triển khai
+
+**Done** – CSRF double-submit (`X-CSRF-Token`), test 403 `csrf_invalid`.

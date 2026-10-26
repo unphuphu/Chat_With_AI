@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-11 – Tính năng P1 (Lát 3) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Partial** |
 | Phụ thuộc | [T06-02](T06-02_tong-hop-nhieu-tai-lieu-va-so-trang.md) |
 | Story | US-018 |
 | Tài liệu tham chiếu | USER_STORIES US-018 AC; BLUEPRINT ALG-06 (`conflict`); html_design S04 (khối mâu thuẫn) |
@@ -37,3 +37,7 @@ Khi các nguồn khác nhau, câu trả lời liệt kê từng giá trị kèm 
 ```bash
 make test-int -k conflict
 ```
+
+## Kết quả triển khai
+
+**Partial** – Hiển thị cờ `conflict` do LLM trả về; bộ trả lời trích xuất (offline) không tự phát hiện mâu thuẫn.

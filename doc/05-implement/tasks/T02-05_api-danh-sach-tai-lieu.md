@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-2 – Tải lên một PDF (Lát 1) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T02-04](T02-04_api-nhan-file-vao-lo-alg-01-accept-file-idempote.md) |
 | Story | US-006 |
 | Tài liệu tham chiếu | openapi.yaml `GET /documents`, `DocumentList`; DATABASE_DESIGN A.5 (`vw_document_list`) |
@@ -36,3 +36,7 @@ Trả tài liệu chưa xóa của workspace, mới nhất trước, kèm hạn 
 ```bash
 make test-int -k list_documents
 ```
+
+## Kết quả triển khai
+
+**Done** – `GET /documents` kèm hạn mức.

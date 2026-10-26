@@ -1,0 +1,47 @@
+[project]
+name = "aichat-backend"
+version = "0.1.0"
+description = "AI Chat với tài liệu PDF – backend (API + worker)"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = [".venv", "migrations/sql"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "ASYNC", "S", "RUF"]
+ignore = [
+  "S101",   # assert trong test
+  "S608",   # SQL được xây bằng tham số có kiểm soát, không nối dữ liệu người dùng
+  "RUF001", "RUF002", "RUF003",  # chú thích/chuỗi tiếng Việt và ký tự …
+  "B008",   # FastAPI Depends trong tham số mặc định
+  "ASYNC109",  # tham số timeout_s là ngân sách truyền xuống adapter (ALG-06), không phải asyncio.timeout
+  "ASYNC240",  # thao tác Path rất nhỏ (stat/unlink file tạm cục bộ)
+  "RUF007",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S105", "S106", "S311", "S108", "ASYNC"]
+"scripts/**" = ["S"]
+"devidp/**" = ["E501"]  # HTML nhúng của IdP giả lập
+"app/modules/qa/prompt.py" = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+packages = ["app", "worker"]
+plugins = ["pydantic.mypy"]
+ignore_missing_imports = true
+warn_unused_ignores = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+markers = [
+  "integration: cần PostgreSQL (PGlite hoặc PostgreSQL thật)",
+  "slow: chạy chậm, chỉ chạy hằng đêm",
+]
+filterwarnings = ["ignore::DeprecationWarning"]

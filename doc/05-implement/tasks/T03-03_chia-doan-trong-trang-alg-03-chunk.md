@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-3 – Xử lý tài liệu (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T03-02](T03-02_trich-van-ban-va-phan-loai-loi-alg-03-extract.md) |
 | Story | US-005, US-021 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-03 (chunk); SAD ADR-008; DATABASE_DESIGN B.2 |
@@ -37,3 +37,7 @@ Chia văn bản thành đoạn 500–800 token, chồng lấn 80 token, không b
 ```bash
 make test-unit -k chunker
 ```
+
+## Kết quả triển khai
+
+**Done** – Chia đoạn trong trang; property test (hypothesis).

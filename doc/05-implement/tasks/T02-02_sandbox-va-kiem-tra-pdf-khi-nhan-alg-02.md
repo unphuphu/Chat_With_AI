@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-2 – Tải lên một PDF (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-04](T00-04_khung-api-settings-loi-rfc-9457-request-id-healt.md) |
 | Story | US-003, US-004 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-02, 3.6.5 (sandbox), DD-02, QA-07; SAD 4.1 bước 1 |
@@ -45,3 +45,7 @@ make test-unit -k 'sandbox or pdf_inspector'
 ## Ngoài phạm vi
 
 - Chỉ chạy trên Linux/container (CI); trên Windows dev đánh dấu skip có lý do
+
+## Kết quả triển khai
+
+**Done** – Sandbox multiprocessing có timeout/giới hạn bộ nhớ (psutil trên Windows); `pdf_inspector.inspect`.

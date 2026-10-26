@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-8 – Cách ly và bảo mật (Lát 2) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T07-01](T07-01_api-xoa-tai-lieu-alg-12.md), [T04-04](T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md) |
 | Story | US-024 |
 | Tài liệu tham chiếu | USER_STORIES US-024 AC; PRD NFR-010, G-04; BLUEPRINT QA-06; API_DESIGN AD-11 |
@@ -37,3 +37,7 @@ Chứng minh không endpoint nào cho phép truy cập dữ liệu của workspa
 ```bash
 make test-int -k security
 ```
+
+## Kết quả triển khai
+
+**Done** – Test cách ly P1/P2 (tài liệu, file, xóa, hội thoại) + RLS trên CSDL.

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-6 – Chất lượng câu trả lời (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T04-04](T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md), [T04-05](T04-05_spa-khung-chat-cau-tra-loi-va-nhan-nguon.md) |
 | Story | US-016 |
 | Tài liệu tham chiếu | USER_STORIES US-016 AC; BLUEPRINT ALG-05 (cổng), ALG-06; html_design S04 (thẻ Chưa đủ thông tin); PRD E-11, E-16 |
@@ -36,3 +36,7 @@ Ba lớp phát hiện thiếu căn cứ hoạt động và hiển thị đúng t
 ```bash
 make test-int -k insufficient && pnpm -C frontend test
 ```
+
+## Kết quả triển khai
+
+**Done** – INSUFFICIENT từ cổng ngưỡng và từ LLM; thẻ 'Chưa đủ thông tin' ở SPA.

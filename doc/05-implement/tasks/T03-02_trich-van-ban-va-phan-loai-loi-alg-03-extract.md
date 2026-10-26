@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-3 – Xử lý tài liệu (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T02-02](T02-02_sandbox-va-kiem-tra-pdf-khi-nhan-alg-02.md) |
 | Story | US-008 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-03 (extract, normalize); PRD 3.3 (mã lý do R-01…R-04); SAD 4.1 bước 2–4 |
@@ -39,3 +39,7 @@ Trích văn bản theo trang trong sandbox, chuẩn hóa Unicode, phân loại R
 ```bash
 make test-unit -k extractor
 ```
+
+## Kết quả triển khai
+
+**Done** – R-01/R-02/R-03, chuẩn hóa NFC; unit test.

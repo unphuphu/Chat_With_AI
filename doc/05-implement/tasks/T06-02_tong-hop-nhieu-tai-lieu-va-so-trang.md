@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-6 – Chất lượng câu trả lời (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T04-04](T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md) |
 | Story | US-017, US-021 |
 | Tài liệu tham chiếu | USER_STORIES US-017, US-021 AC; BLUEPRINT ALG-06, DD-11; DATABASE_DESIGN `citation` |
@@ -36,3 +36,7 @@ Câu trả lời trích nhiều tài liệu; số trang đúng hoặc null, khô
 ```bash
 make test-int -k multi_doc
 ```
+
+## Kết quả triển khai
+
+**Done** – Trả lời tổng hợp từ nhiều tài liệu với số trang; test giá Premium từ 2 tài liệu.

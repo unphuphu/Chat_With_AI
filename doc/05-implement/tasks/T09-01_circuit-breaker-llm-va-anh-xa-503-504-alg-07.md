@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-9 – Lỗi, giới hạn và phiên (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T04-03](T04-03_sinh-cau-tra-loi-va-kiem-tra-trich-dan-alg-06.md) |
 | Story | US-026 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-07, 3.7.5; SAD 6.2; PRD E-06 |
@@ -37,3 +37,7 @@ Khi LLM lỗi liên tục, trả lỗi ngay thay vì chờ; tự phục hồi.
 ```bash
 make test-unit -k circuit && make test-int -k ask_failures
 ```
+
+## Kết quả triển khai
+
+**Done** – Circuit breaker CLOSED/OPEN/HALF_OPEN, 503 kèm Retry-After / 504.

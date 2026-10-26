@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-0 – Nền tảng chạy được (Lát 1) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-01](T00-01_khoi-tao-monorepo-va-cong-cu.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | SAD 9.1 (Phương án B – nội bộ); BLUEPRINT 3.6.6 (biến môi trường); DATABASE_DESIGN A.0 |
@@ -46,3 +46,7 @@ make psql -c "select extversion from pg_extension where extname='vector'"
 ## Ngoài phạm vi
 
 - Không chứa service ứng dụng (thêm ở T00-04, T00-06)
+
+## Kết quả triển khai
+
+**Done** – Không có Docker → PGlite (PostgreSQL 17.5 + pgvector) `app/devdb`, IdP giả lập `backend/devidp`, blob thư mục cục bộ; khởi động bằng `run.py`.

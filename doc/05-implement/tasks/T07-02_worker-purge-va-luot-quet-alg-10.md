@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-7 – Xóa tài liệu (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T07-01](T07-01_api-xoa-tai-lieu-alg-12.md), [T03-01](T03-01_hang-doi-job-va-vong-lap-worker-alg-11.md) |
 | Story | US-011 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-10; DATABASE_DESIGN A.6 (`fn_pending_purges`, `fn_purge_lag_max_seconds`); PRD NFR-013 |
@@ -36,3 +36,7 @@ Xóa thật file gốc ≤ 24 h, dọn object mồ côi, đo độ trễ purge.
 ```bash
 make test-int -k purge
 ```
+
+## Kết quả triển khai
+
+**Done** – Purge job + sweep (job bị mất, object mồ côi, độ trễ purge).

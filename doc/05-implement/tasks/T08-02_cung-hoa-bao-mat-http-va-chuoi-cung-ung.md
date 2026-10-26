@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-8 – Cách ly và bảo mật (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Partial** |
 | Phụ thuộc | [T00-07](T00-07_pipeline-ci.md) |
 | Story | US-024 |
 | Tài liệu tham chiếu | SAD 8.1; API_DESIGN 2.6 (CORS tắt, Cache-Control); PRD NFR-009 |
@@ -37,3 +37,7 @@ Header bảo mật, cookie đúng cờ, không CORS, quét phụ thuộc và bí
 ```bash
 make test-unit -k security_headers
 ```
+
+## Kết quả triển khai
+
+**Partial** – Header bảo mật, CSP, giới hạn kích thước body, cookie; chưa có quét phụ thuộc/SBOM trong CI.

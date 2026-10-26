@@ -4,7 +4,7 @@
 |---|---|
 | Lát | SPIKE – Thử nghiệm kỹ thuật (Song song) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Deferred** |
 | Phụ thuộc | [T03-04](T03-04_embedding-service-va-embeddingport.md), [T03-03](T03-03_chia-doan-trong-trang-alg-03-chunk.md) |
 | Story | US-005 |
 | Tài liệu tham chiếu | SAD 12 (SPIKE-02, TR-02), 9.2; PRD NFR-002 |
@@ -34,3 +34,7 @@ Xác định CPU 4 vCPU có xử lý file 300 trang ≤ 3 phút không, hay cầ
 ```bash
 python eval/bench_embedding.py --texts 600 --batch 32
 ```
+
+## Kết quả triển khai
+
+**Deferred** – Chưa có dịch vụ bge-m3 để đo; embedding hashing chỉ dùng cho demo.

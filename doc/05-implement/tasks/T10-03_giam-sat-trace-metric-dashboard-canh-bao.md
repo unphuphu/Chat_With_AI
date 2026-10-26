@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-10 – Vận hành và đo lường (Lát 2) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Partial** |
 | Phụ thuộc | [T04-04](T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md), [T03-05](T03-05_pipeline-ingest-va-ghi-chi-muc-alg-04.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | SAD 8.3; BLUEPRINT QA-13; DATABASE_DESIGN A.10 (truy vấn giám sát) |
@@ -37,3 +37,7 @@ Có đủ metric, trace và cảnh báo ở SAD 8.3 trên môi trường dev/sta
 ```bash
 docker compose --profile obs up && make e2e -- slice1-journey.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Partial** – Chỉ có `/metrics` (Prometheus) và log JSON có request_id; chưa có trace, dashboard, cảnh báo.

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | SPIKE – Thử nghiệm kỹ thuật (Song song) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Blocked** |
+| Trạng thái | **Partial** |
 | Phụ thuộc | [T03-02](T03-02_trich-van-ban-va-phan-loai-loi-alg-03-extract.md) |
 | Story | US-021 |
 | Tài liệu tham chiếu | SAD 12 (SPIKE-03, TR-03), ADR-015; PRD NFR-018 |
@@ -35,3 +35,7 @@ Kiểm tra `pypdf` trên PDF thật: thứ tự chữ, bảng, nhiều cột, s�
 ```bash
 python -m eval.extract_report --dir data/dep003
 ```
+
+## Kết quả triển khai
+
+**Partial** – Đã kiểm chứng trên PDF mẫu sinh tự động (tiếng Việt NFC, đúng số trang); chưa có bộ PDF thật của người dùng.

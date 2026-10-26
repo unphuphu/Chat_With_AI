@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-0 – Nền tảng chạy được (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-01](T00-01_khoi-tao-monorepo-va-cong-cu.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | doc/04-design/html_design/S01_main_empty.html, S09–S11; API_DESIGN 3.1, 3.2 (view model), 3.5; BLUEPRINT 2.4, 2.5 (UX, WCAG 2.2 AA) |
@@ -50,3 +50,7 @@ pnpm -C frontend gen:api && pnpm -C frontend test && pnpm -C frontend build
 ## Ngoài phạm vi
 
 - Không gọi API thật ngoài /healthz
+
+## Kết quả triển khai
+
+**Done** – SPA Vite + React + TS theo S01; client viết tay `src/api.ts` (không sinh từ OpenAPI) – test hợp đồng đối chiếu `contracts/openapi.yaml`.

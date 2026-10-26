@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-2 – Tải lên một PDF (Lát 1) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Partial** |
 | Phụ thuộc | [T00-02](T00-02_docker-compose-moi-truong-dev.md), [T00-04](T00-04_khung-api-settings-loi-rfc-9457-request-id-healt.md) |
 | Story | US-001 |
 | Tài liệu tham chiếu | BLUEPRINT 3.2.2 (`BlobPort`), 3.5.2 (khóa object); SAD 6.2 (timeout, thử lại) |
@@ -38,3 +38,7 @@ Lưu/đọc/xóa file PDF qua interface, có bản in-memory cho unit test.
 ```bash
 make test-int -k blob
 ```
+
+## Kết quả triển khai
+
+**Partial** – BlobPort + adapter thư mục cục bộ và bộ nhớ; adapter S3/MinIO chưa viết (không có MinIO trên máy dev).

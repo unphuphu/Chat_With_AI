@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-10 – Vận hành và đo lường (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T03-01](T03-01_hang-doi-job-va-vong-lap-worker-alg-11.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | SAD 3.2 (tác vụ), DATABASE_DESIGN A.10 (kế hoạch bảo trì); PRD NFR-023, NFR-024 |
@@ -36,3 +36,7 @@ Hết hạn phiên, phân vùng nhật ký, dọn dữ liệu cũ chạy tự đ
 ```bash
 make test-int -k maintenance
 ```
+
+## Kết quả triển khai
+
+**Done** – Hết hạn phiên, dọn bảng, phân vùng audit; test.

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-10 – Vận hành và đo lường (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T07-01](T07-01_api-xoa-tai-lieu-alg-12.md), [T04-04](T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md), [T01-03](T01-03_endpoint-auth-va-me.md) |
 | Story | US-C02 |
 | Tài liệu tham chiếu | PRD NFR-012, NFR-023; schema.sql `audit_event`; DATABASE_DESIGN A.7 |
@@ -35,3 +35,7 @@ Mọi hành động trong danh sách `action` được ghi đúng 1 lần, khôn
 ```bash
 make test-int -k audit
 ```
+
+## Kết quả triển khai
+
+**Done** – Audit login/upload/reject/delete/reprocess/question/access_denied; test không chứa nội dung.

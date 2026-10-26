@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-0 – Nền tảng chạy được (Lát 1) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | – |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | BLUEPRINT 3.1 (cấu trúc thư mục); BLUEPRINT 3.3 (quy tắc tầng); SAD ADR-002, ADR-003 |
@@ -50,3 +50,7 @@ pnpm -C frontend build && pnpm -C frontend test
 
 - Không viết mã nghiệp vụ
 - Không cấu hình CI (T00-07)
+
+## Kết quả triển khai
+
+**Done** – Mã trong `app/`; pip + npm + `run.py` thay uv/pnpm/make; ruff, mypy strict, import-linter chạy sạch.

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-7 – Xóa tài liệu (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T07-01](T07-01_api-xoa-tai-lieu-alg-12.md), [T04-05](T04-05_spa-khung-chat-cau-tra-loi-va-nhan-nguon.md) |
 | Story | US-010, US-011 |
 | Tài liệu tham chiếu | html_design S07, S05 (chip '(đã xóa)'); API_DESIGN 3.7.3; PRD E-13, E-19 |
@@ -36,3 +36,7 @@ Xóa có xác nhận, ẩn dòng lạc quan, nhãn nguồn của tài liệu đ�
 ```bash
 make e2e -- delete.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – Hộp xác nhận S07, chip nguồn '(đã xóa)'.

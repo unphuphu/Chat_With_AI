@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-5 – Nhiều file và giới hạn (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T02-04](T02-04_api-nhan-file-vao-lo-alg-01-accept-file-idempote.md) |
 | Story | US-002 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-09, DD-04; API_DESIGN 2.6 (RateLimit headers) |
@@ -36,3 +36,7 @@ Bộ đếm cửa sổ cố định trong PostgreSQL, header `RateLimit-*`, 429 
 ```bash
 make test-int -k ratelimit
 ```
+
+## Kết quả triển khai
+
+**Done** – Rate limit cửa sổ cố định cho tải file và câu hỏi, header RateLimit-* + Retry-After.

@@ -1,0 +1,707 @@
+openapi: 3.1.0
+info:
+  title: AI Chat PDF – Internal API
+  version: 1.0.0-draft.1
+  summary: API nội bộ giữa SPA và backend của MVP "AI Chat với tài liệu PDF".
+  description: |
+    Hợp đồng thiết kế (design-first) cho API v1. Tài liệu giải thích: `API_DESIGN.md`.
+
+    * Xác thực bằng cookie phiên `sid` (HttpOnly) do luồng OIDC tạo ra.
+    * Mọi request `POST`/`PUT`/`DELETE` phải gửi header `X-CSRF-Token` bằng giá trị cookie `csrf_token`.
+    * Lỗi theo RFC 9457 (`application/problem+json`) với trường `code` máy đọc được.
+    * Mọi phản hồi có header `X-Request-ID`.
+    * API chỉ phục vụ SPA cùng origin; không bật CORS.
+  contact:
+    name: Tech Lead – AI Chat PDF
+servers:
+  - url: /api/v1
+    description: Cùng origin với SPA (qua reverse proxy)
+tags:
+  - name: auth
+    description: Đăng nhập OIDC, phiên
+  - name: uploads
+    description: Lô tải lên và nhận file
+  - name: documents
+    description: Danh sách, xóa, xử lý lại, xem tài liệu
+  - name: conversations
+    description: Hội thoại và hỏi đáp
+  - name: events
+    description: Server-Sent Events
+  - name: ops
+    description: Kiểm tra sức khỏe
+
+security:
+  - sessionCookie: []
+
+paths:
+  /auth/login:
+    get:
+      tags: [auth]
+      operationId: authLogin
+      summary: Bắt đầu đăng nhập OIDC (Authorization Code + PKCE)
+      security: []
+      parameters:
+        - name: return_to
+          in: query
+          required: false
+          description: Đường dẫn tương đối trong SPA để quay lại sau khi đăng nhập. Chỉ chấp nhận đường dẫn bắt đầu bằng "/" (chống open redirect).
+          schema: { type: string, pattern: '^/[^/\\]', maxLength: 512 }
+      responses:
+        '302':
+          description: Chuyển hướng tới IdP. Đặt cookie tạm `oidc_tx` (đã ký, 10 phút) chứa state, nonce, code_verifier.
+          headers:
+            Location: { $ref: '#/components/headers/Location' }
+
+  /auth/callback:
+    get:
+      tags: [auth]
+      operationId: authCallback
+      summary: Nhận mã OIDC, tạo phiên
+      security: []
+      parameters:
+        - { name: code, in: query, required: true, schema: { type: string, maxLength: 2048 } }
+        - { name: state, in: query, required: true, schema: { type: string, maxLength: 256 } }
+      responses:
+        '302':
+          description: |
+            Thành công → về SPA (`return_to` hoặc `/`), đặt cookie `sid` (HttpOnly; Secure; SameSite=Lax; Path=/) và `csrf_token` (Secure; SameSite=Strict; Path=/).
+            Không thuộc nhóm được phép → về `/access-denied`. Lỗi state/nonce → về `/login-error`.
+          headers:
+            Location: { $ref: '#/components/headers/Location' }
+            Set-Cookie: { schema: { type: string } }
+
+  /auth/logout:
+    post:
+      tags: [auth]
+      operationId: authLogout
+      summary: Đăng xuất – xóa phiên và hội thoại của phiên
+      parameters:
+        - $ref: '#/components/parameters/CsrfToken'
+      responses:
+        '204':
+          description: Đã đăng xuất; cookie bị xóa.
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { $ref: '#/components/responses/CsrfInvalid' }
+
+  /me:
+    get:
+      tags: [auth]
+      operationId: getMe
+      summary: Người dùng hiện tại và hạn mức
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Me' }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+
+  /upload-batches:
+    post:
+      tags: [uploads]
+      operationId: createUploadBatch
+      summary: Đặt chỗ cho một lần tải nhiều file (US-002, ADR-014)
+      description: Kiểm tra số file mỗi lần và hạn mức tài liệu. Không tạo lô nếu vượt (quy tắc "N+1 file → không tải file nào").
+      parameters:
+        - $ref: '#/components/parameters/CsrfToken'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateBatchRequest' }
+            examples:
+              three_files:
+                value: { files: [ { name: hop-dong-A.pdf, size_bytes: 1048576 }, { name: bang-gia.pdf, size_bytes: 524288 }, { name: chinh-sach.pdf, size_bytes: 2097152 } ] }
+      responses:
+        '201':
+          description: Đã đặt chỗ
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UploadBatch' }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { $ref: '#/components/responses/CsrfInvalid' }
+        '422':
+          description: "`too_many_files` hoặc `quota_exceeded` (kèm `remaining`)"
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/QuotaProblem' }
+              examples:
+                quota:
+                  value: { type: 'https://errors.aichat.local/quota_exceeded', title: Vượt hạn mức tài liệu, status: 422, code: quota_exceeded, detail: Bạn chỉ còn có thể thêm 2 tài liệu., request_id: 2b7f0d1e-9a43-4f7e-9d0a-1c1a2f3b4c5d, remaining: 2 }
+
+  /upload-batches/{batch_id}/files/{client_file_id}:
+    put:
+      tags: [uploads]
+      operationId: uploadFileToBatch
+      summary: Tải một file PDF vào lô (US-001, US-003, US-004)
+      description: |
+        Idempotent theo `client_file_id` (SPA sinh bằng crypto.randomUUID() cho mỗi file khi người dùng chọn file).
+        Gửi lại cùng `client_file_id` sau khi file đã được nhận → 200 với tài liệu đã có, không tạo tài liệu trùng và không tốn thêm chỗ đặt (E-04).
+      parameters:
+        - $ref: '#/components/parameters/CsrfToken'
+        - { name: batch_id, in: path, required: true, schema: { type: string, format: uuid } }
+        - { name: client_file_id, in: path, required: true, schema: { type: string, format: uuid } }
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  contentMediaType: application/pdf
+                  description: File PDF ≤ MAX_FILE_MB (mặc định 20 MB), ≤ MAX_PAGES trang (mặc định 300).
+      responses:
+        '200':
+          description: File với client_file_id này đã được nhận trước đó – trả tài liệu hiện có (trạng thái hiện tại)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Document' }
+        '201':
+          description: File được nhận, tài liệu ở trạng thái PROCESSING
+          headers:
+            RateLimit-Limit: { $ref: '#/components/headers/RateLimitLimit' }
+            RateLimit-Remaining: { $ref: '#/components/headers/RateLimitRemaining' }
+            RateLimit-Reset: { $ref: '#/components/headers/RateLimitReset' }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Document' }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { $ref: '#/components/responses/CsrfInvalid' }
+        '404': { $ref: '#/components/responses/BatchExpired' }
+        '409': { $ref: '#/components/responses/BatchFull' }
+        '413':
+          description: Body vượt giới hạn tại reverse proxy (`too_large`)
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+        '422':
+          description: "`not_pdf`, `too_large`, `too_many_pages`, `encrypted`"
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+              examples:
+                not_pdf:
+                  value: { type: 'https://errors.aichat.local/not_pdf', title: File không hợp lệ, status: 422, code: not_pdf, detail: '"bao-gia.docx" không phải file PDF hợp lệ.', request_id: 0d8e5a3c-2f1b-4c7d-8e9f-0a1b2c3d4e5f }
+        '429': { $ref: '#/components/responses/RateLimited' }
+        '503':
+          description: "`storage_unavailable` hoặc `server_busy`"
+          headers:
+            Retry-After: { $ref: '#/components/headers/RetryAfter' }
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+
+  /documents:
+    get:
+      tags: [documents]
+      operationId: listDocuments
+      summary: Danh sách tài liệu chưa xóa của workspace (US-006)
+      description: Không phân trang – tối đa MAX_DOCS_PER_WORKSPACE (100) phần tử. Sắp xếp theo `uploaded_at` giảm dần.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DocumentList' }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+
+  /documents/{document_id}:
+    delete:
+      tags: [documents]
+      operationId: deleteDocument
+      summary: Xóa tài liệu (US-010, US-011)
+      description: Xóa mềm; đoạn văn bản và vector bị xóa trong cùng transaction; file gốc xóa thật ≤ 24 h.
+      parameters:
+        - $ref: '#/components/parameters/CsrfToken'
+        - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '204': { description: Đã xóa }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { $ref: '#/components/responses/CsrfInvalid' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /documents/{document_id}/reprocess:
+    post:
+      tags: [documents]
+      operationId: reprocessDocument
+      summary: Xử lý lại tài liệu Thất bại với lý do R-04 (US-009)
+      parameters:
+        - $ref: '#/components/parameters/CsrfToken'
+        - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '202':
+          description: Đã xếp hàng xử lý lại
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Document' }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { $ref: '#/components/responses/CsrfInvalid' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409':
+          description: "`not_retryable` – lý do thất bại không phải R-04, hoặc tài liệu không ở trạng thái FAILED"
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+
+  /documents/{document_id}/file:
+    get:
+      tags: [documents]
+      operationId: getDocumentFile
+      summary: Tải PDF gốc để xem (US-022)
+      parameters:
+        - $ref: '#/components/parameters/DocumentId'
+        - name: from
+          in: query
+          required: false
+          description: "`citation` khi mở từ nhãn nguồn – máy chủ ghi sự kiện EVT-09 `citation_clicked`."
+          schema: { type: string, enum: [citation, list] }
+        - name: page
+          in: query
+          required: false
+          description: Trang được trích dẫn (chỉ để ghi analytics `has_page`; việc nhảy tới trang do trình xem PDF phía client làm).
+          schema: { type: integer, minimum: 1 }
+      responses:
+        '200':
+          description: Nội dung PDF (stream)
+          headers:
+            Content-Disposition:
+              schema: { type: string }
+              description: inline; filename*=UTF-8''<tên file>
+            Cache-Control:
+              schema: { type: string, const: 'private, no-store' }
+          content:
+            application/pdf:
+              schema: { type: string, contentMediaType: application/pdf }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '410':
+          description: "`deleted` – tài liệu đã bị xóa (E-19)"
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+
+  /conversations/current:
+    get:
+      tags: [conversations]
+      operationId: getCurrentConversation
+      summary: Hội thoại của phiên hiện tại (tạo nếu chưa có) – giữ khi tải lại trang (NFR-024)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Conversation' }
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+
+  /conversations/{conversation_id}/messages:
+    post:
+      tags: [conversations]
+      operationId: askQuestion
+      summary: Đặt câu hỏi (US-012…US-018, US-020, US-021, US-027)
+      description: |
+        Đồng bộ: trả về khi có câu trả lời hoàn chỉnh (không stream token – SAD ADR-010), tối đa ANSWER_BUDGET_S (15 s).
+        Idempotent theo `client_request_id` trong hội thoại: gửi lại sau ANSWERED/INSUFFICIENT trả kết quả cũ (không gọi LLM);
+        gửi lại sau FAILED chạy lại câu hỏi.
+      parameters:
+        - $ref: '#/components/parameters/CsrfToken'
+        - { name: conversation_id, in: path, required: true, schema: { type: string, format: uuid } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AskRequest' }
+            examples:
+              vi:
+                value: { client_request_id: 7c9e6679-7425-40de-944b-e07fc1f90ae7, question: 'Điều khoản thanh toán trong hợp đồng A là gì?' }
+      responses:
+        '200':
+          description: Câu trả lời có căn cứ hoặc "chưa đủ thông tin"
+          headers:
+            RateLimit-Limit: { $ref: '#/components/headers/RateLimitLimit' }
+            RateLimit-Remaining: { $ref: '#/components/headers/RateLimitRemaining' }
+            RateLimit-Reset: { $ref: '#/components/headers/RateLimitReset' }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Answer' }
+              examples:
+                answered:
+                  value:
+                    message_id: 3f1c2b9a-1d2e-4f50-8a6b-7c8d9e0f1a2b
+                    client_request_id: 7c9e6679-7425-40de-944b-e07fc1f90ae7
+                    status: ANSWERED
+                    answer: Thanh toán trong 30 ngày kể từ ngày nhận hóa đơn [1]. Chính sách chung cho phép tối đa 45 ngày với khách hàng chiến lược [2].
+                    citations:
+                      - { ordinal: 1, document_id: 9b2e1c4d-5f6a-4b7c-8d9e-0f1a2b3c4d5e, document_name: hop-dong-A.pdf, page_number: 4, deleted: false }
+                      - { ordinal: 2, document_id: 1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d, document_name: chinh-sach.pdf, page_number: 12, deleted: false }
+                    latency_ms: 6210
+                insufficient:
+                  value:
+                    message_id: 5a6b7c8d-9e0f-4a1b-8c2d-3e4f5a6b7c8d
+                    client_request_id: 0f1e2d3c-4b5a-4968-8778-695a4b3c2d1e
+                    status: INSUFFICIENT
+                    answer: null
+                    citations: []
+                    latency_ms: 480
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+        '403': { $ref: '#/components/responses/CsrfInvalid' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409':
+          description: "`no_ready_documents` hoặc `request_in_progress`"
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+        '422':
+          description: "`empty_question`, `question_too_long`, `idempotency_mismatch`"
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+        '503':
+          description: "`ai_unavailable`"
+          headers:
+            Retry-After: { $ref: '#/components/headers/RetryAfter' }
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+        '504':
+          description: "`ai_timeout`"
+          content:
+            application/problem+json:
+              schema: { $ref: '#/components/schemas/Problem' }
+
+  /events:
+    get:
+      tags: [events]
+      operationId: streamEvents
+      summary: Luồng sự kiện SSE của workspace
+      description: |
+        Sự kiện: `document.status_changed` (`DocumentStatusEvent`), `quota.changed` (`QuotaEvent`), `session.expiring` (`SessionExpiringEvent`).
+        Máy chủ gửi `retry: 5000` và comment `: ping` mỗi 25 s. Không phát lại sự kiện bị lỡ; client gọi lại `GET /documents` khi kết nối lại.
+      responses:
+        '200':
+          description: Luồng `text/event-stream`
+          content:
+            text/event-stream:
+              schema: { type: string }
+              examples:
+                status:
+                  value: "id: 1729741200123\nevent: document.status_changed\ndata: {\"document_id\":\"9b2e1c4d-5f6a-4b7c-8d9e-0f1a2b3c4d5e\",\"status\":\"READY\",\"failure_code\":null}\n\n"
+        '401': { $ref: '#/components/responses/Unauthenticated' }
+
+  /healthz:
+    get:
+      tags: [ops]
+      operationId: healthz
+      summary: Tiến trình còn sống
+      security: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { type: object, properties: { status: { const: ok } }, required: [status] }
+  /readyz:
+    get:
+      tags: [ops]
+      operationId: readyz
+      summary: Sẵn sàng nhận request (kết nối được CSDL)
+      security: []
+      responses:
+        '200':
+          description: Sẵn sàng
+          content:
+            application/json:
+              schema: { type: object, properties: { status: { const: ready } }, required: [status] }
+        '503':
+          description: Chưa sẵn sàng
+          content:
+            application/json:
+              schema: { type: object, properties: { status: { const: not_ready } }, required: [status] }
+
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: sid
+      description: Cookie phiên ngẫu nhiên 32 byte (HttpOnly; Secure; SameSite=Lax). Hết hạn khi không hoạt động SESSION_IDLE_MIN hoặc sau SESSION_ABSOLUTE_H.
+
+  parameters:
+    CsrfToken:
+      name: X-CSRF-Token
+      in: header
+      required: true
+      description: Bằng giá trị cookie `csrf_token`.
+      schema: { type: string, minLength: 43, maxLength: 43 }
+    DocumentId:
+      name: document_id
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+
+  headers:
+    Location:
+      schema: { type: string }
+    RetryAfter:
+      description: Số giây nên chờ trước khi thử lại.
+      schema: { type: integer, minimum: 1 }
+    RateLimitLimit:
+      description: Số request cho phép trong cửa sổ hiện tại.
+      schema: { type: integer }
+    RateLimitRemaining:
+      description: Số request còn lại trong cửa sổ hiện tại.
+      schema: { type: integer, minimum: 0 }
+    RateLimitReset:
+      description: Số giây tới khi cửa sổ được đặt lại.
+      schema: { type: integer, minimum: 0 }
+
+  responses:
+    Unauthenticated:
+      description: "`unauthenticated` hoặc `session_expired`"
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problem' }
+    CsrfInvalid:
+      description: "`csrf_invalid`"
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problem' }
+    NotFound:
+      description: "`not_found` – không tồn tại hoặc không có quyền (không phân biệt)"
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problem' }
+    BatchExpired:
+      description: "`batch_expired`"
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problem' }
+    BatchFull:
+      description: "`batch_full`"
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problem' }
+    RateLimited:
+      description: "`rate_limited`"
+      headers:
+        Retry-After: { $ref: '#/components/headers/RetryAfter' }
+        RateLimit-Limit: { $ref: '#/components/headers/RateLimitLimit' }
+        RateLimit-Remaining: { $ref: '#/components/headers/RateLimitRemaining' }
+        RateLimit-Reset: { $ref: '#/components/headers/RateLimitReset' }
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problem' }
+
+  schemas:
+    ErrorCode:
+      type: string
+      enum:
+        - unauthenticated
+        - session_expired
+        - csrf_invalid
+        - not_found
+        - batch_expired
+        - batch_full
+        - no_ready_documents
+        - not_retryable
+        - request_in_progress
+        - deleted
+        - too_many_files
+        - quota_exceeded
+        - not_pdf
+        - too_large
+        - too_many_pages
+        - encrypted
+        - empty_question
+        - question_too_long
+        - idempotency_mismatch
+        - rate_limited
+        - ai_unavailable
+        - storage_unavailable
+        - server_busy
+        - ai_timeout
+        - invalid_request
+        - internal_error
+
+    Problem:
+      type: object
+      description: RFC 9457 Problem Details
+      required: [type, title, status, code, request_id]
+      properties:
+        type: { type: string, format: uri, description: 'https://errors.aichat.local/<code>' }
+        title: { type: string, description: 'Tóm tắt tiếng Việt' }
+        status: { type: integer, minimum: 400, maximum: 599 }
+        code: { $ref: '#/components/schemas/ErrorCode' }
+        detail: { type: string, description: 'Mô tả tiếng Việt, không chứa thông tin kỹ thuật nội bộ' }
+        request_id: { type: string, format: uuid }
+      description: |
+        RFC 9457 Problem Details. Không đặt additionalProperties:false để các lỗi mở rộng (vd. QuotaProblem) thêm được trường riêng;
+        client phải bỏ qua trường không biết (RFC 9457 §3.2).
+
+    QuotaProblem:
+      allOf:
+        - $ref: '#/components/schemas/Problem'
+      type: object
+      properties:
+        remaining: { type: integer, minimum: 0, description: 'Số tài liệu còn được thêm (chỉ với quota_exceeded)' }
+      unevaluatedProperties: false
+
+    Me:
+      type: object
+      required: [user_id, email, role, documents_used, documents_limit, session_expires_at, limits]
+      properties:
+        user_id: { type: string, format: uuid }
+        email: { type: string, format: email }
+        role: { type: string, enum: [user, admin] }
+        documents_used: { type: integer, minimum: 0 }
+        documents_limit: { type: integer, minimum: 1 }
+        session_expires_at: { type: string, format: date-time }
+        limits: { $ref: '#/components/schemas/ClientLimits' }
+
+    ClientLimits:
+      type: object
+      description: Giới hạn cấu hình để SPA kiểm tra trước khi gửi (máy chủ vẫn kiểm tra lại).
+      required: [max_file_mb, max_pages, max_files_per_batch, question_max_chars]
+      properties:
+        max_file_mb: { type: integer, minimum: 1 }
+        max_pages: { type: integer, minimum: 1 }
+        max_files_per_batch: { type: integer, minimum: 1 }
+        question_max_chars: { type: integer, minimum: 1 }
+
+    FileIntent:
+      type: object
+      required: [name, size_bytes]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 255 }
+        size_bytes: { type: integer, minimum: 1 }
+      additionalProperties: false
+
+    CreateBatchRequest:
+      type: object
+      required: [files]
+      properties:
+        files:
+          type: array
+          minItems: 1
+          items: { $ref: '#/components/schemas/FileIntent' }
+          description: Vượt MAX_FILES_PER_BATCH (10) → 422 too_many_files. Không đặt maxItems trong schema vì giới hạn là cấu hình.
+      additionalProperties: false
+
+    UploadBatch:
+      type: object
+      required: [batch_id, expires_at, slots, remaining_quota]
+      properties:
+        batch_id: { type: string, format: uuid }
+        expires_at: { type: string, format: date-time }
+        slots: { type: integer, minimum: 1, description: 'Số file được phép tải vào lô' }
+        remaining_quota: { type: integer, minimum: 0, description: 'Số tài liệu còn được thêm sau khi lô dùng hết chỗ' }
+
+    DocumentStatus:
+      type: string
+      enum: [PROCESSING, READY, FAILED]
+    FailureCode:
+      type: [string, 'null']
+      enum: [R-01, R-02, R-03, R-04, null]
+      description: R-01 không đọc được; R-02 có mật khẩu; R-03 không có văn bản (PDF scan); R-04 lỗi tạm thời (được xử lý lại)
+
+    Document:
+      type: object
+      required: [id, file_name, status, failure_code, retryable, page_count, size_bytes, uploaded_at]
+      properties:
+        id: { type: string, format: uuid }
+        file_name: { type: string }
+        status: { $ref: '#/components/schemas/DocumentStatus' }
+        failure_code: { $ref: '#/components/schemas/FailureCode' }
+        retryable: { type: boolean, description: 'true khi và chỉ khi failure_code = R-04' }
+        page_count: { type: integer, minimum: 1 }
+        size_bytes: { type: integer, minimum: 1 }
+        uploaded_at: { type: string, format: date-time }
+        ready_at: { type: [string, 'null'], format: date-time }
+
+    DocumentList:
+      type: object
+      required: [items, documents_used, documents_limit]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Document' }
+        documents_used: { type: integer, minimum: 0 }
+        documents_limit: { type: integer, minimum: 1 }
+
+    AskRequest:
+      type: object
+      required: [client_request_id, question]
+      properties:
+        client_request_id: { type: string, format: uuid, description: 'SPA sinh bằng crypto.randomUUID() cho mỗi câu hỏi mới; dùng lại khi "Gửi lại"' }
+        question: { type: string, minLength: 1, description: 'Tối đa QUESTION_MAX_CHARS (2.000) ký tự sau khi bỏ khoảng trắng hai đầu' }
+      additionalProperties: false
+
+    Citation:
+      type: object
+      required: [ordinal, document_id, document_name, page_number, deleted]
+      properties:
+        ordinal: { type: integer, minimum: 1, maximum: 8, description: 'Khớp với dấu [n] trong answer' }
+        document_id: { type: string, format: uuid }
+        document_name: { type: string, description: 'Tên tại thời điểm trả lời (bản chụp)' }
+        page_number: { type: [integer, 'null'], minimum: 1, description: 'Số thứ tự trang trong file; null khi không xác định' }
+        deleted: { type: boolean }
+
+    Answer:
+      type: object
+      required: [message_id, client_request_id, status, answer, citations, latency_ms]
+      properties:
+        message_id: { type: string, format: uuid }
+        client_request_id: { type: string, format: uuid }
+        status: { type: string, enum: [ANSWERED, INSUFFICIENT] }
+        answer: { type: [string, 'null'], description: 'Văn bản có dấu [n]; null khi INSUFFICIENT' }
+        citations:
+          type: array
+          maxItems: 8
+          items: { $ref: '#/components/schemas/Citation' }
+        latency_ms: { type: integer, minimum: 0 }
+
+    Message:
+      type: object
+      required: [message_id, client_request_id, question, status, answer, citations, error_code, created_at]
+      properties:
+        message_id: { type: string, format: uuid }
+        client_request_id: { type: string, format: uuid }
+        question: { type: string }
+        status: { type: string, enum: [PENDING, ANSWERED, INSUFFICIENT, FAILED] }
+        answer: { type: [string, 'null'] }
+        citations:
+          type: array
+          items: { $ref: '#/components/schemas/Citation' }
+        error_code: { type: [string, 'null'] }
+        created_at: { type: string, format: date-time }
+
+    Conversation:
+      type: object
+      required: [id, messages]
+      properties:
+        id: { type: string, format: uuid }
+        messages:
+          type: array
+          items: { $ref: '#/components/schemas/Message' }
+
+    DocumentStatusEvent:
+      type: object
+      required: [document_id, status, failure_code]
+      properties:
+        document_id: { type: string, format: uuid }
+        status: { $ref: '#/components/schemas/DocumentStatus' }
+        failure_code: { $ref: '#/components/schemas/FailureCode' }
+    QuotaEvent:
+      type: object
+      required: [documents_used, documents_limit]
+      properties:
+        documents_used: { type: integer, minimum: 0 }
+        documents_limit: { type: integer, minimum: 1 }
+    SessionExpiringEvent:
+      type: object
+      required: [expires_at]
+      properties:
+        expires_at: { type: string, format: date-time }

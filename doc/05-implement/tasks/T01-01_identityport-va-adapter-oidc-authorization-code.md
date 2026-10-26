@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-1 – Đăng nhập và phiên (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-04](T00-04_khung-api-settings-loi-rfc-9457-request-id-healt.md) |
 | Story | US-023 |
 | Tài liệu tham chiếu | BLUEPRINT 3.2.2 (`IdentityPort`), 3.6.6; SAD 7.3a (luồng đăng nhập), ADR-011; API_DESIGN AD-02 |
@@ -44,3 +44,7 @@ make test-int -k oidc
 
 - Chưa tạo phiên (T01-02)
 - Cấu hình IdP doanh nghiệp thật chờ OQ-102 – chỉ là cấu hình, không đổi mã
+
+## Kết quả triển khai
+
+**Done** – Adapter OIDC (discovery, JWKS, PKCE S256, RS256/ES256); IdP giả lập cho dev.

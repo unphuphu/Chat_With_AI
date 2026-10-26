@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-4 – Hỏi đáp có trích dẫn (Lát 1) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T04-05](T04-05_spa-khung-chat-cau-tra-loi-va-nhan-nguon.md), [T01-05](T01-05_spa-phien-header-nguoi-dung-trang-loi-dang-nhap.md) |
 | Story | US-001, US-005, US-006, US-012, US-013, US-020, US-023 |
 | Tài liệu tham chiếu | USER_STORIES mục 3 (lát 1); PRD 2.2 (hành trình) |
@@ -36,3 +36,7 @@ Một test E2E chứng minh luồng Đăng nhập → Tải PDF → Sẵn sàng 
 ```bash
 make e2e -- slice1-journey.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – E2E `frontend/e2e/demo.spec.ts` + `backend/scripts/smoke.py` qua đúng luồng OIDC.

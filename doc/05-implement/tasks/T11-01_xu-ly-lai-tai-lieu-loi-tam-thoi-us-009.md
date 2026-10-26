@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-11 – Tính năng P1 (Lát 3) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T03-05](T03-05_pipeline-ingest-va-ghi-chi-muc-alg-04.md), [T02-06](T02-06_spa-vung-tai-len-mot-file-va-danh-sach-tai-lieu.md) |
 | Story | US-009 |
 | Tài liệu tham chiếu | USER_STORIES US-009 AC; openapi.yaml `POST /documents/{id}/reprocess`; html_design S03 |
@@ -35,3 +35,7 @@ Tài liệu Thất bại R-04 xử lý lại được; mã khác không có nút
 ```bash
 make test-int -k reprocess
 ```
+
+## Kết quả triển khai
+
+**Done** – Chỉ R-04 được xử lý lại; test 202/409.

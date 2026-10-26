@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-2 – Tải lên một PDF (Lát 1) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T01-03](T01-03_endpoint-auth-va-me.md) |
 | Story | US-002 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-01; openapi.yaml `POST /upload-batches`, `UploadBatch`, `QuotaProblem`; DATABASE_DESIGN A.5 (`vw_workspace_quota`) |
@@ -38,3 +38,7 @@
 ```bash
 make test-int -k create_batch
 ```
+
+## Kết quả triển khai
+
+**Done** – Tạo lô, `too_many_files`, `quota_exceeded` kèm `remaining`.

@@ -1,0 +1,13 @@
+{
+  "name": "aichat-devdb",
+  "private": true,
+  "type": "module",
+  "description": "PostgreSQL (PGlite/WASM) + pgvector cho môi trường dev khi không có Docker",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.3.11",
+    "@electric-sql/pglite-socket": "^0.0.16"
+  }
+}

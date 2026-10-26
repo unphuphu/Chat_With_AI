@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-9 – Lỗi, giới hạn và phiên (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T09-01](T09-01_circuit-breaker-llm-va-anh-xa-503-504-alg-07.md), [T03-06](T03-06_sse-phat-trang-thai-tai-lieu-toi-giao-dien.md), [T01-05](T01-05_spa-phien-header-nguoi-dung-trang-loi-dang-nhap.md) |
 | Story | US-025, US-026 |
 | Tài liệu tham chiếu | html_design S05, S11; API_DESIGN 3.4.2, 3.4.3, 3.6.3; USER_STORIES US-026 AC |
@@ -38,3 +38,7 @@ Lỗi câu hỏi hiện đúng chỗ, sự kiện `session.expiring` hiện cả
 ```bash
 make e2e -- errors.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – Thẻ lỗi tại vị trí câu trả lời, cảnh báo phiên sắp hết hạn.

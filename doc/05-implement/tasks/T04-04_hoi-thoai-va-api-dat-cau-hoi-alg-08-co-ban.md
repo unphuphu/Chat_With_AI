@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-4 – Hỏi đáp có trích dẫn (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T04-03](T04-03_sinh-cau-tra-loi-va-kiem-tra-trich-dan-alg-06.md), [T01-04](T01-04_middleware-csrf-va-thu-tu-middleware.md) |
 | Story | US-012, US-014 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-08; openapi.yaml `/conversations/current`, `POST /conversations/{id}/messages`, `Answer`; schema.sql `conversation`, `message`, `citation` |
@@ -41,3 +41,7 @@ Người dùng đặt câu hỏi, nhận `Answer`; hội thoại giữ khi tải
 ```bash
 make test-int -k ask
 ```
+
+## Kết quả triển khai
+
+**Done** – Hội thoại theo phiên, idempotency, commit trước khi gọi LLM.

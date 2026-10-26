@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-3 – Xử lý tài liệu (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready (giả định)** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-01](T00-01_khoi-tao-monorepo-va-cong-cu.md) |
 | Story | US-005 |
 | Tài liệu tham chiếu | BLUEPRINT 3.6.5 (`POST /embed`), DE-14; SAD ADR-007; DATABASE_DESIGN B.2, B.7 |
@@ -46,3 +46,7 @@ docker compose --profile full up embedding && curl -X POST …/embed
 ## Ngoài phạm vi
 
 - Đo thông lượng là việc của SPIKE-02 (TS-02)
+
+## Kết quả triển khai
+
+**Done** – EmbeddingPort + `hashing-ngram@v1` (offline) + adapter HTTP; bge-m3 chưa triển khai.

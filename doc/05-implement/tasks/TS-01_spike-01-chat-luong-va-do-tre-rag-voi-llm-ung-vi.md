@@ -4,7 +4,7 @@
 |---|---|
 | Lát | SPIKE – Thử nghiệm kỹ thuật (Song song) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Blocked** |
+| Trạng thái | **Deferred** |
 | Phụ thuộc | [T04-04](T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md), [T06-03](T06-03_bo-danh-gia-rag-de-22-va-dinh-dang-bo-cau-hoi.md) |
 | Story | US-013, US-016 |
 | Tài liệu tham chiếu | SAD 12 (SPIKE-01, TR-01, TR-04); PRD NFR-001, NFR-003…005 |
@@ -36,3 +36,7 @@
 ```bash
 python -m eval.run --suite dep005 --out eval/reports/spike-01.json
 ```
+
+## Kết quả triển khai
+
+**Deferred** – Cần API key LLM thật và bộ câu hỏi chuẩn (T06-03) – chưa chạy.

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-11 – Tính năng P1 (Lát 3) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Blocked** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T04-05](T04-05_spa-khung-chat-cau-tra-loi-va-nhan-nguon.md) |
 | Story | US-022 |
 | Tài liệu tham chiếu | USER_STORIES US-022 AC; openapi.yaml `GET /documents/{id}/file`; html_design S06; API_DESIGN AD-12 |
@@ -38,3 +38,7 @@ Bấm nhãn nguồn mở PDF gốc đúng trang trong lớp phủ.
 ```bash
 make e2e -- viewer.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – Trình xem PDF có sẵn của trình duyệt trong dialog, mở đúng trang (`#page=N`), ghi EVT-09; chưa tô sáng đoạn.

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-5 – Nhiều file và giới hạn (Lát 2) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T02-06](T02-06_spa-vung-tai-len-mot-file-va-danh-sach-tai-lieu.md), [T05-01](T05-01_hoan-thien-cac-duong-tu-choi-file-va-lo.md) |
 | Story | US-002, US-003, US-004, US-026 |
 | Tài liệu tham chiếu | API_DESIGN CA-01, 3.7.1; html_design S02, S08; USER_STORIES US-002 AC 2–3 |
@@ -38,3 +38,7 @@ Kiểm tra trước bằng `/me.limits`, tải song song 3, thử lại an toàn
 ```bash
 make e2e -- upload-multi.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – Hàng đợi 3 file song song, kiểm tra trước ở client, cảnh báo hạn mức, Tải lại cùng `client_file_id`.

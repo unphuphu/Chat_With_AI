@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-3 – Xử lý tài liệu (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T03-05](T03-05_pipeline-ingest-va-ghi-chi-muc-alg-04.md), [T02-06](T02-06_spa-vung-tai-len-mot-file-va-danh-sach-tai-lieu.md) |
 | Story | US-007, US-025 |
 | Tài liệu tham chiếu | BLUEPRINT 3.4.2, DD-12; openapi.yaml `/events`; API_DESIGN CA-03; html_design S03 (toast) |
@@ -42,3 +42,7 @@ Giao diện tự cập nhật trạng thái tài liệu và hiện thông báo k
 ```bash
 make test-int -k sse && make e2e -- processing.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – SSE `/events` (status_changed, quota.changed, session.expiring) + thăm dò dự phòng ở SPA.

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-4 – Hỏi đáp có trích dẫn (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T04-04](T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md), [T03-06](T03-06_sse-phat-trang-thai-tai-lieu-toi-giao-dien.md) |
 | Story | US-012, US-014, US-020, US-025 |
 | Tài liệu tham chiếu | html_design S04; API_DESIGN CA-02 (phần cơ bản), CA-04, 3.7.2; BLUEPRINT DE-02 |
@@ -38,3 +38,7 @@
 ```bash
 pnpm -C frontend test && make e2e -- ask.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – Khung chat, nút [n], chip nguồn tên + trang.

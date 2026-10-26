@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-6 – Chất lượng câu trả lời (Lát 2) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Deferred** |
 | Phụ thuộc | [T04-04](T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md) |
 | Story | US-013, US-016, US-017, US-021 |
 | Tài liệu tham chiếu | BLUEPRINT DE-22, QA-11; PRD 5.1 G-02, NFR-003…005, NFR-018; BRD DEP-005 |
@@ -38,3 +38,7 @@ Công cụ chạy bộ câu hỏi qua API staging và tính MET-002…005, NFR-0
 ```bash
 python -m eval.run --suite sample --out eval/reports/sample.json
 ```
+
+## Kết quả triển khai
+
+**Deferred** – Chưa có bộ câu hỏi chuẩn do PO cung cấp; chưa xây bộ đánh giá DE-22.

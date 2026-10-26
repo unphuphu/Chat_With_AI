@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-5 – Nhiều file và giới hạn (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T02-04](T02-04_api-nhan-file-vao-lo-alg-01-accept-file-idempote.md) |
 | Story | US-002, US-003, US-004 |
 | Tài liệu tham chiếu | USER_STORIES US-002, US-003, US-004 AC, I-01; PRD E-07, E-08; openapi.yaml (413/422/404/409) |
@@ -35,3 +35,7 @@ Mọi đường lỗi tải lên trả đúng mã, đúng thông điệp, không
 ```bash
 make test-int -k upload_rejections
 ```
+
+## Kết quả triển khai
+
+**Done** – Đủ các đường từ chối (scan R-03, quá trang, mật khẩu, hỏng, docx, giả PDF, quá dung lượng); test tham số hóa.

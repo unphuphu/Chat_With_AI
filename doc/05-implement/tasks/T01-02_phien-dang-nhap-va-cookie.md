@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-1 – Đăng nhập và phiên (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-05](T00-05_ha-tang-csdl-engine-theo-vai-tro-va-pham-vi-work.md), [T01-01](T01-01_identityport-va-adapter-oidc-authorization-code.md) |
 | Story | US-023 |
 | Tài liệu tham chiếu | BLUEPRINT 3.7.3, DD-01; SAD 8.1 (phiên, CSRF); schema.sql `session`; API_DESIGN 3.6.3 (`session_expired`) |
@@ -39,3 +39,7 @@ Tạo/xác thực/hết hạn phiên an toàn; dependency `resolve_session` cho 
 ```bash
 make test-int -k session
 ```
+
+## Kết quả triển khai
+
+**Done** – Phiên lưu băm SHA-256, cookie `sid` HttpOnly Lax, gia hạn idle/absolute.

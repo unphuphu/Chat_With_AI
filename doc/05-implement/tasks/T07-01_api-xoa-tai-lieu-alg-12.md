@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-7 – Xóa tài liệu (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T03-05](T03-05_pipeline-ingest-va-ghi-chi-muc-alg-04.md), [T02-05](T02-05_api-danh-sach-tai-lieu.md) |
 | Story | US-010, US-011 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-12; openapi.yaml `DELETE /documents/{id}`; USER_STORIES US-010, US-011 AC |
@@ -36,3 +36,7 @@ Xóa mềm + xóa đoạn + hủy job chờ + enqueue purge trong một transact
 ```bash
 make test-int -k delete
 ```
+
+## Kết quả triển khai
+
+**Done** – Xóa mềm + xóa chunk + hủy ingest + enqueue purge; 404 + audit `access_denied`.

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-2 – Tải lên một PDF (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T01-05](T01-05_spa-phien-header-nguoi-dung-trang-loi-dang-nhap.md), [T02-05](T02-05_api-danh-sach-tai-lieu.md) |
 | Story | US-001, US-006 |
 | Tài liệu tham chiếu | html_design S01, S02, S03; API_DESIGN CA-01 (phần 1 file), 3.7.1, 3.7.3; USER_STORIES US-001, US-006 AC |
@@ -39,3 +39,7 @@ Kéo thả/chọn 1 PDF, thấy tiến độ, thấy dòng tài liệu với tr�
 ```bash
 pnpm -C frontend test && make e2e -- upload-single.spec.ts
 ```
+
+## Kết quả triển khai
+
+**Done** – Vùng kéo thả + danh sách tài liệu; E2E Playwright (Edge).

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-10 – Vận hành và đo lường (Lát 2) |
 | Kích thước | S – khoảng ≤ 200 dòng thay đổi, 1–2 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T07-01](T07-01_api-xoa-tai-lieu-alg-12.md), [T04-04](T04-04_hoi-thoai-va-api-dat-cau-hoi-alg-08-co-ban.md), [T06-01](T06-01_duong-chua-du-thong-tin-day-du.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | PRD 5.2; BLUEPRINT 3.5.3; DATABASE_DESIGN A.5 (view báo cáo); API_DESIGN AD-12 |
@@ -36,3 +36,7 @@ Ghi 11 sự kiện với thuộc tính đúng, `actor_hash`, không có nội du
 ```bash
 make test-int -k analytics
 ```
+
+## Kết quả triển khai
+
+**Done** – Whitelist thuộc tính EVT-01…EVT-11, actor_hash HMAC; test không lộ nội dung.

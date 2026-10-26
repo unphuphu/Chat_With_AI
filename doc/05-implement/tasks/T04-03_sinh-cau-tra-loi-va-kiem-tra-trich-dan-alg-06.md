@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-4 – Hỏi đáp có trích dẫn (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T04-01](T04-01_truy-xuat-ket-hop-va-cong-nguong-alg-05.md), [T04-02](T04-02_llmport-adapter-gia-va-adapter-nha-cung-cap.md) |
 | Story | US-013, US-016, US-020 |
 | Tài liệu tham chiếu | BLUEPRINT ALG-06, DD-11; SAD ADR-010, 4.3, 7.4; USER_STORIES US-013, US-016, US-020 AC |
@@ -38,3 +38,7 @@ Dựng prompt, gọi LLM trong ngân sách thời gian, chỉ chấp nhận trí
 ```bash
 make test-unit -k answerer
 ```
+
+## Kết quả triển khai
+
+**Done** – Kiểm tra trích dẫn S#→[n], sửa/loại mã lạ, ngân sách thời gian; unit test.

@@ -4,7 +4,7 @@
 |---|---|
 | Lát | VS-0 – Nền tảng chạy được (Lát 1) |
 | Kích thước | M – khoảng 200–400 dòng thay đổi, 2–4 vòng lặp |
-| Trạng thái | **Ready** |
+| Trạng thái | **Done** |
 | Phụ thuộc | [T00-01](T00-01_khoi-tao-monorepo-va-cong-cu.md) |
 | Story | – (nền tảng / phi chức năng) |
 | Tài liệu tham chiếu | BLUEPRINT 3.6.1, 3.6.6; API_DESIGN 3.5 (mô hình lỗi), 3.6.2, AD-10; openapi.yaml (`Problem`, `ErrorCode`, /healthz, /readyz) |
@@ -49,3 +49,7 @@ curl -i localhost:8000/api/v1/readyz
 ## Ngoài phạm vi
 
 - Không có xác thực (VS-1)
+
+## Kết quả triển khai
+
+**Done** – Settings, lỗi RFC 9457, request id, `/healthz`, `/readyz`, header bảo mật.
