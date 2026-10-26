@@ -1,0 +1,96 @@
+@startuml use_case_diagram
+' Use case diagram – MVP AI Chat với tài liệu PDF
+' Nguồn: USER_STORIES.md v0.1, PRD v0.2, SAD v0.4. Giải thích: USE_CASE_DIAGRAM.md
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam usecase {
+  BackgroundColor<<P1>> #FFF8E1
+  BorderColor<<P1>> #B7950B
+  BackgroundColor<<P2>> #F2F3F4
+  BorderColor<<P2>> #7F8C8D
+  BackgroundColor<<đề xuất>> #EBF5FB
+  BorderColor<<đề xuất>> #2E86C1
+}
+
+actor "Người dùng\n(P1 Chuyên viên KD,\nP2 Thành viên mới)" as User
+actor "IT / Security" as Sec
+actor "Bộ hẹn giờ" as Timer
+actor "IdP doanh nghiệp\n(OIDC)" as IdP <<hệ thống>>
+actor "Dịch vụ LLM" as LLM <<hệ thống>>
+actor "Quản trị viên IdP" as Admin
+
+rectangle "Hệ thống AI Chat với tài liệu PDF" {
+  usecase "UC-01 Đăng nhập" as UC01
+  usecase "UC-02 Đăng xuất" as UC02 <<đề xuất>>
+
+  usecase "UC-03 Tải lên tài liệu PDF" as UC03
+  usecase "UC-03a Kiểm tra file\n(định dạng, dung lượng, số trang)" as UC03a
+  usecase "UC-03b Tải lại file bị lỗi" as UC03b
+  usecase "UC-04 Xử lý nội dung tài liệu\n(tự động)" as UC04
+
+  usecase "UC-05 Xem danh sách\nvà trạng thái tài liệu" as UC05
+  usecase "UC-06 Xử lý lại tài liệu\nthất bại (R-04)" as UC06 <<P1>>
+  usecase "UC-07 Xóa tài liệu" as UC07
+
+  usecase "UC-08 Đặt câu hỏi" as UC08
+  usecase "UC-08a Truy xuất đoạn liên quan\n(chỉ tài liệu Sẵn sàng của mình)" as UC08a
+  usecase "UC-08b Sinh câu trả lời\ncó trích dẫn" as UC08b
+  usecase "UC-08c Hỏi tiếp có ngữ cảnh" as UC08c <<P1>>
+  usecase "UC-08d Chọn nhóm tài liệu\ncho câu hỏi" as UC08d <<P2>>
+  usecase "UC-08e Gửi lại câu hỏi bị lỗi" as UC08e <<P1>>
+
+  usecase "UC-09 Xem nguồn tham chiếu\n(tên tài liệu, số trang)" as UC09
+  usecase "UC-10 Mở tài liệu gốc\ntại trang" as UC10 <<P1>>
+
+  usecase "UC-11 Dọn dữ liệu đã xóa\n(xóa thật ≤ 24 giờ)" as UC11
+  usecase "UC-12 Tra cứu nhật ký\nkiểm toán" as UC12 <<đề xuất>>
+}
+
+rectangle "IdP doanh nghiệp (ngoài hệ thống)" {
+  usecase "UC-13 Cấp / thu hồi quyền\n(nhóm aichat-users)" as UC13
+}
+
+User --> UC01
+User --> UC02
+User --> UC03
+User --> UC05
+User --> UC07
+User --> UC08
+User --> UC09
+
+UC01 --> IdP
+UC13 <-- Admin
+
+UC03 ..> UC03a : <<include>>
+UC03 ..> UC04 : <<include>>
+UC03b .up.> UC03 : <<extend>>
+UC06 .up.> UC05 : <<extend>>\n[lý do R-04]
+
+UC08 ..> UC08a : <<include>>
+UC08 ..> UC08b : <<include>>
+UC08b --> LLM
+UC08c .up.> UC08 : <<extend>>
+UC08d .up.> UC08 : <<extend>>
+UC08e .up.> UC08 : <<extend>>\n[câu hỏi lỗi]
+UC10 .up.> UC09 : <<extend>>
+
+Timer --> UC11
+Sec --> UC12
+
+note bottom of UC13
+  Quyền dùng ứng dụng được quản lý bằng
+  nhóm trên IdP (SAD 8.1) – không có màn
+  hình quản trị trong ứng dụng.
+end note
+
+legend right
+  |= Ký hiệu |= Ý nghĩa |
+  | Không nền | P0 – bắt buộc cho MVP |
+  | <<P1>> | Nên có (làm nếu kịp) |
+  | <<P2>> | Có thì tốt – sau MVP |
+  | <<đề xuất>> | Story đề xuất US-C0x, chưa được PO duyệt |
+endlegend
+@enduml

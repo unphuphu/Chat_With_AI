@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Màn hình chính – đang tải lên nhiều file – AI Chat PDF</title>
+<meta name="description" content="Thiết kế màn hình S02 – MVP AI Chat với tài liệu PDF (BLUEPRINT v0.3)">
+<style>
+:root{
+  --font: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fs-xs:12px; --fs-sm:13px; --fs-md:14px; --fs-lg:16px; --fs-xl:20px; --fs-2xl:24px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px; --sp-8:32px;
+  --r-sm:6px; --r-md:10px; --r-lg:14px;
+  --bg:#F5F6F8; --surface:#FFFFFF; --surface-2:#F0F2F5; --border:#D7DCE3; --border-strong:#A9B3C1;
+  --text:#18212C; --text-muted:#56606E; --text-inverse:#FFFFFF;
+  --primary:#1D5BB8; --primary-hover:#174A96; --primary-soft:#E7EFFB;
+  --ok:#1C7342; --ok-soft:#E3F3E9; --warn:#7F5300; --warn-soft:#FFF3D6;
+  --danger:#AF2A21; --danger-soft:#FCE9E7; --info:#1D5BB8; --info-soft:#E7EFFB;
+  --focus:#1D5BB8; --overlay:rgba(16,22,30,.55); --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 12px rgba(16,24,40,.08);
+  --cite:#1D5BB8; --cite-soft:#EAF1FC;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151B; --surface:#181E26; --surface-2:#202833; --border:#2F3946; --border-strong:#4A5666;
+    --text:#E6EAF0; --text-muted:#A6B0BD; --primary:#6FA3F2; --primary-hover:#8DB6F5; --primary-soft:#1E2C42;
+    --ok:#5CC48A; --ok-soft:#173023; --warn:#E8B44C; --warn-soft:#33280F; --danger:#F08A80; --danger-soft:#3A1C1A;
+    --info:#6FA3F2; --info-soft:#1E2C42; --focus:#8DB6F5; --cite:#8DB6F5; --cite-soft:#1E2C42;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.35); --text-inverse:#0F141A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11151B; --surface:#181E26; --surface-2:#202833; --border:#2F3946; --border-strong:#4A5666;
+  --text:#E6EAF0; --text-muted:#A6B0BD; --primary:#6FA3F2; --primary-hover:#8DB6F5; --primary-soft:#1E2C42;
+  --ok:#5CC48A; --ok-soft:#173023; --warn:#E8B44C; --warn-soft:#33280F; --danger:#F08A80; --danger-soft:#3A1C1A;
+  --info:#6FA3F2; --info-soft:#1E2C42; --focus:#8DB6F5; --cite:#8DB6F5; --cite-soft:#1E2C42;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.35); --text-inverse:#0F141A;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:var(--font);font-size:var(--fs-md);line-height:1.5;color:var(--text);background:var(--bg);min-width:1280px}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
+.i{flex:none;vertical-align:middle}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:8px;top:-40px;background:var(--surface);padding:8px 12px;border-radius:var(--r-sm);z-index:100}
+.skip:focus{top:8px}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:var(--sp-2);min-height:32px;padding:6px 12px;border-radius:var(--r-sm);
+  border:1px solid var(--border-strong);background:var(--surface);cursor:pointer;font-weight:600;font-size:var(--fs-sm);text-decoration:none;color:var(--text)}
+.btn:hover{background:var(--surface-2)}
+.btn-primary{background:var(--primary);border-color:var(--primary);color:var(--text-inverse)}
+.btn-primary:hover{background:var(--primary-hover);border-color:var(--primary-hover)}
+.btn-danger{background:var(--danger);border-color:var(--danger);color:#fff}
+.btn-ghost{border-color:transparent;background:transparent}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn[disabled],.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.icon-btn{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:var(--r-sm);border:1px solid transparent;background:transparent;cursor:pointer;color:var(--text-muted)}
+.icon-btn:hover{background:var(--surface-2);color:var(--text)}
+.link{color:var(--primary);text-decoration:underline;background:none;border:0;padding:0;cursor:pointer;font-weight:600}
+
+/* ---------- app shell ---------- */
+.app{display:grid;grid-template-rows:56px 1fr;height:100vh}
+.topbar{display:flex;align-items:center;gap:var(--sp-4);padding:0 var(--sp-6);background:var(--surface);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:var(--sp-2);font-weight:700;font-size:var(--fs-lg)}
+.brand-mark{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--primary);color:var(--text-inverse)}
+.topbar .spacer{flex:1}
+.user{display:flex;align-items:center;gap:var(--sp-3);color:var(--text-muted);font-size:var(--fs-sm)}
+.avatar{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--primary-soft);color:var(--primary);font-weight:700;font-size:var(--fs-xs)}
+.main{display:grid;grid-template-columns:400px 1fr;min-height:0}
+
+/* ---------- documents panel ---------- */
+.docs{display:flex;flex-direction:column;min-height:0;background:var(--surface);border-right:1px solid var(--border)}
+.panel-head{display:flex;align-items:center;gap:var(--sp-2);padding:var(--sp-4) var(--sp-5) var(--sp-3)}
+.panel-head h2{margin:0;font-size:var(--fs-lg)}
+.quota{margin-left:auto;font-size:var(--fs-xs);color:var(--text-muted);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:2px 10px}
+.quota.near{color:var(--warn);background:var(--warn-soft);border-color:transparent;font-weight:600}
+.drop{margin:0 var(--sp-5) var(--sp-3);border:2px dashed var(--border-strong);border-radius:var(--r-md);padding:var(--sp-4);text-align:center;background:var(--surface-2)}
+.drop.active{border-color:var(--primary);background:var(--primary-soft)}
+.drop p{margin:var(--sp-1) 0 0;color:var(--text-muted);font-size:var(--fs-xs)}
+.drop .btn{margin-top:var(--sp-2)}
+.drop-title{display:flex;align-items:center;justify-content:center;gap:var(--sp-2);font-weight:600}
+.scroll{overflow:auto;min-height:0;flex:1;padding:0 var(--sp-5) var(--sp-5)}
+.section-label{font-size:var(--fs-xs);font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);margin:var(--sp-4) 0 var(--sp-2)}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--sp-2)}
+.row{display:grid;grid-template-columns:20px 1fr auto;gap:var(--sp-3);align-items:start;padding:var(--sp-3);border:1px solid var(--border);border-radius:var(--r-md);background:var(--surface)}
+.row .name{font-weight:600;word-break:break-word}
+.row .meta{font-size:var(--fs-xs);color:var(--text-muted)}
+.row .actions{display:flex;gap:2px;align-items:center}
+.row .reason{margin-top:var(--sp-1);font-size:var(--fs-sm);color:var(--danger)}
+.row.is-failed{border-color:color-mix(in srgb,var(--danger) 40%,var(--border))}
+.row .file-ic{color:var(--text-muted);margin-top:2px}
+.status{display:inline-flex;align-items:center;gap:4px;margin-top:var(--sp-1);font-size:var(--fs-xs);font-weight:700;border-radius:999px;padding:1px 8px}
+.st-processing{color:var(--info);background:var(--info-soft)}
+.st-ready{color:var(--ok);background:var(--ok-soft)}
+.st-failed{color:var(--danger);background:var(--danger-soft)}
+.st-uploading{color:var(--text-muted);background:var(--surface-2)}
+.progress{height:6px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin-top:var(--sp-2)}
+.progress>span{display:block;height:100%;background:var(--primary)}
+.spin{width:12px;height:12px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .9s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.spin,.dots span{animation:none}}
+
+/* ---------- empty states & alerts ---------- */
+.empty{text-align:center;padding:var(--sp-8) var(--sp-4);color:var(--text-muted)}
+.empty h3{margin:var(--sp-3) 0 var(--sp-1);color:var(--text);font-size:var(--fs-lg)}
+.empty .ill{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:16px;background:var(--primary-soft);color:var(--primary)}
+.steps{list-style:none;padding:0;margin:var(--sp-4) auto 0;max-width:340px;text-align:left;display:flex;flex-direction:column;gap:var(--sp-2)}
+.steps li{display:flex;gap:var(--sp-3);align-items:flex-start;color:var(--text)}
+.steps b{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:var(--primary-soft);color:var(--primary);font-size:var(--fs-xs)}
+.alert{display:flex;gap:var(--sp-3);align-items:flex-start;padding:var(--sp-3);border-radius:var(--r-md);font-size:var(--fs-sm);border:1px solid transparent}
+.alert .t{font-weight:700}
+.alert-danger{background:var(--danger-soft);color:var(--danger)}
+.alert-danger .body{color:var(--text)}
+.alert-warn{background:var(--warn-soft);color:var(--warn)}
+.alert-warn .body{color:var(--text)}
+.alert-info{background:var(--info-soft);color:var(--info)}
+.alert-info .body{color:var(--text)}
+
+/* ---------- chat panel ---------- */
+.chat{display:flex;flex-direction:column;min-height:0}
+.chat .panel-head{padding:var(--sp-4) var(--sp-8) var(--sp-3);border-bottom:1px solid var(--border);background:var(--surface)}
+.chat .panel-head p{margin:0;color:var(--text-muted);font-size:var(--fs-sm)}
+.thread{flex:1;overflow:auto;padding:var(--sp-6) var(--sp-8);display:flex;flex-direction:column;gap:var(--sp-5)}
+.thread-inner{max-width:880px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:var(--sp-5)}
+.q{align-self:flex-end;max-width:72%;background:var(--primary);color:var(--text-inverse);padding:var(--sp-3) var(--sp-4);border-radius:var(--r-lg) var(--r-lg) 4px var(--r-lg)}
+.q .time{display:block;font-size:var(--fs-xs);opacity:.85;margin-top:2px;text-align:right}
+.a{align-self:flex-start;max-width:86%;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 4px;padding:var(--sp-4);box-shadow:var(--shadow)}
+.a p{margin:0 0 var(--sp-2)}
+.a-head{display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-xs);color:var(--text-muted);margin-bottom:var(--sp-2)}
+.ref{display:inline-grid;place-items:center;min-width:22px;height:20px;padding:0 5px;margin:0 1px;border-radius:5px;border:1px solid var(--cite);background:var(--cite-soft);color:var(--cite);font-size:var(--fs-xs);font-weight:700;cursor:pointer;vertical-align:1px}
+.sources{border-top:1px solid var(--border);margin-top:var(--sp-3);padding-top:var(--sp-3)}
+.sources h4{margin:0 0 var(--sp-2);font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--sp-2)}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:3px 10px;border-radius:999px;border:1px solid var(--border-strong);background:var(--surface);font-size:var(--fs-sm);cursor:pointer;color:var(--text)}
+.chip:hover{border-color:var(--cite);color:var(--cite)}
+.chip .n{font-weight:700;color:var(--cite)}
+.chip.deleted{border-style:dashed;color:var(--text-muted);cursor:not-allowed}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-xs);font-weight:700;border-radius:999px;padding:2px 8px}
+.badge-insufficient{background:var(--warn-soft);color:var(--warn)}
+.badge-conflict{background:var(--warn-soft);color:var(--warn)}
+.badge-failed{background:var(--danger-soft);color:var(--danger)}
+.a.insufficient{border-style:dashed}
+.a.failed{border-color:color-mix(in srgb,var(--danger) 45%,var(--border))}
+.conflict{margin-top:var(--sp-2);padding:var(--sp-3);border-radius:var(--r-md);background:var(--warn-soft)}
+.conflict ul{margin:var(--sp-1) 0 0;padding-left:18px}
+.dots{display:inline-flex;gap:4px}
+.dots span{width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:blink 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.composer{border-top:1px solid var(--border);background:var(--surface);padding:var(--sp-4) var(--sp-8) var(--sp-5)}
+.composer-inner{max-width:880px;margin:0 auto}
+.box{display:flex;gap:var(--sp-3);align-items:flex-end;border:1px solid var(--border-strong);border-radius:var(--r-lg);padding:var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-4);background:var(--surface)}
+.box:focus-within{border-color:var(--focus);box-shadow:0 0 0 3px var(--primary-soft)}
+.box textarea{flex:1;border:0;outline:0;resize:none;background:transparent;min-height:44px;max-height:160px;padding:var(--sp-2) 0}
+.box.locked{background:var(--surface-2)}
+.composer-foot{display:flex;justify-content:space-between;gap:var(--sp-4);margin-top:var(--sp-2);font-size:var(--fs-xs);color:var(--text-muted)}
+.counter.over{color:var(--danger);font-weight:700}
+.locked-reason{display:flex;align-items:center;gap:var(--sp-2);color:var(--text-muted);font-size:var(--fs-sm);margin-bottom:var(--sp-2)}
+
+/* ---------- toast ---------- */
+.toasts{position:fixed;left:var(--sp-5);bottom:var(--sp-5);width:360px;display:flex;flex-direction:column;gap:var(--sp-2);z-index:30}
+.toast{display:flex;gap:var(--sp-3);align-items:flex-start;padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);font-size:var(--fs-sm)}
+.toast .t{font-weight:700}
+.toast.ok .lead{color:var(--ok)} .toast.warn .lead{color:var(--warn)} .toast.danger .lead{color:var(--danger)}
+.toast .timer{height:3px;background:var(--surface-2);border-radius:2px;margin-top:var(--sp-2);overflow:hidden}
+.toast .timer span{display:block;height:100%;width:60%;background:var(--border-strong)}
+
+/* ---------- modal / overlay ---------- */
+.overlay{position:fixed;inset:0;background:var(--overlay);display:grid;place-items:center;z-index:40}
+.dialog{width:480px;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:var(--sp-6)}
+.dialog h2{margin:0 0 var(--sp-2);font-size:var(--fs-xl)}
+.dialog p{margin:0 0 var(--sp-3);color:var(--text-muted)}
+.dialog .foot{display:flex;justify-content:flex-end;gap:var(--sp-2);margin-top:var(--sp-5)}
+.viewer{position:fixed;inset:24px 24px 24px 424px;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow);display:grid;grid-template-rows:56px 1fr;z-index:40;overflow:hidden}
+.viewer-bar{display:flex;align-items:center;gap:var(--sp-3);padding:0 var(--sp-4);border-bottom:1px solid var(--border)}
+.viewer-bar .title{font-weight:700}
+.viewer-bar .pager{display:flex;align-items:center;gap:var(--sp-1);margin-left:auto}
+.viewer-bar input{width:52px;text-align:center;border:1px solid var(--border-strong);border-radius:var(--r-sm);padding:4px;background:var(--surface)}
+.viewer-body{overflow:auto;background:var(--surface-2);padding:var(--sp-6);display:flex;justify-content:center}
+.page{width:640px;min-height:860px;background:#fff;color:#1b1b1b;box-shadow:var(--shadow);padding:56px 64px;font-family:"Times New Roman",Tinos,"Noto Serif",serif;font-size:14px;line-height:1.6;position:relative}
+.page h3{font-size:16px;margin:0 0 12px}
+.page .pno{position:absolute;bottom:24px;left:0;right:0;text-align:center;font-size:12px;color:#666}
+.page .hl{background:#FFF1B8;outline:2px solid #E0B100;outline-offset:2px}
+.page .ln{height:9px;background:#E7E7E7;border-radius:3px;margin:10px 0}
+
+/* ---------- standalone pages ---------- */
+.center{min-height:100vh;display:grid;place-items:center;padding:var(--sp-8)}
+.card{width:520px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:var(--sp-8);text-align:center}
+.card h1{font-size:var(--fs-2xl);margin:var(--sp-4) 0 var(--sp-2)}
+.card p{color:var(--text-muted);margin:0 0 var(--sp-3)}
+.card .ill{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:18px}
+.card .actions{display:flex;justify-content:center;gap:var(--sp-2);margin-top:var(--sp-5)}
+.ref-code{font-family:Consolas,monospace;font-size:var(--fs-xs);background:var(--surface-2);border-radius:var(--r-sm);padding:2px 6px}
+
+/* ---------- design spec panel (không thuộc giao diện sản phẩm) ---------- */
+.spec{position:fixed;right:0;top:35%;z-index:60;font-size:var(--fs-sm);display:flex;align-items:flex-start;flex-direction:row-reverse}
+.spec summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;background:#2B2F36;color:#fff;border-radius:8px 0 0 8px;padding:12px 6px;font-weight:600;writing-mode:vertical-rl;box-shadow:var(--shadow)}
+.spec summary::-webkit-details-marker{display:none}
+.spec[open] summary{border-radius:8px 0 0 8px}
+.spec .spec-body{width:400px;background:#2B2F36;color:#E8EAED;border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);max-height:60vh;overflow:auto}
+.spec h4{margin:10px 0 4px;font-size:12px;color:#9FB3C8;text-transform:uppercase;letter-spacing:.04em}
+.spec h4:first-child{margin-top:0}
+.spec ul{margin:0;padding-left:18px}
+.spec code{color:#FFD58A}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua tới nội dung chính</a>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><span class="brand-mark"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span>AI Chat PDF</div>
+  <div class="spacer"></div>
+  <div class="user"><span class="avatar" aria-hidden="true">LN</span><span>lan.nguyen@congty.vn</span>
+    <button class="btn btn-ghost" type="button"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Đăng xuất</button></div>
+</header>
+<main class="main" id="main">
+<section class="docs" aria-labelledby="docs-title">
+  <div class="panel-head"><h2 id="docs-title">Tài liệu</h2>
+    <span class="quota" title="Số tài liệu đang dùng / giới hạn">0/100 tài liệu</span></div>
+  <div class="drop active" aria-label="Vùng tải tài liệu">
+  <div class="drop-title"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5M12 3v12"/></svg> Kéo thả file PDF vào đây</div>
+  <p>hoặc</p>
+  <button class="btn btn-primary" type="button"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5M12 3v12"/></svg> Chọn file PDF</button>
+  <p>Tối đa 10 file mỗi lần · mỗi file ≤ 20 MB và ≤ 300 trang · chỉ PDF có chữ (chưa hỗ trợ PDF scan)</p>
+</div>
+  <div class="scroll" aria-live="polite"><div class="section-label">Đang tải lên (3/5)</div>
+<ul class="list">
+<li class="row">
+  <span class="file-ic"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span>
+  <div><div class="name">hop-dong-A.pdf</div><div class="meta">1,0 MB</div><span class="status st-uploading"><span class="spin" aria-hidden="true"></span> Đang tải lên 72%</span><div class="progress" role="progressbar" aria-label="Tiến độ tải hop-dong-A.pdf" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"><span style="width:72%"></span></div></div>
+  <div class="actions"></div>
+</li>
+<li class="row">
+  <span class="file-ic"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span>
+  <div><div class="name">chinh-sach-ban-hang-2026.pdf</div><div class="meta">3,4 MB</div><span class="status st-uploading"><span class="spin" aria-hidden="true"></span> Đang tải lên 35%</span><div class="progress" role="progressbar" aria-label="Tiến độ tải chinh-sach-ban-hang-2026.pdf" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"><span style="width:35%"></span></div></div>
+  <div class="actions"></div>
+</li>
+<li class="row">
+  <span class="file-ic"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span>
+  <div><div class="name">bang-gia-Q4.pdf</div><div class="meta">512 KB</div><span class="status st-uploading"><svg class="i" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Đang chờ tải lên</span></div>
+  <div class="actions"></div>
+</li>
+<li class="row is-failed">
+  <span class="file-ic"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span>
+  <div><div class="name">bao-gia-khach-hang.docx</div><div class="meta">220 KB</div><span class="status st-failed"><svg class="i" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg> Không nhận</span><div class="reason">"bao-gia-khach-hang.docx" không phải file PDF hợp lệ.</div></div>
+  <div class="actions"><button class="icon-btn" type="button" aria-label="Đóng thông báo về bao-gia-khach-hang.docx"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+</li>
+<li class="row is-failed">
+  <span class="file-ic"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span>
+  <div><div class="name">ho-so-nang-luc.pdf</div><div class="meta">18,2 MB</div><span class="status st-failed"><svg class="i" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2l20 20M8.5 16.5a5 5 0 0 1 7 0M2 8.8a15 15 0 0 1 4.2-2.6M10.7 5.1A15 15 0 0 1 22 8.8M5 12.9a10 10 0 0 1 5.2-2.8M19 12.9a10 10 0 0 0-1.9-1.4M12 20h.01"/></svg> Tải lên thất bại</span><div class="reason">Mất kết nối khi đang tải lên. Bấm <strong>Tải lại</strong> – file sẽ không bị trùng.</div><div style="margin-top:8px"><button class="btn" type="button"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg> Tải lại</button></div></div>
+  <div class="actions"></div>
+</li>
+</ul>
+<div class="section-label">Tài liệu của bạn</div>
+<div class="empty" style="padding:16px 0"><p>Tài liệu sẽ xuất hiện ở đây khi tải lên xong.</p></div></div>
+</section>
+<section class="chat" aria-labelledby="chat-title">
+  <div class="panel-head"><div><h2 id="chat-title" style="margin:0;font-size:var(--fs-lg)">Hỏi đáp</h2>
+    <p>Hỏi bằng tiếng Việt hoặc tiếng Anh. Mỗi câu trả lời kèm tên tài liệu và số trang để bạn kiểm chứng.</p></div></div>
+  <div class="thread" id="thread" aria-live="polite" aria-label="Hội thoại"><div class="thread-inner"><div class="empty" style="padding-top:64px"><span class="ill"><svg class="i" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span>
+  <h3>Hỏi đáp với tài liệu của bạn</h3>
+  <p>Chỉ cần ba bước:</p>
+  <ol class="steps">
+    <li><b>1</b><span>Tải lên một hoặc nhiều file PDF ở khu vực <strong>Tài liệu</strong> bên trái.</span></li>
+    <li><b>2</b><span>Chờ tài liệu chuyển sang <strong>Sẵn sàng</strong> (thường dưới 3 phút).</span></li>
+    <li><b>3</b><span>Đặt câu hỏi – câu trả lời luôn kèm tên tài liệu và số trang để bạn kiểm chứng.</span></li>
+  </ol></div></div></div>
+  <div class="composer">
+  <div class="composer-inner">
+    <div class="locked-reason"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Đang xử lý tài liệu, bạn có thể hỏi khi có ít nhất một tài liệu Sẵn sàng.</div>
+    <form class="box locked" onsubmit="return false" aria-label="Đặt câu hỏi">
+      <label class="sr-only" for="q">Câu hỏi về tài liệu</label>
+      <textarea id="q" rows="2" maxlength="2000" placeholder="Hỏi về nội dung tài liệu, ví dụ: Điều khoản thanh toán trong hợp đồng A là gì?" disabled></textarea>
+      <button class="btn btn-primary" type="submit" disabled><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg> Gửi</button>
+    </form>
+    <div class="composer-foot"><span>Enter để gửi · Shift + Enter để xuống dòng · Câu trả lời chỉ dựa trên tài liệu Sẵn sàng của bạn</span><span class="counter" id="counter">0/2.000</span></div>
+  </div>
+</div>
+</section>
+</main>
+</div>
+
+<details class="spec"><summary><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> Ghi chú thiết kế · S02</summary><div class="spec-body"><h4>Màn hình</h4><ul><li>Màn hình chính – đang tải lên nhiều file</li></ul><h4>Story / trường hợp</h4><ul><li>US-001 (tiến độ tải lên), US-002 (nhiều file), US-003 (không phải PDF), US-026 (lỗi tải lên)</li><li>E-02, E-04, E-07</li></ul><h4>API</h4><ul><li><code>POST /upload-batches</code> → <code>PUT /upload-batches/{batch_id}/files/{client_file_id}</code> (tối đa 3 song song, XHR có tiến độ)</li><li>422 <code>not_pdf</code>; lỗi mạng → 'Tải lại' cùng <code>client_file_id</code> (API AD-06)</li></ul><h4>Hành vi</h4><ul><li>File sai đuôi bị chặn ngay ở client, không gửi</li><li>Thanh tiến độ có <code>role=progressbar</code></li><li>Vùng kéo thả ở trạng thái active khi đang kéo file vào</li></ul></div></details>
+<script>const th=document.getElementById('thread');if(th)th.scrollTop=th.scrollHeight;</script>
+</body>
+</html>
