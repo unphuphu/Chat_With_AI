@@ -15,15 +15,22 @@ interface Props {
 
 export function ChatPanel({ conversation, readyCount, processingCount, maxChars, onOpenCitation }: Props) {
   const [messages, setMessages] = useState<Message[]>([])
+  // Khôi phục câu hỏi đang soạn sau khi đăng nhập lại (US-023 AC 2). Chỉ ĐỌC ở đây; việc xóa nằm trong effect bên dưới
+  // vì StrictMode gọi hàm khởi tạo hai lần – nếu xóa ngay, lần gọi thứ hai sẽ nhận giá trị rỗng.
   const [text, setText] = useState(() => {
     try {
-      const d = sessionStorage.getItem(DRAFT_KEY)
-      if (d) sessionStorage.removeItem(DRAFT_KEY)
-      return d ?? ''
+      return sessionStorage.getItem(DRAFT_KEY) ?? ''
     } catch {
       return ''
     }
   })
+  useEffect(() => {
+    try {
+      sessionStorage.removeItem(DRAFT_KEY)
+    } catch {
+      /* bỏ qua */
+    }
+  }, [])
   const [sending, setSending] = useState(false)
   const [rateUntil, setRateUntil] = useState<number | null>(null)
   const [now, setNow] = useState(Date.now())
@@ -105,6 +112,13 @@ export function ChatPanel({ conversation, readyCount, processingCount, maxChars,
         setText(question)
         setNotice(err.detail ?? 'Không gửi được câu hỏi.')
       } else if (err.status === 401) {
+        // Phiên hết hạn đúng lúc gửi: ô hỏi đã được xóa trước khi gọi API, nên lưu lại câu hỏi để hiện lại sau khi
+        // đăng nhập (US-023 AC 2). Phải ghi trước khi trang chuyển sang /session-expired.
+        try {
+          sessionStorage.setItem(DRAFT_KEY, question)
+        } catch {
+          /* bỏ qua */
+        }
         replace(null)
       } else {
         replace({ status: 'FAILED', error_code: ERROR_TEXT[err.code] ? err.code : 'internal_error' })

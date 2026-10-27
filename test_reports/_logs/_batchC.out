@@ -1,0 +1,12 @@
+
+Running 2 tests using 1 worker
+
+
+  ok 1 PERF-003_xu-ly-file-bien-20-mb-300-trang.spec.ts:8:1 › Xử lý file biên 20 MB / 300 trang (34.4s)
+
+  ok 2 PERF-006_hieu-nang-giao-dien.spec.ts:5:1 › Hiệu năng giao diện (6.8m)
+
+  Slow test file: PERF-006_hieu-nang-giao-dien.spec.ts (6.8m)
+  Slow test file: PERF-003_xu-ly-file-bien-20-mb-300-trang.spec.ts (34.4s)
+  Consider splitting slow test files to speed up parallel execution
+  2 passed (7.4m)

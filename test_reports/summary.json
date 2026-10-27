@@ -1,0 +1,660 @@
+{
+  "count": {
+    "ĐẠT": 103,
+    "BỊ CHẶN": 21,
+    "CẦN NGƯỜI XÁC NHẬN": 6
+  },
+  "total": 130,
+  "rows": [
+    {
+      "id": "UT-001",
+      "verdict": "ĐẠT",
+      "folder": "UT-001_chunker-thuoc-tinh-chia-doan"
+    },
+    {
+      "id": "UT-002",
+      "verdict": "ĐẠT",
+      "folder": "UT-002_chunker-doan-khong-vuot-ranh-gioi-trang"
+    },
+    {
+      "id": "UT-003",
+      "verdict": "ĐẠT",
+      "folder": "UT-003_chuan-hoa-van-ban-trich-xuat"
+    },
+    {
+      "id": "UT-004",
+      "verdict": "ĐẠT",
+      "folder": "UT-004_trich-van-ban-va-kiem-tra-pdf"
+    },
+    {
+      "id": "UT-005",
+      "verdict": "ĐẠT",
+      "folder": "UT-005_danh-so-lai-trich-dan-va-loai-ma-nguon-la"
+    },
+    {
+      "id": "UT-006",
+      "verdict": "ĐẠT",
+      "folder": "UT-006_chua-du-thong-tin-khi-khong-con-trich-dan-hop-le"
+    },
+    {
+      "id": "UT-007",
+      "verdict": "ĐẠT",
+      "folder": "UT-007_escape-noi-dung-nguon-trong-prompt"
+    },
+    {
+      "id": "UT-008",
+      "verdict": "ĐẠT",
+      "folder": "UT-008_chu-trinh-circuit-breaker"
+    },
+    {
+      "id": "UT-009",
+      "verdict": "ĐẠT",
+      "folder": "UT-009_embedding-hashing"
+    },
+    {
+      "id": "UT-010",
+      "verdict": "ĐẠT",
+      "folder": "UT-010_bo-tra-loi-trich-xuat-chon-dung-nguon"
+    },
+    {
+      "id": "UT-011",
+      "verdict": "ĐẠT",
+      "folder": "UT-011_loc-noi-dung-nhay-cam-khoi-log"
+    },
+    {
+      "id": "UT-012",
+      "verdict": "ĐẠT",
+      "folder": "UT-012_kiem-tra-cau-hinh-khong-an-toan"
+    },
+    {
+      "id": "UT-013",
+      "verdict": "ĐẠT",
+      "folder": "UT-013_rate-limit-cua-so-co-dinh"
+    },
+    {
+      "id": "UT-014",
+      "verdict": "ĐẠT",
+      "folder": "UT-014_anh-xa-loi-adapter-anthropic"
+    },
+    {
+      "id": "UT-015",
+      "verdict": "ĐẠT",
+      "folder": "UT-015_xac-thuc-id-token-oidc"
+    },
+    {
+      "id": "INT-001",
+      "verdict": "ĐẠT",
+      "folder": "INT-001_schema-rls-va-trigger-bat-bien"
+    },
+    {
+      "id": "INT-002",
+      "verdict": "ĐẠT",
+      "folder": "INT-002_pham-vi-workspace-khong-ro-giua-transaction"
+    },
+    {
+      "id": "INT-003",
+      "verdict": "ĐẠT",
+      "folder": "INT-003_ingest-dau-cuoi-va-hoi-dap-co-trich-dan"
+    },
+    {
+      "id": "INT-004",
+      "verdict": "ĐẠT",
+      "folder": "INT-004_ingest-tai-lieu-lon-40-trang"
+    },
+    {
+      "id": "INT-005",
+      "verdict": "ĐẠT",
+      "folder": "INT-005_loi-tam-thoi-khi-ingest-r-04-xu-ly-lai"
+    },
+    {
+      "id": "INT-006",
+      "verdict": "ĐẠT",
+      "folder": "INT-006_xoa-khi-dang-xu-ly-thi-huy-xu-ly"
+    },
+    {
+      "id": "INT-007",
+      "verdict": "ĐẠT",
+      "folder": "INT-007_xoa-va-purge-file-goc"
+    },
+    {
+      "id": "INT-008",
+      "verdict": "ĐẠT",
+      "folder": "INT-008_sweep-phat-hien-purge-bi-sot"
+    },
+    {
+      "id": "INT-009",
+      "verdict": "ĐẠT",
+      "folder": "INT-009_tac-vu-bao-tri-dinh-ky"
+    },
+    {
+      "id": "INT-010",
+      "verdict": "ĐẠT",
+      "folder": "INT-010_cau-tra-loi-trich-dung-trang"
+    },
+    {
+      "id": "INT-011",
+      "verdict": "ĐẠT",
+      "folder": "INT-011_truy-xuat-da-tai-lieu-voi-nguong-dev"
+    },
+    {
+      "id": "INT-012",
+      "verdict": "ĐẠT",
+      "folder": "INT-012_cong-nguong-bo-qua-llm"
+    },
+    {
+      "id": "INT-013",
+      "verdict": "ĐẠT",
+      "folder": "INT-013_circuit-breaker-o-muc-api"
+    },
+    {
+      "id": "INT-014",
+      "verdict": "ĐẠT",
+      "folder": "INT-014_hop-dong-openapi"
+    },
+    {
+      "id": "INT-015",
+      "verdict": "ĐẠT",
+      "folder": "INT-015_adapter-tich-hop-that-oidc-blob-embedding-llm"
+    },
+    {
+      "id": "INT-016",
+      "verdict": "BỊ CHẶN",
+      "folder": "INT-016_integration-tren-postgresql-that"
+    },
+    {
+      "id": "INT-017",
+      "verdict": "ĐẠT",
+      "folder": "INT-017_chi-dung-tai-lieu-san-sang"
+    },
+    {
+      "id": "INT-018",
+      "verdict": "ĐẠT",
+      "folder": "INT-018_su-kien-analytics-day-du"
+    },
+    {
+      "id": "API-001",
+      "verdict": "ĐẠT",
+      "folder": "API-001_dang-nhap-oidc-va-cookie-phien"
+    },
+    {
+      "id": "API-002",
+      "verdict": "ĐẠT",
+      "folder": "API-002_callback-tu-choi-nguoi-ngoai-nhom-va-open-redirect"
+    },
+    {
+      "id": "API-003",
+      "verdict": "ĐẠT",
+      "folder": "API-003_callback-voi-state-sai-hoac-het-han"
+    },
+    {
+      "id": "API-004",
+      "verdict": "ĐẠT",
+      "folder": "API-004_dang-xuat-can-csrf"
+    },
+    {
+      "id": "API-005",
+      "verdict": "ĐẠT",
+      "folder": "API-005_thong-tin-nguoi-dung-me"
+    },
+    {
+      "id": "API-006",
+      "verdict": "ĐẠT",
+      "folder": "API-006_lo-tai-len-qua-10-file"
+    },
+    {
+      "id": "API-007",
+      "verdict": "ĐẠT",
+      "folder": "API-007_han-muc-100-tai-lieu"
+    },
+    {
+      "id": "API-008",
+      "verdict": "ĐẠT",
+      "folder": "API-008_tai-len-mot-pdf-hop-le"
+    },
+    {
+      "id": "API-009",
+      "verdict": "ĐẠT",
+      "folder": "API-009_tai-len-idempotent-va-lo-het-cho"
+    },
+    {
+      "id": "API-010",
+      "verdict": "ĐẠT",
+      "folder": "API-010_tu-choi-file-khong-hop-le"
+    },
+    {
+      "id": "API-011",
+      "verdict": "ĐẠT",
+      "folder": "API-011_bien-dung-luong-va-pdf-khoa-in"
+    },
+    {
+      "id": "API-012",
+      "verdict": "ĐẠT",
+      "folder": "API-012_lo-het-han-body-qua-lon-may-chu-ban"
+    },
+    {
+      "id": "API-013",
+      "verdict": "ĐẠT",
+      "folder": "API-013_rate-limit-tai-file"
+    },
+    {
+      "id": "API-014",
+      "verdict": "ĐẠT",
+      "folder": "API-014_danh-sach-tai-lieu"
+    },
+    {
+      "id": "API-015",
+      "verdict": "ĐẠT",
+      "folder": "API-015_xoa-tai-lieu"
+    },
+    {
+      "id": "API-016",
+      "verdict": "ĐẠT",
+      "folder": "API-016_xu-ly-lai-chi-voi-r-04"
+    },
+    {
+      "id": "API-017",
+      "verdict": "ĐẠT",
+      "folder": "API-017_tai-file-goc-de-xem"
+    },
+    {
+      "id": "API-018",
+      "verdict": "ĐẠT",
+      "folder": "API-018_file-cua-tai-lieu-da-xoa-hoac-cua-nguoi-khac"
+    },
+    {
+      "id": "API-019",
+      "verdict": "ĐẠT",
+      "folder": "API-019_hoi-thoai-hien-tai"
+    },
+    {
+      "id": "API-020",
+      "verdict": "ĐẠT",
+      "folder": "API-020_dat-cau-hoi-co-trich-dan"
+    },
+    {
+      "id": "API-021",
+      "verdict": "ĐẠT",
+      "folder": "API-021_hoi-khi-chua-co-tai-lieu-san-sang"
+    },
+    {
+      "id": "API-022",
+      "verdict": "ĐẠT",
+      "folder": "API-022_dat-cau-hoi-idempotent"
+    },
+    {
+      "id": "API-023",
+      "verdict": "ĐẠT",
+      "folder": "API-023_kiem-tra-cau-hoi-khong-hop-le"
+    },
+    {
+      "id": "API-024",
+      "verdict": "ĐẠT",
+      "folder": "API-024_loi-dich-vu-ai-va-qua-thoi-gian"
+    },
+    {
+      "id": "API-025",
+      "verdict": "ĐẠT",
+      "folder": "API-025_gui-lai-cau-hoi-bi-loi"
+    },
+    {
+      "id": "API-026",
+      "verdict": "ĐẠT",
+      "folder": "API-026_rate-limit-cau-hoi"
+    },
+    {
+      "id": "API-027",
+      "verdict": "ĐẠT",
+      "folder": "API-027_request-trung-dang-chay"
+    },
+    {
+      "id": "API-028",
+      "verdict": "ĐẠT",
+      "folder": "API-028_luong-su-kien-sse"
+    },
+    {
+      "id": "API-029",
+      "verdict": "ĐẠT",
+      "folder": "API-029_kiem-tra-suc-khoe"
+    },
+    {
+      "id": "API-030",
+      "verdict": "ĐẠT",
+      "folder": "API-030_hop-dong-api-so-voi-openapi-yaml"
+    },
+    {
+      "id": "API-031",
+      "verdict": "ĐẠT",
+      "folder": "API-031_mo-nguon-khong-co-so-trang"
+    },
+    {
+      "id": "E2E-001",
+      "verdict": "ĐẠT",
+      "folder": "E2E-001_dang-nhap-tai-pdf-hoi-xem-nguon-xoa"
+    },
+    {
+      "id": "E2E-002",
+      "verdict": "ĐẠT",
+      "folder": "E2E-002_nguoi-ngoai-nhom-bi-tu-choi"
+    },
+    {
+      "id": "E2E-003",
+      "verdict": "ĐẠT",
+      "folder": "E2E-003_smoke-dau-cuoi-qua-proxy"
+    },
+    {
+      "id": "E2E-004",
+      "verdict": "ĐẠT",
+      "folder": "E2E-004_tai-10-file-song-song"
+    },
+    {
+      "id": "E2E-005",
+      "verdict": "ĐẠT",
+      "folder": "E2E-005_mat-mang-khi-tai-len-va-tai-lai"
+    },
+    {
+      "id": "E2E-006",
+      "verdict": "ĐẠT",
+      "folder": "E2E-006_rate-limit-cau-hoi-va-dem-nguoc"
+    },
+    {
+      "id": "E2E-007",
+      "verdict": "ĐẠT",
+      "folder": "E2E-007_loi-ai-va-gui-lai"
+    },
+    {
+      "id": "E2E-008",
+      "verdict": "ĐẠT",
+      "folder": "E2E-008_het-phien-khi-dang-soan-cau-hoi"
+    },
+    {
+      "id": "E2E-009",
+      "verdict": "ĐẠT",
+      "folder": "E2E-009_tai-lai-trang-giua-phien"
+    },
+    {
+      "id": "E2E-010",
+      "verdict": "ĐẠT",
+      "folder": "E2E-010_xu-ly-lai-tai-lieu-loi-tam-thoi"
+    },
+    {
+      "id": "E2E-011",
+      "verdict": "ĐẠT",
+      "folder": "E2E-011_vuot-gioi-han-so-file-va-han-muc"
+    },
+    {
+      "id": "E2E-012",
+      "verdict": "ĐẠT",
+      "folder": "E2E-012_pdf-co-mot-phan-la-anh-scan"
+    },
+    {
+      "id": "E2E-013",
+      "verdict": "ĐẠT",
+      "folder": "E2E-013_trung-ten-file"
+    },
+    {
+      "id": "E2E-014",
+      "verdict": "ĐẠT",
+      "folder": "E2E-014_nam-cau-hoi-lien-tiep"
+    },
+    {
+      "id": "SEC-001",
+      "verdict": "ĐẠT",
+      "folder": "SEC-001_truy-cap-khong-co-phien"
+    },
+    {
+      "id": "SEC-002",
+      "verdict": "ĐẠT",
+      "folder": "SEC-002_tu-choi-theo-nhom-idp-va-ghi-audit"
+    },
+    {
+      "id": "SEC-003",
+      "verdict": "ĐẠT",
+      "folder": "SEC-003_chan-open-redirect"
+    },
+    {
+      "id": "SEC-004",
+      "verdict": "ĐẠT",
+      "folder": "SEC-004_csrf-cho-moi-thao-tac-ghi"
+    },
+    {
+      "id": "SEC-005",
+      "verdict": "ĐẠT",
+      "folder": "SEC-005_cach-ly-tai-lieu-giua-nguoi-dung-idor"
+    },
+    {
+      "id": "SEC-006",
+      "verdict": "ĐẠT",
+      "folder": "SEC-006_rls-o-muc-co-so-du-lieu"
+    },
+    {
+      "id": "SEC-007",
+      "verdict": "ĐẠT",
+      "folder": "SEC-007_du-lieu-gui-toi-nha-cung-cap-ai"
+    },
+    {
+      "id": "SEC-008",
+      "verdict": "ĐẠT",
+      "folder": "SEC-008_khong-lo-noi-dung-trong-analytics-audit-log"
+    },
+    {
+      "id": "SEC-009",
+      "verdict": "ĐẠT",
+      "folder": "SEC-009_kiem-tra-file-tai-len-an-toan"
+    },
+    {
+      "id": "SEC-010",
+      "verdict": "ĐẠT",
+      "folder": "SEC-010_prompt-injection-qua-tai-lieu"
+    },
+    {
+      "id": "SEC-011",
+      "verdict": "ĐẠT",
+      "folder": "SEC-011_header-bao-mat-va-cookie"
+    },
+    {
+      "id": "SEC-012",
+      "verdict": "BỊ CHẶN",
+      "folder": "SEC-012_ma-hoa-khi-truyen-va-khi-luu"
+    },
+    {
+      "id": "SEC-013",
+      "verdict": "ĐẠT",
+      "folder": "SEC-013_rate-limit-chong-lam-dung"
+    },
+    {
+      "id": "SEC-014",
+      "verdict": "ĐẠT",
+      "folder": "SEC-014_quet-lo-hong-thu-vien-phu-thuoc"
+    },
+    {
+      "id": "SEC-015",
+      "verdict": "BỊ CHẶN",
+      "folder": "SEC-015_quet-bao-mat-dong-dast"
+    },
+    {
+      "id": "ACC-001",
+      "verdict": "CẦN NGƯỜI XÁC NHẬN",
+      "folder": "ACC-001_dung-toan-bo-luong-chinh-bang-ban-phim"
+    },
+    {
+      "id": "ACC-002",
+      "verdict": "BỊ CHẶN",
+      "folder": "ACC-002_trinh-doc-man-hinh-nvda"
+    },
+    {
+      "id": "ACC-003",
+      "verdict": "ĐẠT",
+      "folder": "ACC-003_do-tuong-phan-mau"
+    },
+    {
+      "id": "ACC-004",
+      "verdict": "ĐẠT",
+      "folder": "ACC-004_thuoc-tinh-aria"
+    },
+    {
+      "id": "ACC-005",
+      "verdict": "ĐẠT",
+      "folder": "ACC-005_quan-ly-focus"
+    },
+    {
+      "id": "ACC-006",
+      "verdict": "CẦN NGƯỜI XÁC NHẬN",
+      "folder": "ACC-006_trang-thai-khong-chi-dua-vao-mau"
+    },
+    {
+      "id": "ACC-007",
+      "verdict": "ĐẠT",
+      "folder": "ACC-007_giam-chuyen-dong"
+    },
+    {
+      "id": "UI-001",
+      "verdict": "CẦN NGƯỜI XÁC NHẬN",
+      "folder": "UI-001_so-sanh-giao-dien-voi-thiet-ke"
+    },
+    {
+      "id": "UI-002",
+      "verdict": "ĐẠT",
+      "folder": "UI-002_do-rong-man-hinh"
+    },
+    {
+      "id": "UI-003",
+      "verdict": "ĐẠT",
+      "folder": "UI-003_trang-thai-thanh-phan"
+    },
+    {
+      "id": "UI-004",
+      "verdict": "CẦN NGƯỜI XÁC NHẬN",
+      "folder": "UI-004_trang-thai-trong-va-loi"
+    },
+    {
+      "id": "UI-005",
+      "verdict": "ĐẠT",
+      "folder": "UI-005_trang-thai-cho"
+    },
+    {
+      "id": "UI-006",
+      "verdict": "ĐẠT",
+      "folder": "UI-006_thong-bao-tu-an"
+    },
+    {
+      "id": "UI-007",
+      "verdict": "ĐẠT",
+      "folder": "UI-007_bo-dem-va-gioi-han-ky-tu"
+    },
+    {
+      "id": "UI-008",
+      "verdict": "CẦN NGƯỜI XÁC NHẬN",
+      "folder": "UI-008_giao-dien-toi"
+    },
+    {
+      "id": "UI-009",
+      "verdict": "ĐẠT",
+      "folder": "UI-009_tuong-thich-chrome-va-edge"
+    },
+    {
+      "id": "UI-010",
+      "verdict": "CẦN NGƯỜI XÁC NHẬN",
+      "folder": "UI-010_ngon-ngu-giao-dien-va-cau-tra-loi"
+    },
+    {
+      "id": "UI-011",
+      "verdict": "ĐẠT",
+      "folder": "UI-011_nguon-khong-co-so-trang"
+    },
+    {
+      "id": "PERF-001",
+      "verdict": "BỊ CHẶN",
+      "folder": "PERF-001_thoi-gian-tra-loi-mot-nguoi-dung"
+    },
+    {
+      "id": "PERF-002",
+      "verdict": "BỊ CHẶN",
+      "folder": "PERF-002_hai-muoi-nguoi-hoi-dong-thoi"
+    },
+    {
+      "id": "PERF-003",
+      "verdict": "ĐẠT",
+      "folder": "PERF-003_xu-ly-file-bien-20-mb-300-trang"
+    },
+    {
+      "id": "PERF-004",
+      "verdict": "BỊ CHẶN",
+      "folder": "PERF-004_xu-ly-hang-loat-nhieu-nguoi-dung"
+    },
+    {
+      "id": "PERF-005",
+      "verdict": "BỊ CHẶN",
+      "folder": "PERF-005_chay-ben-2-gio"
+    },
+    {
+      "id": "PERF-006",
+      "verdict": "ĐẠT",
+      "folder": "PERF-006_hieu-nang-giao-dien"
+    },
+    {
+      "id": "QLT-001",
+      "verdict": "BỊ CHẶN",
+      "folder": "QLT-001_do-chinh-xac-cau-tra-loi"
+    },
+    {
+      "id": "QLT-002",
+      "verdict": "BỊ CHẶN",
+      "folder": "QLT-002_dung-ten-tai-lieu-nguon"
+    },
+    {
+      "id": "QLT-003",
+      "verdict": "BỊ CHẶN",
+      "folder": "QLT-003_dung-so-trang"
+    },
+    {
+      "id": "QLT-004",
+      "verdict": "BỊ CHẶN",
+      "folder": "QLT-004_tu-choi-dung-cau-hoi-ngoai-tai-lieu"
+    },
+    {
+      "id": "QLT-005",
+      "verdict": "BỊ CHẶN",
+      "folder": "QLT-005_da-tai-lieu-va-cau-hoi-tiep-noi"
+    },
+    {
+      "id": "UAT-001",
+      "verdict": "BỊ CHẶN",
+      "folder": "UAT-001_tai-len-mot-pdf-hop-le"
+    },
+    {
+      "id": "UAT-002",
+      "verdict": "BỊ CHẶN",
+      "folder": "UAT-002_tai-len-file-khong-phai-pdf"
+    },
+    {
+      "id": "UAT-003",
+      "verdict": "BỊ CHẶN",
+      "folder": "UAT-003_hoi-dap-voi-tai-lieu-da-xu-ly"
+    },
+    {
+      "id": "UAT-004",
+      "verdict": "BỊ CHẶN",
+      "folder": "UAT-004_cau-hoi-can-tong-hop-nhieu-file"
+    },
+    {
+      "id": "UAT-005",
+      "verdict": "BỊ CHẶN",
+      "folder": "UAT-005_hoi-noi-dung-khong-co-trong-tai-lieu"
+    },
+    {
+      "id": "UAT-006",
+      "verdict": "BỊ CHẶN",
+      "folder": "UAT-006_kiem-tra-nguon-cau-tra-loi"
+    },
+    {
+      "id": "UAT-007",
+      "verdict": "BỊ CHẶN",
+      "folder": "UAT-007_xoa-tai-lieu-khong-con-duoc-dung"
+    },
+    {
+      "id": "UAT-008",
+      "verdict": "BỊ CHẶN",
+      "folder": "UAT-008_kha-dung-voi-nguoi-dung-lan-dau"
+    }
+  ]
+}

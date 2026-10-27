@@ -1,0 +1,35 @@
+{
+  "id": "UAT-001",
+  "title": "Tải lên một PDF hợp lệ",
+  "folder": "UAT-001_tai-len-mot-pdf-hop-le",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:15:28.253Z",
+  "finishedAt": "2026-10-27T15:15:37.121Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Người dùng nghiệp vụ, tài liệu dự án thật, staging. (Luồng tương ứng đã đạt ở E2E-001/E2E-003 trên bản demo.)",
+      "actual": "Cần người dùng nghiệp vụ/PO thực hiện và ký xác nhận trên môi trường nghiệm thu – agent không thể thay thế.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UAT-001-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Cần người dùng nghiệp vụ/PO thực hiện và ký xác nhận trên môi trường nghiệm thu – agent không thể thay thế.",
+    "Cần: Người dùng nghiệp vụ, tài liệu dự án thật, staging. (Luồng tương ứng đã đạt ở E2E-001/E2E-003 trên bản demo.)"
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

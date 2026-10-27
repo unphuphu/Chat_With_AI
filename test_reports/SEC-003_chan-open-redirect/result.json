@@ -1,0 +1,76 @@
+{
+  "id": "SEC-003",
+  "title": "Chặn open redirect",
+  "folder": "SEC-003_chan-open-redirect",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:45:48.247Z",
+  "finishedAt": "2026-10-27T15:45:59.027Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mở /api/v1/auth/login?return_to=https://evil.example, chọn P1",
+      "expected": "Sau callback về http://localhost:8080/ (không tới domain ngoài)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-mo-api-v1-auth-login-return-to-https-evil-example-.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Mở /api/v1/auth/login?return_to=//evil.example, chọn P1",
+      "expected": "Sau callback về http://localhost:8080/ (không tới domain ngoài)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-mo-api-v1-auth-login-return-to-evil-example-chon-p.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Mở /api/v1/auth/login?return_to=/\\evil.example, chọn P1",
+      "expected": "Sau callback về http://localhost:8080/ (không tới domain ngoài)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-mo-api-v1-auth-login-return-to-evil-example-chon-p.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Mở /api/v1/auth/login?return_to=javascript:alert(1), chọn P1",
+      "expected": "Sau callback về http://localhost:8080/ (không tới domain ngoài)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-mo-api-v1-auth-login-return-to-javascript-alert-1-.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Thử return_to=/ (hợp lệ)",
+      "expected": "Về /",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-thu-return-to-hop-le.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-003-app.webm",
+    "video/SEC-003-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/SEC-003_chan-open-redirect.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

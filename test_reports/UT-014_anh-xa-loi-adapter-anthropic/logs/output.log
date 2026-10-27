@@ -1,0 +1,20 @@
+$ .venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_llm_anthropic.py
+(cwd: C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend)
+
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.14.2, pytest-9.1.1, pluggy-1.7.0 -- C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend\.venv\Scripts\python.exe
+hypothesis profile 'default'
+rootdir: C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.170.11, asyncio-1.4.1
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+[1mcollecting ... [0mcollected 6 items
+
+tests/unit/test_llm_anthropic.py::test_error_mapping[exc0-LlmTimeout] [32mPASSED[0m[32m [ 16%][0m
+tests/unit/test_llm_anthropic.py::test_error_mapping[exc1-LlmRateLimited] [32mPASSED[0m[32m [ 33%][0m
+tests/unit/test_llm_anthropic.py::test_error_mapping[exc2-LlmUnavailable] [32mPASSED[0m[32m [ 50%][0m
+tests/unit/test_llm_anthropic.py::test_error_mapping[exc3-LlmUnavailable] [32mPASSED[0m[32m [ 66%][0m
+tests/unit/test_llm_anthropic.py::test_stop_reasons_and_output [32mPASSED[0m[32m    [ 83%][0m
+tests/unit/test_llm_anthropic.py::test_request_shape [32mPASSED[0m[32m              [100%][0m
+
+[32m============================= [32m[1m6 passed[0m[32m in 15.79s[0m[32m ==============================[0m

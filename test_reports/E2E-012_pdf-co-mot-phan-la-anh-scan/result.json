@@ -1,0 +1,63 @@
+{
+  "id": "E2E-012",
+  "title": "PDF có một phần là ảnh scan",
+  "folder": "E2E-012_pdf-co-mot-phan-la-anh-scan",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:38:39.861Z",
+  "finishedAt": "2026-10-27T14:38:53.489Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Tạo hon-hop.pdf: trang 1–2 là hợp đồng A (chữ), trang 3 là ảnh scan",
+      "expected": "File 3 trang",
+      "actual": "Đã tạo C:\\Users\\admin\\AppData\\Local\\Temp\\hon-hop.pdf (3 trang)",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-tao-hon-hop-pdf-trang-1-2-la-hop-dong-a-chu-trang-.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Đăng nhập P2, tải hon-hop.pdf",
+      "expected": "Sẵn sàng (không Thất bại)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-dang-nhap-p2-tai-hon-hop-pdf.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Hỏi \"Bên B thanh toán trong vòng bao nhiêu ngày?\"",
+      "expected": "Có \"30 ngày\", nguồn hon-hop.pdf · tr.2",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-hoi-ben-b-thanh-toan-trong-vong-bao-nhieu-ngay.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Hỏi về nội dung chỉ có trong trang ảnh (\"Trang 3 ghi gì?\")",
+      "expected": "Chưa đủ thông tin",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-hoi-ve-noi-dung-chi-co-trong-trang-anh-trang-3-ghi.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/E2E-012-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-012_pdf-co-mot-phan-la-anh-scan.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

@@ -1,0 +1,76 @@
+{
+  "id": "SEC-011",
+  "title": "Header bảo mật và cookie",
+  "folder": "SEC-011_header-bao-mat-va-cookie",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:47:21.870Z",
+  "finishedAt": "2026-10-27T15:47:34.748Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-va-cho-san-sang.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "GET /api/v1/documents; đọc header",
+      "expected": "nosniff, no-referrer, X-Frame-Options DENY, CSP có frame-ancestors 'none', Cache-Control private no-store, có X-Request-ID",
+      "actual": "XCTO=nosniff; RP=no-referrer; XFO=DENY; CC=private, no-store",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-get-api-v1-documents-doc-header.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "GET /documents/{id}/file",
+      "expected": "X-Frame-Options: SAMEORIGIN; CSP frame-ancestors 'self'",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-get-documents-id-file.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Đọc cookie",
+      "expected": "sid: HttpOnly, Lax; csrf_token: Strict; Secure=false trên localhost (staging phải true)",
+      "actual": "sid.secure=false, csrf_token.secure=false (localhost/HTTP)",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-doc-cookie.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "GET /api/v1/khong-co",
+      "expected": "404 problem+json, không lộ stack trace",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-get-api-v1-khong-co.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-011-app.webm",
+    "video/SEC-011-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/SEC-011_header-bao-mat-va-cookie.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

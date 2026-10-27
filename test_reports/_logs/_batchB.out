@@ -1,0 +1,199 @@
+
+Running 19 tests using 1 worker
+
+
+  ok 1 ACC-001_dung-toan-bo-luong-chinh-bang-ban-phim.spec.ts:4:1 › Dùng toàn bộ luồng chính bằng bàn phím (18.0s)
+
+  x  2 ACC-003_do-tuong-phan-mau.spec.ts:5:1 › Độ tương phản màu (37.6s)
+
+  ok 3 ACC-004_thuoc-tinh-aria.spec.ts:5:1 › Thuộc tính ARIA (16.2s)
+
+  ok 4 ACC-005_quan-ly-focus.spec.ts:4:1 › Quản lý focus (15.6s)
+
+  ok 5 ACC-006_trang-thai-khong-chi-dua-vao-mau.spec.ts:4:1 › Trạng thái không chỉ dựa vào màu (20.9s)
+
+  x  6 ACC-007_giam-chuyen-dong.spec.ts:4:1 › Giảm chuyển động (10.7s)
+
+  ok 7 API-025_gui-lai-cau-hoi-bi-loi.spec.ts:6:1 › Gửi lại câu hỏi bị lỗi (1.8m)
+
+  ok 8 E2E-007_loi-ai-va-gui-lai.spec.ts:4:1 › Lỗi AI và Gửi lại (1.1m)
+
+  ok 9 UI-001_so-sanh-giao-dien-voi-thiet-ke.spec.ts:8:1 › So sánh giao diện với thiết kế (59.0s)
+
+  ok 10 UI-002_do-rong-man-hinh.spec.ts:4:1 › Độ rộng màn hình (14.5s)
+
+  ok 11 UI-003_trang-thai-thanh-phan.spec.ts:4:1 › Trạng thái thành phần (13.1s)
+
+  x  12 UI-004_trang-thai-trong-va-loi.spec.ts:4:1 › Trạng thái trống và lỗi (4.0m)
+
+  ok 13 UI-005_trang-thai-cho.spec.ts:4:1 › Trạng thái chờ (12.7s)
+
+  ok 14 UI-006_thong-bao-tu-an.spec.ts:4:1 › Thông báo tự ẩn (19.2s)
+
+  ok 15 UI-007_bo-dem-va-gioi-han-ky-tu.spec.ts:4:1 › Bộ đếm và giới hạn ký tự (11.0s)
+
+  ok 16 UI-008_giao-dien-toi.spec.ts:4:1 › Giao diện tối (19.1s)
+
+  x  17 UI-009_tuong-thich-chrome-va-edge.spec.ts:30:1 › Tương thích Chrome và Edge (6.9m)
+
+  ok 18 UI-010_ngon-ngu-giao-dien-va-cau-tra-loi.spec.ts:4:1 › Ngôn ngữ giao diện và câu trả lời (15.0s)
+
+  ok 19 UI-011_nguon-khong-co-so-trang.spec.ts:4:1 › Nguồn không có số trang (15.2s)
+
+
+  1) ACC-003_do-tuong-phan-mau.spec.ts:5:1 › Độ tương phản màu ─────────────────────────────────────
+
+    Error: Vi phạm tương phản (dialog xóa (dark))
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+    [32m- Expected  - 1[39m
+    [31m+ Received  + 3[39m
+
+    [32m- Array [][39m
+    [31m+ Array [[39m
+    [31m+   ".btn-danger: Element has insufficient color contrast of 2.42 (foreground color: #ffffff, background color: #f08a80, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",[39m
+    [31m+ ][39m
+
+       7 |     const r = await new AxeBuilder({ page }).withRules(['color-contrast']).analyze()
+       8 |     const v = r.violations.flatMap((x) => x.nodes.map((n) => `${n.target.join(' ')}: ${n.any[0]?.message ?? ''}`))
+    >  9 |     expect(v, `Vi phạm tương phản (${label})`).toEqual([])
+         |                                                ^
+      10 |     return `${label}: ${r.passes.length ? 'đạt' : ''}, ${v.length} vi phạm`
+      11 |   }
+      12 |   await ev.step('Đăng nhập P2, tải hop-dong-A.pdf và scan; chạy axe color-contrast (giao diện sáng)', '0 vi phạm', async () => {
+        at contrast (C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\ACC-003_do-tuong-phan-mau.spec.ts:9:48)
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\ACC-003_do-tuong-phan-mau.spec.ts:34:16
+        at Evidence.step (C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\evidence\fixture.ts:66:21)
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\ACC-003_do-tuong-phan-mau.spec.ts:24:3
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-2.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-3.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-4.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #4: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #5: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-5.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #6: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-8.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #7: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-6.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #8: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-7.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #9: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-10.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #10: video (video/webm) ─────────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\video-9.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #11: trace (application/zip) ────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test_reports\_playwright-output\ACC-003_do-tuong-phan-mau-Độ-tương-phản-màu\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) ACC-007_giam-chuyen-dong.spec.ts:4:1 › Giảm chuyển động ───────────────────────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"none"[39m
+    Received: [31m"blink"[39m
+
+      28 |     await expect(page.locator('.dots span').first()).toBeVisible()
+      29 |     const n = await animName('.dots span')
+    > 30 |     expect(n).toBe('none')
+         |               ^
+      31 |     await page.unroute('**/messages')
+      32 |     return `animation-name của .dots span = ${n}`
+      33 |   })
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\ACC-007_giam-chuyen-dong.spec.ts:30:15
+        at Evidence.step (C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\evidence\fixture.ts:66:21)
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\ACC-007_giam-chuyen-dong.spec.ts:21:3
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\ACC-007_giam-chuyen-dong-Giảm-chuyển-động\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test_reports\_playwright-output\ACC-007_giam-chuyen-dong-Giảm-chuyển-động\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) UI-004_trang-thai-trong-va-loi.spec.ts:4:1 › Trạng thái trống và lỗi ──────────────────────────
+
+    [31mTest timeout of 180000ms exceeded.[39m
+
+    Error: locator.click: Target page, context or browser has been closed
+    Call log:
+    [2m  - waiting for getByRole('button', { name: /Trần Minh/ }).first()[22m
+
+
+       at ..\evidence\fixture.ts:102
+
+      100 |   async login(user: keyof typeof USERS) {
+      101 |     await this.page.goto('/')
+    > 102 |     await this.page.getByRole('button', { name: USERS[user] }).first().click()
+          |                                                                        ^
+      103 |     if (user === 'outsider') {
+      104 |       await expect(this.page.getByRole('heading', { name: /chưa được cấp quyền/ })).toBeVisible()
+      105 |     } else {
+        at Evidence.login (C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\evidence\fixture.ts:102:72)
+        at prep (C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\_h.ts:50:3)
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\UI-004_trang-thai-trong-va-loi.spec.ts:21:5
+        at Evidence.step (C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\evidence\fixture.ts:66:21)
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\UI-004_trang-thai-trong-va-loi.spec.ts:19:3
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\UI-004_trang-thai-trong-va-loi-Trạng-thái-trống-và-lỗi\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test_reports\_playwright-output\UI-004_trang-thai-trong-va-loi-Trạng-thái-trống-và-lỗi\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) UI-009_tuong-thich-chrome-va-edge.spec.ts:30:1 › Tương thích Chrome và Edge ───────────────────
+
+    [31mTest timeout of 300000ms exceeded.[39m
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\UI-009_tuong-thich-chrome-va-edge-Tương-thích-Chrome-và-Edge\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test_reports\_playwright-output\UI-009_tuong-thich-chrome-va-edge-Tương-thích-Chrome-và-Edge\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Slow test file: UI-009_tuong-thich-chrome-va-edge.spec.ts (6.9m)
+  Slow test file: UI-004_trang-thai-trong-va-loi.spec.ts (4.0m)
+  Slow test file: API-025_gui-lai-cau-hoi-bi-loi.spec.ts (1.8m)
+  Slow test file: E2E-007_loi-ai-va-gui-lai.spec.ts (1.1m)
+  Slow test file: UI-001_so-sanh-giao-dien-voi-thiet-ke.spec.ts (59.0s)
+  Consider splitting slow test files to speed up parallel execution
+  4 failed
+    ACC-003_do-tuong-phan-mau.spec.ts:5:1 › Độ tương phản màu ──────────────────────────────────────
+    ACC-007_giam-chuyen-dong.spec.ts:4:1 › Giảm chuyển động ────────────────────────────────────────
+    UI-004_trang-thai-trong-va-loi.spec.ts:4:1 › Trạng thái trống và lỗi ───────────────────────────
+    UI-009_tuong-thich-chrome-va-edge.spec.ts:30:1 › Tương thích Chrome và Edge ────────────────────
+  15 passed (19.2m)

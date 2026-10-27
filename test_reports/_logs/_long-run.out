@@ -1,0 +1,77 @@
+
+Running 6 tests using 1 worker
+
+
+  x  1 API-012_lo-het-han-body-qua-lon-may-chu-ban.spec.ts:4:1 › Lô hết hạn, body quá lớn, máy chủ bận (3.3m)
+
+  ok 2 API-013_rate-limit-tai-file.spec.ts:4:1 › Rate limit tải file (2.3m)
+
+  x  3 API-016_xu-ly-lai-chi-voi-r-04.spec.ts:6:1 › Xử lý lại chỉ với R-04 (2.0m)
+
+  ok 4 API-024_loi-dich-vu-ai-va-qua-thoi-gian.spec.ts:4:1 › Lỗi dịch vụ AI và quá thời gian (2.4m)
+
+  ok 5 API-025_gui-lai-cau-hoi-bi-loi.spec.ts:6:1 › Gửi lại câu hỏi bị lỗi (1.7m)
+
+  ok 6 E2E-010_xu-ly-lai-tai-lieu-loi-tam-thoi.spec.ts:4:1 › Xử lý lại tài liệu lỗi tạm thời (4.3m)
+
+
+  1) API-012_lo-het-han-body-qua-lon-may-chu-ban.spec.ts:4:1 › Lô hết hạn, body quá lớn, máy chủ bận 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m413[39m
+    Received: [31m500[39m
+
+      21 |       const big = { name: 'rat-lon.pdf', buffer: Buffer.concat([Buffer.from('%PDF-1.4\n'), Buffer.alloc(22 * 1024 * 1024, 48)]) }
+      22 |       const { results } = await putFiles(ev, [big])
+    > 23 |       expect(results[0].status).toBe(413)
+         |                                 ^
+      24 |       expect(results[0].headers['content-type']).toContain('application/problem+json')
+      25 |     })
+      26 |     ev.note('Bước tùy chọn "máy chủ bận 503 server_busy" (SANDBOX_CONCURRENCY=1) không thực hiện trong lần chạy này.')
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\API-012_lo-het-han-body-qua-lon-may-chu-ban.spec.ts:23:33
+        at Evidence.step (C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\evidence\fixture.ts:66:21)
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\API-012_lo-het-han-body-qua-lon-may-chu-ban.spec.ts:20:5
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\API-012_lo-het-han-body-qu-f2bd5-ạn-body-quá-lớn-máy-chủ-bận\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test_reports\_playwright-output\API-012_lo-het-han-body-qu-f2bd5-ạn-body-quá-lớn-máy-chủ-bận\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) API-016_xu-ly-lai-chi-voi-r-04.spec.ts:6:1 › Xử lý lại chỉ với R-04 ───────────────────────────
+
+    TypeError: Cannot read properties of undefined (reading 'failure_code')
+
+      29 |       await upload(page, 'bang-gia-Q4.pdf')
+      30 |       await expect
+    > 31 |         .poll(async () => (await find('bang-gia-Q4.pdf')).failure_code, { timeout: 330_000, intervals: [5000] })
+         |                                                           ^
+      32 |         .toBe('R-04')
+      33 |       expect((await find('bang-gia-Q4.pdf')).retryable).toBe(true)
+      34 |     })
+        at Object.expect.poll.timeout (C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\API-016_xu-ly-lai-chi-voi-r-04.spec.ts:31:59)
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\API-016_xu-ly-lai-chi-voi-r-04.spec.ts:30:7
+        at Evidence.step (C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\evidence\fixture.ts:66:21)
+        at C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend\testcases\API-016_xu-ly-lai-chi-voi-r-04.spec.ts:26:5
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test_reports\_playwright-output\API-016_xu-ly-lai-chi-voi-r-04-Xử-lý-lại-chỉ-với-R-04\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test_reports\_playwright-output\API-016_xu-ly-lai-chi-voi-r-04-Xử-lý-lại-chỉ-với-R-04\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Slow test file: E2E-010_xu-ly-lai-tai-lieu-loi-tam-thoi.spec.ts (4.3m)
+  Slow test file: API-012_lo-het-han-body-qua-lon-may-chu-ban.spec.ts (3.3m)
+  Slow test file: API-024_loi-dich-vu-ai-va-qua-thoi-gian.spec.ts (2.4m)
+  Slow test file: API-013_rate-limit-tai-file.spec.ts (2.3m)
+  Slow test file: API-016_xu-ly-lai-chi-voi-r-04.spec.ts (2.0m)
+  Consider splitting slow test files to speed up parallel execution
+  2 failed
+    API-012_lo-het-han-body-qua-lon-may-chu-ban.spec.ts:4:1 › Lô hết hạn, body quá lớn, máy chủ bận 
+    API-016_xu-ly-lai-chi-voi-r-04.spec.ts:6:1 › Xử lý lại chỉ với R-04 ────────────────────────────
+  4 passed (16.2m)

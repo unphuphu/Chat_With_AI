@@ -1,0 +1,66 @@
+{
+  "id": "API-004",
+  "title": "Đăng xuất cần CSRF",
+  "folder": "API-004_dang-xuat-can-csrf",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:00:57.881Z",
+  "finishedAt": "2026-10-27T14:01:05.402Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P1",
+      "expected": "Vào màn hình chính",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p1.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "POST /auth/logout không có X-CSRF-Token",
+      "expected": "403 csrf_invalid, application/problem+json",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-post-auth-logout-khong-co-x-csrf-token.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "POST /auth/logout có X-CSRF-Token",
+      "expected": "204",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-post-auth-logout-co-x-csrf-token.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "GET /me",
+      "expected": "401 unauthenticated",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-get-me.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-004-app.webm",
+    "video/API-004-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-004_dang-xuat-can-csrf.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

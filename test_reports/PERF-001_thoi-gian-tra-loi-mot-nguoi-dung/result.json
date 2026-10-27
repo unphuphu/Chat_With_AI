@@ -1,0 +1,35 @@
+{
+  "id": "PERF-001",
+  "title": "Thời gian trả lời một người dùng",
+  "folder": "PERF-001_thoi-gian-tra-loi-mot-nguoi-dung",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:13:59.143Z",
+  "finishedAt": "2026-10-27T15:14:06.409Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Staging + LLM thật + tài khoản có 100 tài liệu Sẵn sàng + k6.",
+      "actual": "Máy dev chưa có k6 và chưa có staging; kết quả trên PGlite (một kết nối) không đại diện cho hiệu năng thật. Bộ trả lời trích xuất (offline) không phản ánh độ trễ của LLM thật; ngoài ra giới hạn 10 câu/phút khiến 50 câu cần ≥ 5 phút.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/PERF-001-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Máy dev chưa có k6 và chưa có staging; kết quả trên PGlite (một kết nối) không đại diện cho hiệu năng thật. Bộ trả lời trích xuất (offline) không phản ánh độ trễ của LLM thật; ngoài ra giới hạn 10 câu/phút khiến 50 câu cần ≥ 5 phút.",
+    "Cần: Staging + LLM thật + tài khoản có 100 tài liệu Sẵn sàng + k6."
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

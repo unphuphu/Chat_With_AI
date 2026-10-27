@@ -135,3 +135,23 @@ async def test_no_content_in_analytics(app_client, worker, pdfs, container, caps
     blob = " ".join(r["p"] for r in rows + audit)
     assert "XYZZY" not in blob and "hop-dong-A" not in blob and "lan.nguyen" not in blob
     assert "XYZZY" not in capsys.readouterr().out
+
+
+async def test_processing_document_not_used(app_client, worker, pdfs, container) -> None:
+    """INT-017: tài liệu đang xử lý (Y) không được dùng/trích dẫn dù đã có tài liệu Sẵn sàng (Z)."""
+    from app.adapters.llm_extractive import ExtractiveLlm
+
+    container.answerer._llm = ExtractiveLlm()
+    await login(app_client, "p1")
+    await upload_ready(app_client, worker, pdfs["price"])  # Z
+    from tests.conftest import upload
+
+    y = (await upload(app_client, pdfs["contract"])).json()  # Y: chưa chạy worker
+    assert y["status"] == "PROCESSING"
+    conv = (await app_client.get("/api/v1/conversations/current")).json()["id"]
+    r = await _ask(app_client, conv, "Bên B thanh toán trong vòng bao nhiêu ngày?")
+    assert r.json()["status"] == "INSUFFICIENT" and r.json()["citations"] == []
+    await worker.drain()
+    r = await _ask(app_client, conv, "Bên B thanh toán trong vòng bao nhiêu ngày?")
+    ans = r.json()
+    assert ans["status"] == "ANSWERED" and ans["citations"][0]["document_name"] == "hop-dong-A.pdf"

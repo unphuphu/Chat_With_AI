@@ -1,0 +1,35 @@
+{
+  "id": "QLT-002",
+  "title": "Đúng tên tài liệu nguồn",
+  "folder": "QLT-002_dung-ten-tai-lieu-nguon",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:14:47.270Z",
+  "finishedAt": "2026-10-27T15:14:53.768Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Kết quả QLT-001 và đáp án chuẩn có tài liệu nguồn.",
+      "actual": "Chưa có bộ câu hỏi chuẩn + đáp án (DEP-005 / T06-03) và tài liệu dự án thật do PO cung cấp; chưa có LLM thật.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/QLT-002-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Chưa có bộ câu hỏi chuẩn + đáp án (DEP-005 / T06-03) và tài liệu dự án thật do PO cung cấp; chưa có LLM thật.",
+    "Cần: Kết quả QLT-001 và đáp án chuẩn có tài liệu nguồn."
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

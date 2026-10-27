@@ -1,0 +1,58 @@
+{
+  "id": "PERF-003",
+  "title": "Xử lý file biên 20 MB / 300 trang",
+  "folder": "PERF-003_xu-ly-file-bien-20-mb-300-trang",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:24:00.511Z",
+  "finishedAt": "2026-10-27T16:24:32.412Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Tạo PDF 300 trang có chữ, gần 20 MB (văn bản + ảnh nhiễu để đạt dung lượng)",
+      "expected": "File hợp lệ: ≤ 20 MB, 300 trang",
+      "actual": "19.7 MB, 300 trang",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-tao-pdf-300-trang-co-chu-gan-20-mb-van-ban-anh-nhi.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Tải lên trên giao diện, bấm giờ tới khi Sẵn sàng",
+      "expected": "Tài liệu Sẵn sàng",
+      "actual": "Từ lúc chọn file tới Sẵn sàng: 17 s",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-tai-len-tren-giao-dien-bam-gio-toi-khi-san-sang.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "So sánh với ngưỡng NFR-002",
+      "expected": "≤ 3 phút (180 s)",
+      "actual": "17 s ≤ 180 s (tham khảo ENV-DEV)",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-so-sanh-voi-nguong-nfr-002.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/PERF-003-app.webm",
+    "video/PERF-003-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [
+    "PERF-003 trên ENV-DEV (PGlite, embedding hashing, máy dev): 17 s. Chỉ để tham khảo – NFR-002 chính thức cần đo trên staging (embedding bge-m3, PostgreSQL thật)."
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/PERF-003_xu-ly-file-bien-20-mb-300-trang.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

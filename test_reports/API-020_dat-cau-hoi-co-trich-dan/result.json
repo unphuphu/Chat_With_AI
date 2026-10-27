@@ -1,0 +1,66 @@
+{
+  "id": "API-020",
+  "title": "Đặt câu hỏi có trích dẫn",
+  "folder": "API-020_dat-cau-hoi-co-trich-dan",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:16:41.061Z",
+  "finishedAt": "2026-10-27T14:16:52.022Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-va-cho-san-sang.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "POST /conversations/{id}/messages",
+      "expected": "200; ANSWERED; answer chứa \"30 ngày\" và [1]",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-post-conversations-id-messages.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Đối chiếu citations",
+      "expected": "citations[0]: ordinal=1, hop-dong-A.pdf, page_number=2, deleted=false",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-doi-chieu-citations.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Đối chiếu latency_ms",
+      "expected": "> 0 và ≤ 15000",
+      "actual": "latency_ms=41",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-doi-chieu-latency-ms.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-020-app.webm",
+    "video/API-020-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-020_dat-cau-hoi-co-trich-dan.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

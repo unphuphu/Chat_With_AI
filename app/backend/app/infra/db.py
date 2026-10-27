@@ -47,7 +47,10 @@ class Database:
             await self._pool.open()
 
     async def _connect(self) -> Conn:
-        conn = await psycopg.AsyncConnection.connect(self._url, row_factory=dict_row, autocommit=False)
+        # prepare_threshold=None: PGlite dùng chung một phiên backend cho mọi kết nối, prepared statement của kết nối
+        # cũ ("_pg3_0"…) vẫn còn sau khi kết nối lại → DuplicatePreparedStatement
+        conn = await psycopg.AsyncConnection.connect(self._url, row_factory=dict_row, autocommit=False,
+                                                     prepare_threshold=None)
         await conn.execute("SET TIME ZONE 'UTC'")
         await conn.commit()
         return conn

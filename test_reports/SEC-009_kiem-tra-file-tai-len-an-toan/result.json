@@ -1,0 +1,66 @@
+{
+  "id": "SEC-009",
+  "title": "Kiểm tra file tải lên an toàn",
+  "folder": "SEC-009_kiem-tra-file-tai-len-an-toan",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:46:39.653Z",
+  "finishedAt": "2026-10-27T15:46:56.916Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, xóa tài liệu cũ",
+      "expected": "Danh sách rỗng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-xoa-tai-lieu-cu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "PUT gia-mao.pdf, hong.pdf và file ~20,5 MB",
+      "expected": "422 cho từng file",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-put-gia-mao-pdf-hong-pdf-va-file-20-5-mb.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "PUT PDF hợp lệ với tên ../../etc/passwd.pdf",
+      "expected": "201; file_name = passwd.pdf (đã bỏ đường dẫn)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-put-pdf-hop-le-voi-ten-etc-passwd-pdf.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Gọi GET /api/v1/readyz sau các bước trên",
+      "expected": "200 ready – API vẫn hoạt động",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-goi-get-api-v1-readyz-sau-cac-buoc-tren.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-009-app.webm",
+    "video/SEC-009-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/SEC-009_kiem-tra-file-tai-len-an-toan.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

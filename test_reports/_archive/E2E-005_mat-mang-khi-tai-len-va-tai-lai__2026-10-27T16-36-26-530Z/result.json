@@ -1,0 +1,73 @@
+{
+  "id": "E2E-005",
+  "title": "Mất mạng khi tải lên và tải lại",
+  "folder": "E2E-005_mat-mang-khi-tai-len-va-tai-lai",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:38:15.322Z",
+  "finishedAt": "2026-10-27T14:38:25.051Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, xóa tài liệu cũ",
+      "expected": "Danh sách rỗng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-xoa-tai-lieu-cu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chặn request PUT tải file (abort internetdisconnected)",
+      "expected": "Đã bật chặn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-chan-request-put-tai-file-abort-internetdisconnect.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Chọn hop-dong-A.pdf",
+      "expected": "Dòng Tải lên thất bại – \"Mất kết nối…\", có nút Tải lại; không ở mục Tài liệu của bạn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-chon-hop-dong-a-pdf.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Bỏ chặn, bấm Tải lại",
+      "expected": "File tải lên thành công → Đang xử lý → Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-bo-chan-bam-tai-lai.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Kiểm tra danh sách và hạn mức",
+      "expected": "Đúng 1 tài liệu hop-dong-A.pdf; 1/100 tài liệu",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-kiem-tra-danh-sach-va-han-muc.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/E2E-005-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-005_mat-mang-khi-tai-len-va-tai-lai.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

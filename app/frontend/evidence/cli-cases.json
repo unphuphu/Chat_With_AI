@@ -1,0 +1,306 @@
+[
+ {
+  "tc": "UT-001_chunker-thuoc-tinh-chia-doan",
+  "id": "UT-001",
+  "title": "Chunker – thuộc tính chia đoạn",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_chunker_properties",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-002_chunker-doan-khong-vuot-ranh-gioi-trang",
+  "id": "UT-002",
+  "title": "Chunker – đoạn không vượt ranh giới trang",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_chunk_never_spans_pages",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-003_chuan-hoa-van-ban-trich-xuat",
+  "id": "UT-003",
+  "title": "Chuẩn hóa văn bản trích xuất",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_normalize",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-004_trich-van-ban-va-kiem-tra-pdf",
+  "id": "UT-004",
+  "title": "Trích văn bản và kiểm tra PDF",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_extract_and_inspect",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-005_danh-so-lai-trich-dan-va-loai-ma-nguon-la",
+  "id": "UT-005",
+  "title": "Đánh số lại trích dẫn và loại mã nguồn lạ",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_validate_renumbers_and_drops_invalid",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-006_chua-du-thong-tin-khi-khong-con-trich-dan-hop-le",
+  "id": "UT-006",
+  "title": "Chưa đủ thông tin khi không còn trích dẫn hợp lệ",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_validate_insufficient_cases",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-007_escape-noi-dung-nguon-trong-prompt",
+  "id": "UT-007",
+  "title": "Escape nội dung nguồn trong prompt",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_prompt_escapes_sources",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-008_chu-trinh-circuit-breaker",
+  "id": "UT-008",
+  "title": "Chu trình circuit breaker",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_circuit_breaker_cycle",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-009_embedding-hashing",
+  "id": "UT-009",
+  "title": "Embedding hashing",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_hash_embedding",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-010_bo-tra-loi-trich-xuat-chon-dung-nguon",
+  "id": "UT-010",
+  "title": "Bộ trả lời trích xuất chọn đúng nguồn",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_extractive_llm",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-011_loc-noi-dung-nhay-cam-khoi-log",
+  "id": "UT-011",
+  "title": "Lọc nội dung nhạy cảm khỏi log",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_redact_forbidden",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-012_kiem-tra-cau-hinh-khong-an-toan",
+  "id": "UT-012",
+  "title": "Kiểm tra cấu hình không an toàn",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_settings_validation",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-013_rate-limit-cua-so-co-dinh",
+  "id": "UT-013",
+  "title": "Rate limit cửa sổ cố định",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_ratelimit.py",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-014_anh-xa-loi-adapter-anthropic",
+  "id": "UT-014",
+  "title": "Ánh xạ lỗi adapter Anthropic",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_llm_anthropic.py",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "UT-015_xac-thuc-id-token-oidc",
+  "id": "UT-015",
+  "title": "Xác thực id_token OIDC",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_oidc.py",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-001_schema-rls-va-trigger-bat-bien",
+  "id": "INT-001",
+  "title": "Schema, RLS và trigger bất biến",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_slice1.py::test_schema_invariants_and_rls",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-002_pham-vi-workspace-khong-ro-giua-transaction",
+  "id": "INT-002",
+  "title": "Phạm vi workspace không rò giữa transaction",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_slice1.py::test_set_local_does_not_leak",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-003_ingest-dau-cuoi-va-hoi-dap-co-trich-dan",
+  "id": "INT-003",
+  "title": "Ingest đầu-cuối và hỏi đáp có trích dẫn",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_slice1.py::test_upload_process_ask",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-004_ingest-tai-lieu-lon-40-trang",
+  "id": "INT-004",
+  "title": "Ingest tài liệu lớn 40 trang",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_documents.py::test_ingest_large_document",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-005_loi-tam-thoi-khi-ingest-r-04-xu-ly-lai",
+  "id": "INT-005",
+  "title": "Lỗi tạm thời khi ingest → R-04 → xử lý lại",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_documents.py::test_reprocess_only_r04",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-006_xoa-khi-dang-xu-ly-thi-huy-xu-ly",
+  "id": "INT-006",
+  "title": "Xóa khi đang xử lý thì hủy xử lý",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_documents.py::test_delete_during_processing_cancels",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-007_xoa-va-purge-file-goc",
+  "id": "INT-007",
+  "title": "Xóa và purge file gốc",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_documents.py::test_delete_purge_and_answers_exclude",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-008_sweep-phat-hien-purge-bi-sot",
+  "id": "INT-008",
+  "title": "Sweep phát hiện purge bị sót",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_contract_maintenance.py::test_maintenance_tasks",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-009_tac-vu-bao-tri-dinh-ky",
+  "id": "INT-009",
+  "title": "Tác vụ bảo trì định kỳ",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_contract_maintenance.py::test_maintenance_tasks",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-010_cau-tra-loi-trich-dung-trang",
+  "id": "INT-010",
+  "title": "Câu trả lời trích đúng trang",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_slice1.py::test_extractive_answer_cites_correct_page",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-011_truy-xuat-da-tai-lieu-voi-nguong-dev",
+  "id": "INT-011",
+  "title": "Truy xuất đa tài liệu với ngưỡng dev",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_slice1.py::test_extractive_multi_document_price",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-012_cong-nguong-bo-qua-llm",
+  "id": "INT-012",
+  "title": "Cổng ngưỡng bỏ qua LLM",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_qa.py::test_gate_skips_llm",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-013_circuit-breaker-o-muc-api",
+  "id": "INT-013",
+  "title": "Circuit breaker ở mức API",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_qa.py::test_circuit_breaker_opens",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-014_hop-dong-openapi",
+  "id": "INT-014",
+  "title": "Hợp đồng OpenAPI",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_contract_maintenance.py::test_openapi_matches_contract",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-015_adapter-tich-hop-that-oidc-blob-embedding-llm",
+  "id": "INT-015",
+  "title": "Adapter tích hợp thật (OIDC, blob, embedding, LLM)",
+  "cmd": ".venv/Scripts/python.exe scripts/smoke.py http://localhost:8080",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-016_integration-tren-postgresql-that",
+  "id": "INT-016",
+  "title": "Integration trên PostgreSQL thật",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-017_chi-dung-tai-lieu-san-sang",
+  "id": "INT-017",
+  "title": "Chỉ dùng tài liệu Sẵn sàng",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_qa.py::test_processing_document_not_used",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "INT-018_su-kien-analytics-day-du",
+  "id": "INT-018",
+  "title": "Sự kiện analytics đầy đủ",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_analytics_events.py",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "E2E-003_smoke-dau-cuoi-qua-proxy",
+  "id": "E2E-003",
+  "title": "Smoke đầu-cuối qua proxy",
+  "cmd": ".venv/Scripts/python.exe scripts/smoke.py http://localhost:8080",
+  "cwd": "../backend",
+  "expect": "login ok; 3 tài liệu READY; ANSWERED/ANSWERED/INSUFFICIENT"
+ },
+ {
+  "tc": "SEC-006_rls-o-muc-co-so-du-lieu",
+  "id": "SEC-006",
+  "title": "RLS ở mức cơ sở dữ liệu",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_slice1.py::test_schema_invariants_and_rls tests/integration/test_slice1.py::test_set_local_does_not_leak",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "SEC-007_du-lieu-gui-toi-nha-cung-cap-ai",
+  "id": "SEC-007",
+  "title": "Dữ liệu gửi tới nhà cung cấp AI",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_slice1.py::test_upload_process_ask",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "SEC-008_khong-lo-noi-dung-trong-analytics-audit-log",
+  "id": "SEC-008",
+  "title": "Không lộ nội dung trong analytics, audit, log",
+  "cmd": ".venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_qa.py::test_no_content_in_analytics tests/unit/test_algorithms.py::test_redact_forbidden",
+  "cwd": "../backend",
+  "expect": "Lệnh kết thúc với mã 0"
+ },
+ {
+  "tc": "SEC-014_quet-lo-hong-thu-vien-phu-thuoc",
+  "id": "SEC-014",
+  "title": "Quét lỗ hổng thư viện phụ thuộc",
+  "cmd": ".venv/Scripts/python.exe scripts/audit_deps.py",
+  "cwd": "../backend",
+  "expect": "Không có lỗ hổng High/Critical"
+ }
+]

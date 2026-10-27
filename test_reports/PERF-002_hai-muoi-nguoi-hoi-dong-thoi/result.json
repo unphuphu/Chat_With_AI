@@ -1,0 +1,35 @@
+{
+  "id": "PERF-002",
+  "title": "Hai mươi người hỏi đồng thời",
+  "folder": "PERF-002_hai-muoi-nguoi-hoi-dong-thoi",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:14:10.415Z",
+  "finishedAt": "2026-10-27T15:14:17.266Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Staging với DB_MODE=pool + 20 tài khoản test + k6.",
+      "actual": "Máy dev chưa có k6 và chưa có staging; kết quả trên PGlite (một kết nối) không đại diện cho hiệu năng thật. CSDL dev chỉ nhận một kết nối nên không thể kiểm tải đồng thời.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/PERF-002-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Máy dev chưa có k6 và chưa có staging; kết quả trên PGlite (một kết nối) không đại diện cho hiệu năng thật. CSDL dev chỉ nhận một kết nối nên không thể kiểm tải đồng thời.",
+    "Cần: Staging với DB_MODE=pool + 20 tài khoản test + k6."
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

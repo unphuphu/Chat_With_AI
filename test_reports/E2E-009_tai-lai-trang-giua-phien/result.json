@@ -1,0 +1,63 @@
+{
+  "id": "E2E-009",
+  "title": "Tải lại trang giữa phiên",
+  "folder": "E2E-009_tai-lai-trang-giua-phien",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:38:26.762Z",
+  "finishedAt": "2026-10-27T14:38:38.144Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-va-cho-san-sang.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Hỏi 2 câu",
+      "expected": "2 lượt hỏi–đáp",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-hoi-2-cau.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Nhấn F5 (reload)",
+      "expected": "Danh sách vẫn có hop-dong-A.pdf Sẵn sàng; hội thoại đủ 2 lượt kèm nguồn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-nhan-f5-reload.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Đăng xuất rồi đăng nhập lại P2",
+      "expected": "Tài liệu còn; hội thoại mới trống (NFR-024)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-dang-xuat-roi-dang-nhap-lai-p2.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/E2E-009-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-009_tai-lai-trang-giua-phien.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

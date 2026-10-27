@@ -1,0 +1,35 @@
+{
+  "id": "UAT-005",
+  "title": "Hỏi nội dung không có trong tài liệu",
+  "folder": "UAT-005_hoi-noi-dung-khong-co-trong-tai-lieu",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:16:09.738Z",
+  "finishedAt": "2026-10-27T15:16:19.417Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Người dùng nghiệp vụ trên staging.",
+      "actual": "Cần người dùng nghiệp vụ/PO thực hiện và ký xác nhận trên môi trường nghiệm thu – agent không thể thay thế.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UAT-005-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Cần người dùng nghiệp vụ/PO thực hiện và ký xác nhận trên môi trường nghiệm thu – agent không thể thay thế.",
+    "Cần: Người dùng nghiệp vụ trên staging."
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

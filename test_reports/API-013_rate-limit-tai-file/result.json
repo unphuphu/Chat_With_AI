@@ -1,0 +1,69 @@
+{
+  "id": "API-013",
+  "title": "Rate limit tải file",
+  "folder": "API-013_rate-limit-tai-file",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:13:05.118Z",
+  "finishedAt": "2026-10-27T15:15:18.398Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Khởi động lại ứng dụng với RATE_FILES_PER_HOUR=3",
+      "expected": "Ứng dụng sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-khoi-dong-lai-ung-dung-voi-rate-files-per-hour-3.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Đăng nhập tài khoản Quản trị viên (bộ đếm giờ còn sạch), xóa tài liệu cũ",
+      "expected": "Danh sách rỗng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-dang-nhap-tai-khoan-quan-tri-vien-bo-dem-gio-con-s.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Tạo lô 4 file; PUT lần lượt 4 file gia-mao.pdf",
+      "expected": "3 lần đầu 422 not_pdf; lần 4 → 429 rate_limited",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-tao-lo-4-file-put-lan-luot-4-file-gia-mao-pdf.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Kiểm tra header của phản hồi 429",
+      "expected": "Retry-After > 0; RateLimit-Limit: 3; RateLimit-Remaining: 0",
+      "actual": "Retry-After=2753, RateLimit-Limit=3, Remaining=0",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-kiem-tra-header-cua-phan-hoi-429.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-013-app.webm",
+    "video/API-013-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [
+    "Khởi động lại ứng dụng với {\"RATE_FILES_PER_HOUR\":\"3\"}: [app] restart xong – http://localhost:8080/ sẵn sàng",
+    "Khởi động lại ứng dụng với {}: [app] restart xong – http://localhost:8080/ sẵn sàng"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-013_rate-limit-tai-file.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

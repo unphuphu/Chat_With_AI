@@ -1,0 +1,35 @@
+{
+  "id": "UT-001",
+  "title": "Chunker – thuộc tính chia đoạn",
+  "folder": "UT-001_chunker-thuoc-tinh-chia-doan",
+  "mode": "Tự động – dòng lệnh (app/frontend/evidence/record-cli.ts)",
+  "startedAt": "2026-10-26T16:22:28.493Z",
+  "finishedAt": "2026-10-26T16:22:40.806Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Chạy: .venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_chunker_properties",
+      "expected": "pytest báo passed, mã thoát 0",
+      "actual": "Mã thoát 0",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-ket-qua-lenh.png",
+        "screenshots/02-toan-bo-output.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UT-001-cli.webm"
+  ],
+  "logs": [
+    "logs/output.log"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Thư mục chạy": "C:\\XUANPHU\\Hoc AI\\Chat_With_AI\\app\\backend"
+  },
+  "verdict": "ĐẠT"
+}

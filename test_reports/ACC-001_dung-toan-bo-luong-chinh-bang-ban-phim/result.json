@@ -1,0 +1,103 @@
+{
+  "id": "ACC-001",
+  "title": "Dùng toàn bộ luồng chính bằng bàn phím",
+  "folder": "ACC-001_dung-toan-bo-luong-chinh-bang-ban-phim",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:35:51.765Z",
+  "finishedAt": "2026-10-27T16:36:09.424Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, xóa tài liệu cũ",
+      "expected": "Màn hình chính",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-xoa-tai-lieu-cu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Nhấn Tab từ đầu trang",
+      "expected": "Phần tử đầu tiên là \"Bỏ qua tới nội dung chính\"",
+      "actual": "A|||Bỏ qua tới nội dung chính",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-nhan-tab-tu-dau-trang.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Tab tới \"Chọn file PDF\", Enter, chọn file",
+      "expected": "File được tải lên (hộp thoại chọn file mở bằng bàn phím)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-tab-toi-chon-file-pdf-enter-chon-file.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Tab tới ô hỏi, gõ câu hỏi, Shift + Enter, Enter",
+      "expected": "Xuống dòng rồi gửi được",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-tab-toi-o-hoi-go-cau-hoi-shift-enter-enter.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Tab tới chip nguồn, Enter",
+      "expected": "Trình xem mở; focus ở nút Đóng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-tab-toi-chip-nguon-enter.png"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Esc",
+      "expected": "Trình xem đóng; focus về chip nguồn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/06-esc.png"
+      ]
+    },
+    {
+      "n": 7,
+      "title": "Tab tới nút xóa tài liệu, Enter; Enter trên Hủy",
+      "expected": "Hộp xác nhận mở, focus mặc định ở Hủy; Enter đóng hộp, tài liệu còn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/07-tab-toi-nut-xoa-tai-lieu-enter-enter-tren-huy.png"
+      ]
+    },
+    {
+      "n": 8,
+      "title": "Xem video: thứ tự focus hợp lý, không bị kẹt",
+      "expected": "Đúng",
+      "actual": "Toàn bộ luồng thực hiện chỉ bằng bàn phím (trừ bước đăng nhập qua IdP giả lập) – người đánh giá xem video để xác nhận thứ tự focus.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/08-xem-video-thu-tu-focus-hop-ly-khong-bi-ket.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/ACC-001-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/ACC-001_dung-toan-bo-luong-chinh-bang-ban-phim.spec.ts"
+  },
+  "verdict": "CẦN NGƯỜI XÁC NHẬN"
+}

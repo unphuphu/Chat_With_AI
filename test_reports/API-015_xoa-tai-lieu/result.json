@@ -1,0 +1,66 @@
+{
+  "id": "API-015",
+  "title": "Xóa tài liệu",
+  "folder": "API-015_xoa-tai-lieu",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:15:22.911Z",
+  "finishedAt": "2026-10-27T14:15:35.102Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-va-cho-san-sang.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "DELETE /documents/{id}",
+      "expected": "204",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-delete-documents-id.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "GET /documents",
+      "expected": "Không còn tài liệu; documents_used=0",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-get-documents.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "DELETE lần 2",
+      "expected": "404 not_found",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-delete-lan-2.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-015-app.webm",
+    "video/API-015-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-015_xoa-tai-lieu.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "UI-001",
+  "title": "So sánh giao diện với thiết kế",
+  "folder": "UI-001_so-sanh-giao-dien-voi-thiet-ke",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:38:59.129Z",
+  "finishedAt": "2026-10-27T16:41:36.701Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "S01 Màn hình chính – chưa có tài liệu",
+      "expected": "Bố cục, chữ, trạng thái khớp thiết kế",
+      "actual": "Ảnh so sánh S01: thiết kế (S01_main_empty.html) và thực tế đặt cạnh nhau – Designer đánh giá bố cục, chữ, trạng thái.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/01-s01-so-sanh.png",
+        "screenshots/02-s01-man-hinh-chinh-chua-co-tai-lieu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "S08 Vượt giới hạn tải lên (chọn 12 file)",
+      "expected": "Khớp thiết kế",
+      "actual": "Ảnh so sánh S08: thiết kế (S08_upload_limits.html) và thực tế đặt cạnh nhau – Designer đánh giá bố cục, chữ, trạng thái.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/03-s08-so-sanh.png",
+        "screenshots/04-s08-vuot-gioi-han-tai-len-chon-12-file.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "S03 Trạng thái tài liệu (Sẵn sàng, Thất bại)",
+      "expected": "Khớp thiết kế",
+      "actual": "\u001b[31mTimed out 90000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m  Locator: locator('li.row').filter({ hasText: 'hop-dong-A.pdf' }).getByText('Sẵn sàng') Expected: visible Received: <element(s) not found> Call log:",
+      "status": "Không đạt",
+      "screenshots": [
+        "screenshots/05-s03-trang-thai-tai-lieu-san-sang-that-bai.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UI-001-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/UI-001_so-sanh-giao-dien-voi-thiet-ke.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

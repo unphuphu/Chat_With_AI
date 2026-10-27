@@ -1,0 +1,88 @@
+{
+  "id": "UI-001",
+  "title": "So sánh giao diện với thiết kế",
+  "folder": "UI-001_so-sanh-giao-dien-voi-thiet-ke",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:37:11.385Z",
+  "finishedAt": "2026-10-27T16:38:27.394Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "S01 Màn hình chính – chưa có tài liệu",
+      "expected": "Bố cục, chữ, trạng thái khớp thiết kế",
+      "actual": "Ảnh so sánh S01: thiết kế (S01_main_empty.html) và thực tế đặt cạnh nhau – Designer đánh giá bố cục, chữ, trạng thái.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/01-s01-so-sanh.png",
+        "screenshots/02-s01-man-hinh-chinh-chua-co-tai-lieu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "S08 Vượt giới hạn tải lên (chọn 12 file)",
+      "expected": "Khớp thiết kế",
+      "actual": "Ảnh so sánh S08: thiết kế (S08_upload_limits.html) và thực tế đặt cạnh nhau – Designer đánh giá bố cục, chữ, trạng thái.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/03-s08-so-sanh.png",
+        "screenshots/04-s08-vuot-gioi-han-tai-len-chon-12-file.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "S03 Trạng thái tài liệu (Sẵn sàng, Thất bại)",
+      "expected": "Khớp thiết kế",
+      "actual": "Ảnh so sánh S03: thiết kế (S03_main_document_states.html) và thực tế đặt cạnh nhau – Designer đánh giá bố cục, chữ, trạng thái.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/05-s03-so-sanh.png",
+        "screenshots/06-s03-trang-thai-tai-lieu-san-sang-that-bai.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "S04 Hỏi đáp có trích dẫn + Chưa đủ thông tin",
+      "expected": "Khớp thiết kế",
+      "actual": "Ảnh so sánh S04: thiết kế (S04_main_chat_answers.html) và thực tế đặt cạnh nhau – Designer đánh giá bố cục, chữ, trạng thái.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/07-s04-so-sanh.png",
+        "screenshots/08-s04-hoi-dap-co-trich-dan-chua-du-thong-tin.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "S06 Trình xem tài liệu gốc",
+      "expected": "Khớp thiết kế",
+      "actual": "Ảnh so sánh S06: thiết kế (S06_pdf_viewer.html) và thực tế đặt cạnh nhau – Designer đánh giá bố cục, chữ, trạng thái.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/09-s06-so-sanh.png",
+        "screenshots/10-s06-trinh-xem-tai-lieu-goc.png"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "S07 Xác nhận xóa",
+      "expected": "Khớp thiết kế",
+      "actual": "locator.click: Timeout 30000ms exceeded. Call log: \u001b[2m  - waiting for locator('li.row').filter({ hasText: 'bang-gia-Q4.pdf' }).getByRole('button', { name: /^Xóa / })\u001b[22m ",
+      "status": "Không đạt",
+      "screenshots": [
+        "screenshots/11-s07-xac-nhan-xoa.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UI-001-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/UI-001_so-sanh-giao-dien-voi-thiet-ke.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

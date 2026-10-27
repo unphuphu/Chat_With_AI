@@ -1,0 +1,35 @@
+{
+  "id": "PERF-004",
+  "title": "Xử lý hàng loạt nhiều người dùng",
+  "folder": "PERF-004_xu-ly-hang-loat-nhieu-nguoi-dung",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:14:19.974Z",
+  "finishedAt": "2026-10-27T15:14:25.990Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Staging với worker riêng + 5 tài khoản test + k6.",
+      "actual": "Máy dev chưa có k6 và chưa có staging; kết quả trên PGlite (một kết nối) không đại diện cho hiệu năng thật. Chế độ một tiến trình/một kết nối không đại diện cho worker thật.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/PERF-004-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Máy dev chưa có k6 và chưa có staging; kết quả trên PGlite (một kết nối) không đại diện cho hiệu năng thật. Chế độ một tiến trình/một kết nối không đại diện cho worker thật.",
+    "Cần: Staging với worker riêng + 5 tài khoản test + k6."
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

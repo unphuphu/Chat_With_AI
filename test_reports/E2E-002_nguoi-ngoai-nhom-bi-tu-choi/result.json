@@ -1,0 +1,66 @@
+{
+  "id": "E2E-002",
+  "title": "Người ngoài nhóm bị từ chối truy cập",
+  "folder": "E2E-002_nguoi-ngoai-nhom-bi-tu-choi",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-26T16:22:20.758Z",
+  "finishedAt": "2026-10-26T16:22:25.020Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mở ứng dụng khi chưa đăng nhập",
+      "expected": "Chuyển tới trang chọn tài khoản của IdP",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-mo-ung-dung-khi-chua-dang-nhap.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chọn tài khoản \"Người ngoài nhóm\" (khach@congty.vn)",
+      "expected": "Trang \"Bạn chưa được cấp quyền dùng ứng dụng\"",
+      "actual": "URL: /access-denied",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-chon-tai-khoan-nguoi-ngoai-nhom-khach-congty-vn.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Kiểm tra không lộ dữ liệu ứng dụng",
+      "expected": "Không có khu vực Tài liệu, ô hỏi; có nút \"Đăng nhập lại\"",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-kiem-tra-khong-lo-du-lieu-ung-dung.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Gọi API /me trực tiếp",
+      "expected": "401 – không có phiên",
+      "actual": "HTTP 401, code=unauthenticated",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-goi-api-me-truc-tiep.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/E2E-002-app.webm",
+    "video/E2E-002-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-002_nguoi-ngoai-nhom-bi-tu-choi.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

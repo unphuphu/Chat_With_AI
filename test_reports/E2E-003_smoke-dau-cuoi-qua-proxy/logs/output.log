@@ -1,0 +1,17 @@
+$ .venv/Scripts/python.exe scripts/smoke.py http://localhost:8080
+(cwd: C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend)
+
+login ok: lan.nguyen@congty.vn
+documents: [('hop-dong-A.pdf', 'READY'), ('B2BC07_B01_Slide_v0.2_20261006.pdf', 'READY'), ('ho-so-scan-2019.pdf', 'FAILED'), ('bang-gia-Q4.pdf', 'READY'), ('chinh-sach-ban-hang-2026.pdf', 'READY')]
+
+Q: Bên B thanh toán trong vòng bao nhiêu ngày?
+  ANSWERED (2.1s): Thanh toán: Bên B thanh toán trong vòng 30 ngày kể từ ngày nhận được hóa đơn giá trị gia tăng hợp lệ và biên bản nghiệm thu [1]. Lãi chậm trả: Bên B chịu lãi chậm trả 0,05% mỗi ngày trên số tiền chậm thanh toán, tối đa 10% giá trị hợp đồng [1].
+  nguồn: [('hop-dong-A.pdf', 2)]
+
+Q: Giá gói Premium là bao nhiêu?
+  ANSWERED (2.1s): Bảng giá: gói Premium có giá 11.900.000 đồng mỗi tháng [1]. BẢNG GIÁ QUÝ 4 Gói Premium: 12.500.000 đồng mỗi tháng [2].
+  nguồn: [('chinh-sach-ban-hang-2026.pdf', 2), ('bang-gia-Q4.pdf', 1)]
+
+Q: Đối thủ cạnh tranh tại thị trường Nhật Bản là ai?
+  ANSWERED (2.1s): Validate bằng thư viện, không bằng mắt Định dạng Phù hợp khi Rủi ro JSON Máy đọc, validate bằng schema Khó đọc khi lồng sâu YAML Cấu hình người sửa tay Implicit typing đổi kiểu giá trị không báo lỗi (slide sau) Spec Markdown Người và agent cùng đọc Không validate tự động được JSON Schema Kiểu từng trường, trường bắt buộc, enum, giới hạn giá trị [1].
+  nguồn: [('B2BC07_B01_Slide_v0.2_20261006.pdf', 15)]

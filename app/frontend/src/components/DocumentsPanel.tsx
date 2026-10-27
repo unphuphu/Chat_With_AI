@@ -68,7 +68,13 @@ export function DocumentsPanel({ me, docs, used, limit, onUploaded, onDelete, on
             clientFileId: uuid(),
             reason: 'Phiên tải lên đã hết hạn. Bấm Tải lại để thử lần nữa.',
           })
-        } else if (err.status === 429 || err.status === 503) {
+        } else if (err.status === 429) {
+          const mins = err.retryAfter ? Math.ceil(err.retryAfter / 60) : null
+          patch(item.key, {
+            state: 'failed',
+            reason: `Bạn đã tải lên quá nhiều file trong một giờ. Vui lòng thử lại${mins ? ` sau khoảng ${mins} phút` : ' sau'}.`,
+          })
+        } else if (err.status === 503) {
           const wait = err.retryAfter ? ` sau ${err.retryAfter} giây` : ''
           patch(item.key, { state: 'failed', reason: `Hệ thống đang bận, vui lòng thử lại${wait}.` })
         } else if (err.status === 401) {

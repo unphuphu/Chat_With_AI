@@ -1,0 +1,33 @@
+{
+  "id": "API-003",
+  "title": "Callback với state sai hoặc hết hạn",
+  "folder": "API-003_callback-voi-state-sai-hoac-het-han",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:00:42.415Z",
+  "finishedAt": "2026-10-27T14:00:51.322Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mở /api/v1/auth/callback?code=p1&state=sai",
+      "expected": "302 tới /login-error?ref=<request_id>",
+      "actual": "\u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m  Locator: getByRole('heading', { name: 'Không thể đăng nhập' }) Expected: visible Received: <element(s) not found> Call log:",
+      "status": "Không đạt",
+      "screenshots": [
+        "screenshots/01-mo-api-v1-auth-callback-code-p1-state-sai.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-003-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-003_callback-voi-state-sai-hoac-het-han.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

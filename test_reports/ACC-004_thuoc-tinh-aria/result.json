@@ -1,0 +1,75 @@
+{
+  "id": "ACC-004",
+  "title": "Thuộc tính ARIA",
+  "folder": "ACC-004_thuoc-tinh-aria",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:50:32.615Z",
+  "finishedAt": "2026-10-27T15:50:46.253Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, xóa tài liệu cũ",
+      "expected": "Màn hình chính",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-xoa-tai-lieu-cu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chạy axe toàn trang (mọi rule)",
+      "expected": "0 vi phạm mức serious/critical",
+      "actual": "0 vi phạm (0 serious/critical), 22 rule đạt",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-chay-axe-toan-trang-moi-rule.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Trong lúc tải: role=progressbar, aria-valuenow",
+      "expected": "Có và cập nhật",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-trong-luc-tai-role-progressbar-aria-valuenow.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Trong lúc chờ câu trả lời: article[aria-busy=true]",
+      "expected": "Có",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-trong-luc-cho-cau-tra-loi-article-aria-busy-true.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Dialog trình xem và dialog xóa",
+      "expected": "dialog: aria-modal=true, aria-labelledby; xóa: role=alertdialog",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-dialog-trinh-xem-va-dialog-xoa.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/ACC-004-app.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "axe (tag wcag2a/2aa/21a/21aa): 0 vi phạm mọi mức, 0 mức serious/critical; 22 rule đạt."
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/ACC-004_thuoc-tinh-aria.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

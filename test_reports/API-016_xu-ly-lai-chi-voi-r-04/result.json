@@ -1,0 +1,99 @@
+{
+  "id": "API-016",
+  "title": "Xử lý lại chỉ với R-04",
+  "folder": "API-016_xu-ly-lai-chi-voi-r-04",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:40:40.392Z",
+  "finishedAt": "2026-10-27T15:45:14.001Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf, chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-cho-san-sang.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "POST /reprocess với tài liệu READY",
+      "expected": "409 not_retryable",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-post-reprocess-voi-tai-lieu-ready.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Tải ho-so-scan-2019.pdf (→ R-03); POST /reprocess",
+      "expected": "409 not_retryable",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-tai-ho-so-scan-2019-pdf-r-03-post-reprocess.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Khởi động lại với dịch vụ embedding không tồn tại; tải bang-gia-Q4.pdf",
+      "expected": "Tài liệu thất bại R-04 sau 3 lần thử (≈ 3 phút)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-khoi-dong-lai-voi-dich-vu-embedding-khong-ton-tai-.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Khôi phục cấu hình mặc định (embedding hoạt động)",
+      "expected": "Ứng dụng sẵn sàng; tài liệu vẫn FAILED R-04, retryable",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-khoi-phuc-cau-hinh-mac-dinh-embedding-hoat-dong.png"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "POST /reprocess tài liệu R-04",
+      "expected": "202, status=PROCESSING",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/06-post-reprocess-tai-lieu-r-04.png"
+      ]
+    },
+    {
+      "n": 7,
+      "title": "Sau khi khôi phục cấu hình mặc định",
+      "expected": "bang-gia-Q4.pdf được xử lý lại và Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/07-sau-khi-khoi-phuc-cau-hinh-mac-dinh.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-016-app.webm",
+    "video/API-016-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [
+    "Khởi động lại ứng dụng với {\"EMBEDDING_PROVIDER\":\"http\",\"EMBEDDING_URL\":\"http://127.0.0.1:9\"}: [app] restart xong – http://localhost:8080/ sẵn sàng",
+    "Khởi động lại ứng dụng với {}: [app] restart xong – http://localhost:8080/ sẵn sàng"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-016_xu-ly-lai-chi-voi-r-04.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

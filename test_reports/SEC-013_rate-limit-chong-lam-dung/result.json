@@ -1,0 +1,68 @@
+{
+  "id": "SEC-013",
+  "title": "Rate limit chống lạm dụng",
+  "folder": "SEC-013_rate-limit-chong-lam-dung",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:47:36.440Z",
+  "finishedAt": "2026-10-27T15:48:24.611Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập Quản trị viên, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-quan-tri-vien-tai-hop-dong-a-pdf-va-cho-.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chờ đầu phút rồi gửi 11 câu hỏi",
+      "expected": "Câu 11 → 429 kèm Retry-After",
+      "actual": "Mã trả về: 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 429",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-cho-dau-phut-roi-gui-11-cau-hoi.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Quản trị viên vẫn bị giới hạn, còn P1 ở phiên khác thì không (giới hạn theo người dùng)",
+      "expected": "P1: 200",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-quan-tri-vien-van-bi-gioi-han-con-p1-o-phien-khac-.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Đối chiếu API-013 (giới hạn tải file theo giờ)",
+      "expected": "Báo cáo API-013 có kết luận ĐẠT",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-doi-chieu-api-013-gioi-han-tai-file-theo-gio.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-013-app.webm",
+    "video/SEC-013-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [
+    "API-013 (rate limit tải file): ĐẠT"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/SEC-013_rate-limit-chong-lam-dung.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

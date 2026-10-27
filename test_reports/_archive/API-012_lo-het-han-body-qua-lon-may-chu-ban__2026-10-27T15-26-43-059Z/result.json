@@ -1,0 +1,69 @@
+{
+  "id": "API-012",
+  "title": "Lô hết hạn, body quá lớn, máy chủ bận",
+  "folder": "API-012_lo-het-han-body-qua-lon-may-chu-ban",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:09:41.795Z",
+  "finishedAt": "2026-10-27T15:12:59.029Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Khởi động lại ứng dụng với BATCH_TTL_S=60",
+      "expected": "Ứng dụng sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-khoi-dong-lai-ung-dung-voi-batch-ttl-s-60.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Đăng nhập P2, xóa tài liệu cũ",
+      "expected": "Danh sách rỗng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-dang-nhap-p2-xoa-tai-lieu-cu.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Tạo lô, chờ 65 s rồi PUT hop-dong-A.pdf",
+      "expected": "404 batch_expired",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-tao-lo-cho-65-s-roi-put-hop-dong-a-pdf.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "PUT body 22 MB (vượt MAX_FILE_MB + 1 MB)",
+      "expected": "413; application/problem+json",
+      "actual": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m  Expected: \u001b[32m413\u001b[39m Received: \u001b[31m500\u001b[39m",
+      "status": "Không đạt",
+      "screenshots": [
+        "screenshots/04-put-body-22-mb-vuot-max-file-mb-1-mb.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-012-app.webm",
+    "video/API-012-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [
+    "Khởi động lại ứng dụng với {\"BATCH_TTL_S\":\"60\"}: [app] restart xong – http://localhost:8080/ sẵn sàng",
+    "Khởi động lại ứng dụng với {}: [app] restart xong – http://localhost:8080/ sẵn sàng"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-012_lo-het-han-body-qua-lon-may-chu-ban.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

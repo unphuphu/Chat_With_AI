@@ -1,0 +1,43 @@
+{
+  "id": "ACC-007",
+  "title": "Giảm chuyển động",
+  "folder": "ACC-007_giam-chuyen-dong",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:51:24.881Z",
+  "finishedAt": "2026-10-27T15:51:33.913Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2; emulateMedia reducedMotion: reduce; tải file (làm chậm 3 s để thấy biểu tượng xoay)",
+      "expected": "Biểu tượng .spin có animation-name: none",
+      "actual": "animation-name của .spin = none",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-emulatemedia-reducedmotion-reduce-tai.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Gửi câu hỏi (làm chậm 3 s)",
+      "expected": "Ba chấm .dots span không có animation",
+      "actual": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m  Expected: \u001b[32m\"none\"\u001b[39m Received: \u001b[31m\"blink\"\u001b[39m",
+      "status": "Không đạt",
+      "screenshots": [
+        "screenshots/02-gui-cau-hoi-lam-cham-3-s.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/ACC-007-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/ACC-007_giam-chuyen-dong.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

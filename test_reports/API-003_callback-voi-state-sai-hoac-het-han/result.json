@@ -1,0 +1,66 @@
+{
+  "id": "API-003",
+  "title": "Callback với state sai hoặc hết hạn",
+  "folder": "API-003_callback-voi-state-sai-hoac-het-han",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:08:36.292Z",
+  "finishedAt": "2026-10-27T14:08:51.484Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mở /api/v1/auth/callback?code=p1&state=sai",
+      "expected": "302 tới /login-error?ref=<request_id>",
+      "actual": "URL: /login-error?ref=0df300ae-15f9-44ab-8bae-d82d4636b5b5",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-mo-api-v1-auth-callback-code-p1-state-sai.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Quan sát trang lỗi",
+      "expected": "Có mã tham chiếu và nút Thử đăng nhập lại",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-quan-sat-trang-loi.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "GET /api/v1/me",
+      "expected": "401 – không có phiên",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-get-api-v1-me.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Bấm Thử đăng nhập lại và chọn P1",
+      "expected": "Đăng nhập thành công",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-bam-thu-dang-nhap-lai-va-chon-p1.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-003-app.webm",
+    "video/API-003-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-003_callback-voi-state-sai-hoac-het-han.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

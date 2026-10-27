@@ -1,0 +1,35 @@
+{
+  "id": "SEC-014",
+  "title": "Quét lỗ hổng thư viện phụ thuộc",
+  "folder": "SEC-014_quet-lo-hong-thu-vien-phu-thuoc",
+  "mode": "Tự động – dòng lệnh (app/frontend/evidence/record-cli.ts)",
+  "startedAt": "2026-10-27T14:29:21.379Z",
+  "finishedAt": "2026-10-27T14:30:46.022Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Chạy: .venv/Scripts/python.exe -m pip_audit -r requirements.txt",
+      "expected": "Không có lỗ hổng High/Critical",
+      "actual": "Mã thoát 0",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-ket-qua-lenh.png",
+        "screenshots/02-toan-bo-output.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-014-cli.webm"
+  ],
+  "logs": [
+    "logs/output.log"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Thư mục chạy": "C:\\XUANPHU\\Hoc AI\\Chat_With_AI\\app\\backend"
+  },
+  "verdict": "ĐẠT"
+}

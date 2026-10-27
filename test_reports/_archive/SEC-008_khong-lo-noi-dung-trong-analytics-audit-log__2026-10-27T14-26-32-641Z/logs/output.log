@@ -1,0 +1,68 @@
+$ .venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_qa.py::test_no_content_in_analytics tests/unit/test_algorithms.py::test_redact_forbidden
+(cwd: C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend)
+
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.14.2, pytest-9.1.1, pluggy-1.7.0 -- C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend\.venv\Scripts\python.exe
+hypothesis profile 'default'
+rootdir: C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.170.11, asyncio-1.4.1
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+[1mcollecting ... [0mcollected 2 items
+
+tests/integration/test_qa.py::test_no_content_in_analytics [31mERROR[0m[31m         [ 50%][0m
+tests/unit/test_algorithms.py::test_redact_forbidden [32mPASSED[0m[31m              [100%][0m
+
+=================================== ERRORS ====================================
+[31m[1m_______________ ERROR at setup of test_no_content_in_analytics ________________[0m
+
+self = <Coroutine test_no_content_in_analytics>
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92msetup[39;49;00m([96mself[39;49;00m) -> [94mNone[39;49;00m:[90m[39;49;00m
+        runner_fixture_id = [33mf[39;49;00m[33m"[39;49;00m[33m_[39;49;00m[33m{[39;49;00m[96mself[39;49;00m._loop_scope[33m}[39;49;00m[33m_scoped_runner[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        [94mif[39;49;00m runner_fixture_id [95mnot[39;49;00m [95min[39;49;00m [96mself[39;49;00m.fixturenames:[90m[39;49;00m
+            [96mself[39;49;00m.fixturenames.append(runner_fixture_id)[90m[39;49;00m
+        [90m# When loop factories are configured, resolve the loop factory[39;49;00m[90m[39;49;00m
+        [90m# fixture early so that a factory variant change cascades cache[39;49;00m[90m[39;49;00m
+        [90m# invalidation before any async fixture checks its cache.[39;49;00m[90m[39;49;00m
+        hook_caller = [96mself[39;49;00m.config.hook.pytest_asyncio_loop_factories[90m[39;49;00m
+        [94mif[39;49;00m hook_caller.get_hookimpls():[90m[39;49;00m
+            _ = [96mself[39;49;00m._request.getfixturevalue(_asyncio_loop_factory.[91m__name__[39;49;00m)[90m[39;49;00m
+>       [94mreturn[39;49;00m [96msuper[39;49;00m().setup()[90m[39;49;00m
+               ^^^^^^^^^^^^^^^[90m[39;49;00m
+
+[1m[31m.venv\Lib\site-packages\pytest_asyncio\plugin.py[0m:559: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[1m[31m.venv\Lib\site-packages\pytest_asyncio\plugin.py[0m:927: in pytest_fixture_setup
+    [0m[94mreturn[39;49;00m ([94myield[39;49;00m)[90m[39;49;00m
+            ^^^^^[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    [0m[37m@pytest[39;49;00m.fixture(scope=[33m"[39;49;00m[33msession[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdatabase_url[39;49;00m() -> Iterator[[96mstr[39;49;00m]:[90m[39;49;00m
+        [94mif[39;49;00m url := os.environ.get([33m"[39;49;00m[33mTEST_DATABASE_URL[39;49;00m[33m"[39;49;00m):[90m[39;49;00m
+            [94myield[39;49;00m url[90m[39;49;00m
+            [94mreturn[39;49;00m[90m[39;49;00m
+        port = _free_port()[90m[39;49;00m
+        env = {**os.environ, [33m"[39;49;00m[33mDEVDB_DIR[39;49;00m[33m"[39;49;00m: [33m"[39;49;00m[33mmemory://[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mDEVDB_PORT[39;49;00m[33m"[39;49;00m: [96mstr[39;49;00m(port)}[90m[39;49;00m
+        proc = subprocess.Popen([[33m"[39;49;00m[33mnode[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mserver.mjs[39;49;00m[33m"[39;49;00m], cwd=APP_DIR / [33m"[39;49;00m[33mdevdb[39;49;00m[33m"[39;49;00m, env=env,  [90m# noqa: S607[39;49;00m[90m[39;49;00m
+                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT)[90m[39;49;00m
+        url = [33mf[39;49;00m[33m"[39;49;00m[33mpostgresql://postgres:postgres@127.0.0.1:[39;49;00m[33m{[39;49;00mport[33m}[39;49;00m[33m/postgres?sslmode=disable[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        deadline = time.time() + [94m60[39;49;00m[90m[39;49;00m
+        [94mwhile[39;49;00m time.time() < deadline:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                psycopg.connect(url, connect_timeout=[94m2[39;49;00m).close()[90m[39;49;00m
+                [94mbreak[39;49;00m[90m[39;49;00m
+            [94mexcept[39;49;00m psycopg.OperationalError:[90m[39;49;00m
+                [94mif[39;49;00m proc.poll() [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+                    [94mraise[39;49;00m [96mRuntimeError[39;49;00m(proc.stdout.read().decode() [94mif[39;49;00m proc.stdout [94melse[39;49;00m [33m"[39;49;00m[33mdevdb exited[39;49;00m[33m"[39;49;00m) [94mfrom[39;49;00m[90m [39;49;00m[94mNone[39;49;00m[90m[39;49;00m
+                time.sleep([94m0.3[39;49;00m)[90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            proc.kill()[90m[39;49;00m
+>           [94mraise[39;49;00m [96mRuntimeError[39;49;00m([33m"[39;49;00m[33mdevdb did not start[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE           RuntimeError: devdb did not start[0m
+
+[1m[31mtests\conftest.py[0m:87: RuntimeError
+[36m[1m=========================== short test summary info ===========================[0m
+[31mERROR[0m tests/integration/test_qa.py::[1mtest_no_content_in_analytics[0m - RuntimeError: devdb did not start
+[31m==================== [32m1 passed[0m, [31m[1m1 error[0m[31m in 62.30s (0:01:02)[0m[31m ====================[0m

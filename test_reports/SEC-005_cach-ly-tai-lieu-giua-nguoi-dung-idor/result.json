@@ -1,0 +1,96 @@
+{
+  "id": "SEC-005",
+  "title": "Cách ly tài liệu giữa người dùng (IDOR)",
+  "folder": "SEC-005_cach-ly-tai-lieu-giua-nguoi-dung-idor",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:46:20.004Z",
+  "finishedAt": "2026-10-27T15:46:37.846Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P1, đảm bảo có tài liệu Sẵn sàng, ghi id tài liệu và id hội thoại",
+      "expected": "Có id",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p1-dam-bao-co-tai-lieu-san-sang-ghi-id-t.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Đăng xuất; đăng nhập P2 (chỉ có bảng giá)",
+      "expected": "Màn hình P2",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-dang-xuat-dang-nhap-p2-chi-co-bang-gia.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "GET /documents của P2",
+      "expected": "Không có tài liệu của P1",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-get-documents-cua-p2.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "GET file, DELETE, POST reprocess trên id tài liệu P1",
+      "expected": "Mỗi request 404 not_found",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-get-file-delete-post-reprocess-tren-id-tai-lieu-p1.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "POST /messages vào hội thoại của P1",
+      "expected": "404 hoặc 409 – không trả nội dung của P1",
+      "actual": "HTTP 404",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-post-messages-vao-hoi-thoai-cua-p1.png"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "P2 hỏi câu chỉ có trong tài liệu của P1",
+      "expected": "Không trích dẫn và không nêu nội dung tài liệu P1",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/06-p2-hoi-cau-chi-co-trong-tai-lieu-cua-p1.png"
+      ]
+    },
+    {
+      "n": 7,
+      "title": "Đăng nhập lại P1",
+      "expected": "Tài liệu của P1 còn nguyên",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/07-dang-nhap-lai-p1.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-005-app.webm",
+    "video/SEC-005-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/SEC-005_cach-ly-tai-lieu-giua-nguoi-dung-idor.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

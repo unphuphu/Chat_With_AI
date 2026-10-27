@@ -1,0 +1,53 @@
+{
+  "id": "UI-006",
+  "title": "Thông báo tự ẩn",
+  "folder": "UI-006_thong-bao-tu-an",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:00:17.381Z",
+  "finishedAt": "2026-10-27T16:00:34.701Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2; tải 1 PDF có chữ và 1 PDF scan",
+      "expected": "Lần lượt xuất hiện \"Tài liệu đã Sẵn sàng\" và \"Xử lý tài liệu thất bại\"",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-1-pdf-co-chu-va-1-pdf-scan.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Kiểm tra vị trí",
+      "expected": "Thông báo nằm góc dưới trái, không che ô hỏi",
+      "actual": "Toast: x=20..380; vùng ô hỏi bắt đầu x=400",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-kiem-tra-vi-tri.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Chờ 6 s (tự ẩn ≤ 5 s)",
+      "expected": "Thông báo không còn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-cho-6-s-tu-an-5-s.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UI-006-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/UI-006_thong-bao-tu-an.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

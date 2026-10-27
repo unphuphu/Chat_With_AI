@@ -1,0 +1,63 @@
+{
+  "id": "E2E-014",
+  "title": "Năm câu hỏi liên tiếp",
+  "folder": "E2E-014_nam-cau-hoi-lien-tiep",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:38:55.177Z",
+  "finishedAt": "2026-10-27T14:39:07.596Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập Quản trị viên, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-quan-tri-vien-tai-hop-dong-a-pdf-va-cho-.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Hỏi \"Bên B thanh toán trong vòng bao nhiêu ngày?\"",
+      "expected": "Câu trả lời 1",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-hoi-ben-b-thanh-toan-trong-vong-bao-nhieu-ngay.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Hỏi tiếp 5 câu: lãi chậm trả; hiệu lực; bảo hành; giá trị; phạm vi",
+      "expected": "Mỗi câu có câu trả lời (hoặc Chưa đủ thông tin) ngay dưới câu hỏi",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-hoi-tiep-5-cau-lai-cham-tra-hieu-luc-bao-hanh-gia-.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Cuộn hội thoại, chụp ảnh",
+      "expected": "6 lượt đúng thứ tự gửi",
+      "actual": "Thứ tự 6 câu hỏi khớp thứ tự gửi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-cuon-hoi-thoai-chup-anh.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/E2E-014-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-014_nam-cau-hoi-lien-tiep.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

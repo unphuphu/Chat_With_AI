@@ -1,0 +1,53 @@
+{
+  "id": "ACC-007",
+  "title": "Giảm chuyển động",
+  "folder": "ACC-007_giam-chuyen-dong",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:11:10.553Z",
+  "finishedAt": "2026-10-27T16:11:18.690Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2; emulateMedia reducedMotion: reduce; tải file (làm chậm 3 s để thấy biểu tượng xoay)",
+      "expected": "Biểu tượng .spin có animation-name: none",
+      "actual": "animation-name của .spin = none",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-emulatemedia-reducedmotion-reduce-tai.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Gửi câu hỏi (làm chậm 3 s)",
+      "expected": "Ba chấm .dots span không có animation",
+      "actual": "animation-name của .dots span = none",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-gui-cau-hoi-lam-cham-3-s.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Đối chứng: tắt reduced-motion",
+      "expected": "Hoạt ảnh trở lại (animation-name ≠ none)",
+      "actual": "animation-name khi no-preference = blink",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-doi-chung-tat-reduced-motion.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/ACC-007-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/ACC-007_giam-chuyen-dong.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

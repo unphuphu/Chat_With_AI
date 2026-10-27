@@ -1,0 +1,51 @@
+{
+  "id": "UI-004",
+  "title": "Trạng thái trống và lỗi",
+  "folder": "UI-004_trang-thai-trong-va-loi",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:56:00.294Z",
+  "finishedAt": "2026-10-27T15:59:59.481Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Chưa có tài liệu (E-01)",
+      "expected": "Chưa có tài liệu nào + hướng dẫn 3 bước; ô hỏi khóa: \"Cần ít nhất một tài liệu Sẵn sàng…\"",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-chua-co-tai-lieu-e-01.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Tải 1 file, chụp ngay khi đang xử lý (E-02)",
+      "expected": "Ô hỏi khóa: \"Đang xử lý tài liệu, bạn có thể hỏi khi…\"",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-tai-1-file-chup-ngay-khi-dang-xu-ly-e-02.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Xóa hết, chỉ tải ho-so-scan-2019.pdf (mọi tài liệu Thất bại – E-03)",
+      "expected": "Ô hỏi khóa; dòng Thất bại có lý do",
+      "actual": "locator.click: Target page, context or browser has been closed Call log: \u001b[2m  - waiting for getByRole('button', { name: /Trần Minh/ }).first()\u001b[22m ",
+      "status": "Không đạt",
+      "screenshots": []
+    }
+  ],
+  "videos": [
+    "video/UI-004-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/UI-004_trang-thai-trong-va-loi.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

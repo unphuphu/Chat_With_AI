@@ -1,0 +1,56 @@
+{
+  "id": "API-018",
+  "title": "File của tài liệu đã xóa hoặc của người khác",
+  "folder": "API-018_file-cua-tai-lieu-da-xoa-hoac-cua-nguoi-khac",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:16:02.062Z",
+  "finishedAt": "2026-10-27T14:16:25.452Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf, ghi lại id",
+      "expected": "Có id tài liệu của P2",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-ghi-lai-id.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Đăng xuất; đăng nhập P1; GET file của tài liệu P2",
+      "expected": "404 not_found (không lộ sự tồn tại)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-dang-xuat-dang-nhap-p1-get-file-cua-tai-lieu-p2.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Đăng nhập lại P2; xóa tài liệu; GET file",
+      "expected": "410 deleted",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-dang-nhap-lai-p2-xoa-tai-lieu-get-file.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-018-app.webm",
+    "video/API-018-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-018_file-cua-tai-lieu-da-xoa-hoac-cua-nguoi-khac.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

@@ -3,7 +3,7 @@
 // Giới hạn: CHỈ MỘT kết nối tại một thời điểm – backend chạy chế độ một tiến trình (DEV_SINGLE_PROCESS=1).
 import { PGlite } from '@electric-sql/pglite'
 import { vector } from '@electric-sql/pglite/vector'
-import { PGLiteSocketServer } from '@electric-sql/pglite-socket'
+import { PGLiteSocketHandler, PGLiteSocketServer } from '@electric-sql/pglite-socket'
 import { mkdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 
@@ -45,6 +45,29 @@ db.execProtocolRaw = async (msg, opts) => {
   return out
 }
 
+// pglite-socket đưa thẳng từng chunk TCP vào PGlite. Message > ~64 KB (vd. INSERT nhiều chunk/embedding khi ingest)
+// bị tách thành nhiều chunk → PGlite nhận message cụt, WASM trap "unreachable" và mọi kết nối sau đó bị đóng ngay.
+// Gom lại cho đủ message giao thức rồi mới chuyển cho PGlite.
+const STARTUP_V3 = 196608
+const rawHandleData = PGLiteSocketHandler.prototype.handleData
+PGLiteSocketHandler.prototype.handleData = function (chunk) {
+  this.pending = this.pending ? Buffer.concat([this.pending, chunk]) : Buffer.from(chunk)
+  let end = 0
+  for (;;) {
+    // Trước StartupMessage: message không có byte loại (SSLRequest/GSSENCRequest/StartupMessage)
+    const head = this.started ? 1 : 0
+    if (this.pending.length < end + head + 4) break
+    const size = head + this.pending.readInt32BE(end + head)
+    if (this.pending.length < end + size) break
+    if (!this.started && this.pending.readInt32BE(end + 4) === STARTUP_V3) this.started = true
+    end += size
+  }
+  if (end === 0) return Promise.resolve(0)
+  const complete = this.pending.subarray(0, end)
+  this.pending = end < this.pending.length ? this.pending.subarray(end) : null
+  return rawHandleData.call(this, complete)
+}
+
 const server = new PGLiteSocketServer({ db, port, host })
 server.addEventListener('connection', (e) => console.log(`[devdb] client connected ${e.detail?.clientAddress ?? ''}`))
 await server.start()
@@ -56,8 +79,18 @@ const stop = async () => {
   await db.close()
   process.exit(0)
 }
-// Client ngắt kết nối đột ngột (ECONNRESET) không được làm sập server
-process.on('uncaughtException', (err) => console.error(`[devdb] ${err.code ?? ''} ${err.message}`))
-process.on('unhandledRejection', (err) => console.error(`[devdb] ${err?.code ?? ''} ${err?.message ?? err}`))
+// Client ngắt kết nối đột ngột (ECONNRESET…) không được làm sập server. Lỗi khác (vd. WASM trap "unreachable")
+// làm PGlite hỏng vĩnh viễn → thoát để run.py thấy và dừng cả hệ thống, thay vì treo với CSDL chết.
+const BENIGN = new Set(['ECONNRESET', 'EPIPE', 'ECONNABORTED', 'ERR_STREAM_DESTROYED'])
+const onFatal = (err) => {
+  if (typeof err === 'string' || BENIGN.has(err?.code)) {
+    console.error(`[devdb] ${err?.code ?? ''} ${err?.message ?? err}`)
+    return
+  }
+  console.error(`[devdb] FATAL ${err?.stack ?? err}`)
+  process.exit(1)
+}
+process.on('uncaughtException', onFatal)
+process.on('unhandledRejection', onFatal)
 process.on('SIGINT', stop)
 process.on('SIGTERM', stop)

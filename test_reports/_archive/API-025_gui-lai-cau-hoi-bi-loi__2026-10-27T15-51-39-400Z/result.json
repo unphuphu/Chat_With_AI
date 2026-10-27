@@ -1,0 +1,69 @@
+{
+  "id": "API-025",
+  "title": "Gửi lại câu hỏi bị lỗi",
+  "folder": "API-025_gui-lai-cau-hoi-bi-loi",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:19:50.392Z",
+  "finishedAt": "2026-10-27T15:21:31.553Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Tạo lượt FAILED: khởi động với LLM lỗi, tải tài liệu, hỏi (client_request_id = R)",
+      "expected": "Lượt hỏi FAILED (503)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-tao-luot-failed-khoi-dong-voi-llm-loi-tai-tai-lieu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Khởi động lại với LLM_PROVIDER=extractive; kiểm tra phiên còn hiệu lực",
+      "expected": "Ứng dụng sẵn sàng, /me = 200",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-khoi-dong-lai-voi-llm-provider-extractive-kiem-tra.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "POST lại cùng R và cùng câu hỏi",
+      "expected": "200 ANSWERED",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-post-lai-cung-r-va-cung-cau-hoi.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "GET /conversations/current",
+      "expected": "Chỉ 1 lượt cho R, status=ANSWERED (không tạo lượt mới)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-get-conversations-current.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-025-app.webm",
+    "video/API-025-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [
+    "Khởi động lại ứng dụng với {\"LLM_PROVIDER\":\"anthropic\",\"LLM_API_KEY\":\"sk-ant-invalid\"}: [app] restart xong – http://localhost:8080/ sẵn sàng",
+    "Khởi động lại ứng dụng với {}: [app] restart xong – http://localhost:8080/ sẵn sàng"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-025_gui-lai-cau-hoi-bi-loi.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

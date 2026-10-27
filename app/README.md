@@ -71,6 +71,15 @@ npx playwright test                          # E2E trên Microsoft Edge có sẵ
 
 Đặt `TEST_DATABASE_URL` để chạy integration test với PostgreSQL thật thay cho PGlite (CI dùng `pgvector/pgvector:pg17`).
 
+**Thực thi test case có bằng chứng:** có 130 test case trong [doc/07-verification/test_cases](../doc/07-verification/test_cases/README.md).
+Mỗi test case ghi report, ảnh chụp và video vào `test_reports/<tên test case>/` ở gốc repo, bằng công cụ trong
+`frontend/evidence/`:
+- `fixture.ts`: cho test giao diện/API;
+- `record-cli.ts`: cho test chạy bằng lệnh;
+- `app.ts`: khởi động lại ứng dụng với cấu hình riêng.
+
+Ghi video cần chạy `npx playwright install ffmpeg` một lần.
+
 ## Khác biệt so với kế hoạch
 
 Máy phát triển không có Docker và chỉ có Python 3.14, nên một số lựa chọn trong PLAN được thay bằng phương án

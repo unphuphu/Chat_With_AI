@@ -1,0 +1,76 @@
+{
+  "id": "API-001",
+  "title": "Đăng nhập OIDC và cookie phiên",
+  "folder": "API-001_dang-nhap-oidc-va-cookie-phien",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:00:01.655Z",
+  "finishedAt": "2026-10-27T14:00:29.038Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mở http://localhost:8080/ khi chưa đăng nhập",
+      "expected": "Chuyển tới IdP :8090/authorize, có state và code_challenge_method=S256",
+      "actual": "URL: http://localhost:8090/authorize?state=…&code_challenge_method=S256",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-mo-http-localhost-8080-khi-chua-dang-nhap.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chọn P1",
+      "expected": "Quay về http://localhost:8080/; hiển thị lan.nguyen@congty.vn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-chon-p1.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Đọc cookie trình duyệt",
+      "expected": "sid: HttpOnly, SameSite=Lax; csrf_token: SameSite=Strict, không HttpOnly",
+      "actual": "sid(httpOnly=true, sameSite=Lax); csrf_token(httpOnly=false, sameSite=Strict)",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-doc-cookie-trinh-duyet.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "GET /api/v1/me",
+      "expected": "200; email, documents_limit=100, limits.max_files_per_batch=10, session_expires_at",
+      "actual": "email=lan.nguyen@congty.vn, expires=2026-10-27T16:00:14.760527Z",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-get-api-v1-me.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Đăng xuất rồi đăng nhập lại P1; GET /documents",
+      "expected": "Cùng workspace: danh sách tài liệu giống trước",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-dang-xuat-roi-dang-nhap-lai-p1-get-documents.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-001-app.webm",
+    "video/API-001-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-001_dang-nhap-oidc-va-cookie-phien.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "QLT-001",
+  "title": "Độ chính xác câu trả lời",
+  "folder": "QLT-001_do-chinh-xac-cau-tra-loi",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:14:37.736Z",
+  "finishedAt": "2026-10-27T15:14:44.243Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Bộ câu hỏi chuẩn DEP-005 (≥ 50 câu trong tài liệu), script đánh giá app/backend/scripts/eval_rag.py, 2 người chấm nghiệp vụ.",
+      "actual": "Chưa có bộ câu hỏi chuẩn + đáp án (DEP-005 / T06-03) và tài liệu dự án thật do PO cung cấp; chưa có LLM thật.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/QLT-001-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Chưa có bộ câu hỏi chuẩn + đáp án (DEP-005 / T06-03) và tài liệu dự án thật do PO cung cấp; chưa có LLM thật.",
+    "Cần: Bộ câu hỏi chuẩn DEP-005 (≥ 50 câu trong tài liệu), script đánh giá app/backend/scripts/eval_rag.py, 2 người chấm nghiệp vụ."
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

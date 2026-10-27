@@ -1,0 +1,35 @@
+{
+  "id": "INT-005",
+  "title": "Lỗi tạm thời khi ingest → R-04 → xử lý lại",
+  "folder": "INT-005_loi-tam-thoi-khi-ingest-r-04-xu-ly-lai",
+  "mode": "Tự động – dòng lệnh (app/frontend/evidence/record-cli.ts)",
+  "startedAt": "2026-10-27T14:24:32.076Z",
+  "finishedAt": "2026-10-27T14:26:01.856Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Chạy: .venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_documents.py::test_reprocess_only_r04",
+      "expected": "Lệnh kết thúc với mã 0",
+      "actual": "Mã thoát 1",
+      "status": "Không đạt",
+      "screenshots": [
+        "screenshots/01-ket-qua-lenh.png",
+        "screenshots/02-toan-bo-output.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/INT-005-cli.webm"
+  ],
+  "logs": [
+    "logs/output.log"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Thư mục chạy": "C:\\XUANPHU\\Hoc AI\\Chat_With_AI\\app\\backend"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

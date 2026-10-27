@@ -1,10 +1,44 @@
 // S06 trình xem PDF, S07 xác nhận xóa, thông báo góc dưới trái.
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type RefObject } from 'react'
 import { fileUrl, type Citation, type Doc } from '../api'
 import { Icon, type IconName } from '../ui'
 
+
+const FOCUSABLE = 'button:not([disabled]), a[href], input:not([disabled]), select, textarea, iframe, [tabindex]:not([tabindex="-1"])'
+
+/** Bẫy focus trong hộp thoại modal: Tab/Shift+Tab chỉ xoay vòng giữa các phần tử trong hộp (WCAG 2.4.3, ARIA modal). */
+function useFocusTrap(ref: RefObject<HTMLElement>) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !ref.current) return
+      const items = Array.from(ref.current.querySelectorAll<HTMLElement>(FOCUSABLE))
+      if (items.length === 0) {
+        e.preventDefault()
+        return
+      }
+      const first = items[0]
+      const last = items[items.length - 1]
+      const active = document.activeElement as HTMLElement | null
+      if (!active || !ref.current.contains(active)) {
+        e.preventDefault()
+        first.focus()
+      } else if (e.shiftKey && active === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [ref])
+}
+
 export function PdfViewer({ citation, onClose }: { citation: Citation; onClose: () => void }) {
   const closeRef = useRef<HTMLButtonElement>(null)
+  const boxRef = useRef<HTMLDivElement>(null)
+  useFocusTrap(boxRef)
   useEffect(() => {
     closeRef.current?.focus()
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
@@ -17,7 +51,7 @@ export function PdfViewer({ citation, onClose }: { citation: Citation; onClose: 
   return (
     <>
       <div className="overlay" style={{ background: 'rgba(16,22,30,.35)' }} onClick={onClose} />
-      <div className="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
+      <div ref={boxRef} className="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
         <div className="viewer-bar">
           <Icon name="file" size={18} />
           <span className="title" id="viewer-title">
@@ -49,6 +83,8 @@ export function DeleteDialog({
   onConfirm: () => void
 }) {
   const cancelRef = useRef<HTMLButtonElement>(null)
+  const boxRef = useRef<HTMLDivElement>(null)
+  useFocusTrap(boxRef)
   useEffect(() => {
     cancelRef.current?.focus()
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onCancel()
@@ -57,7 +93,7 @@ export function DeleteDialog({
   }, [onCancel])
   return (
     <div className="overlay">
-      <div className="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlg-t" aria-describedby="dlg-d">
+      <div ref={boxRef} className="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlg-t" aria-describedby="dlg-d">
         <h2 id="dlg-t">Xóa tài liệu?</h2>
         <p id="dlg-d">
           <strong style={{ color: 'var(--text)' }}>{doc.file_name}</strong> sẽ bị xóa khỏi danh sách và{' '}

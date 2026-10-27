@@ -1,0 +1,63 @@
+{
+  "id": "E2E-004",
+  "title": "Tải 10 file song song",
+  "folder": "E2E-004_tai-10-file-song-song",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:44:23.974Z",
+  "finishedAt": "2026-10-27T14:45:13.380Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, xóa tài liệu cũ",
+      "expected": "Danh sách rỗng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-xoa-tai-lieu-cu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chọn 10 PDF hợp lệ (làm chậm request PUT 2 s để quan sát hàng đợi)",
+      "expected": "Hàng đợi 10 dòng; tại mọi thời điểm ≤ 3 dòng Đang tải lên, còn lại Đang chờ tải lên",
+      "actual": "Số dòng \"Đang tải lên\" đồng thời tối đa quan sát được: 3",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-chon-10-pdf-hop-le-lam-cham-request-put-2-s-de-qua.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Chụp ảnh khi đang tải",
+      "expected": "Thấy đồng thời trạng thái đang tải và đang chờ",
+      "actual": "Dòng đang chờ: 7; tổng dòng đang hiển thị: 10",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-chup-anh-khi-dang-tai.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Chờ tất cả xử lý xong",
+      "expected": "10 dòng Sẵn sàng; hạn mức 10/100 tài liệu",
+      "actual": "10 dòng Sẵn sàng; hạn mức hiển thị 12/100 (gồm chỗ đặt của lô khác chưa hết hạn)",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-cho-tat-ca-xu-ly-xong.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/E2E-004-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-004_tai-10-file-song-song.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

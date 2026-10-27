@@ -1,0 +1,76 @@
+{
+  "id": "API-022",
+  "title": "Đặt câu hỏi idempotent",
+  "folder": "API-022_dat-cau-hoi-idempotent",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:17:07.715Z",
+  "finishedAt": "2026-10-27T14:17:20.988Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-va-cho-san-sang.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "POST câu hỏi với client_request_id = R",
+      "expected": "200, có message_id M",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-post-cau-hoi-voi-client-request-id-r.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "POST lại cùng R và cùng câu hỏi",
+      "expected": "200, cùng message_id, cùng answer",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-post-lai-cung-r-va-cung-cau-hoi.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "POST R với câu hỏi khác",
+      "expected": "422 idempotency_mismatch",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-post-r-voi-cau-hoi-khac.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "GET /conversations/current",
+      "expected": "Chỉ có 1 lượt cho R",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-get-conversations-current.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-022-app.webm",
+    "video/API-022-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-022_dat-cau-hoi-idempotent.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

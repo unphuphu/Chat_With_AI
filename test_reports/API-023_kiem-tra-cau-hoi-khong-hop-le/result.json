@@ -1,0 +1,86 @@
+{
+  "id": "API-023",
+  "title": "Kiểm tra câu hỏi không hợp lệ",
+  "folder": "API-023_kiem-tra-cau-hoi-khong-hop-le",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-26T16:22:07.324Z",
+  "finishedAt": "2026-10-26T16:22:19.214Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P1 và đảm bảo có ít nhất 1 tài liệu Sẵn sàng",
+      "expected": "Danh sách có tài liệu trạng thái Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p1-va-dam-bao-co-it-nhat-1-tai-lieu-san-.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Lấy hội thoại hiện tại",
+      "expected": "200, có id hội thoại",
+      "actual": "conversation_id=1e188256-e0e7-4d0d-84aa-62221c12d1b1",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-lay-hoi-thoai-hien-tai.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Gửi câu hỏi chỉ có khoảng trắng",
+      "expected": "422, code = empty_question, application/problem+json",
+      "actual": "HTTP 422 empty_question",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-gui-cau-hoi-chi-co-khoang-trang.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Gửi câu hỏi 2.001 ký tự",
+      "expected": "422, code = question_too_long",
+      "actual": "HTTP 422 question_too_long",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-gui-cau-hoi-2-001-ky-tu.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Gửi câu hỏi vào hội thoại không tồn tại",
+      "expected": "404",
+      "actual": "HTTP 404",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-gui-cau-hoi-vao-hoi-thoai-khong-ton-tai.png"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Kiểm tra giao diện: không gửi được câu trống",
+      "expected": "Nút Gửi bị vô hiệu khi ô hỏi chỉ có khoảng trắng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/06-kiem-tra-giao-dien-khong-gui-duoc-cau-trong.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-023-app.webm",
+    "video/API-023-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-023_kiem-tra-cau-hoi-khong-hop-le.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

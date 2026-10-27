@@ -1,0 +1,53 @@
+{
+  "id": "ACC-003",
+  "title": "Độ tương phản màu",
+  "folder": "ACC-003_do-tuong-phan-mau",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:09:36.790Z",
+  "finishedAt": "2026-10-27T16:10:08.380Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và scan; chạy axe color-contrast (giao diện sáng)",
+      "expected": "0 vi phạm",
+      "actual": "màn hình chính (sáng): đạt, 0 vi phạm",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-va-scan-chay-axe-c.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Giao diện tối (colorScheme: dark), chạy lại",
+      "expected": "0 vi phạm",
+      "actual": "màn hình chính (tối): đạt, 0 vi phạm",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-giao-dien-toi-colorscheme-dark-chay-lai.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Lặp lại trên S09, S10, S11 và dialog xóa (sáng và tối)",
+      "expected": "0 vi phạm",
+      "actual": "Vi phạm tương phản (dialog xóa (dark)): .btn-danger: Element has insufficient color contrast of 2.42 (foreground color: #ffffff, background color: #f08a80, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+      "status": "Không đạt",
+      "screenshots": [
+        "screenshots/03-lap-lai-tren-s09-s10-s11-va-dialog-xoa-sang-va-toi.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/ACC-003-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/ACC-003_do-tuong-phan-mau.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

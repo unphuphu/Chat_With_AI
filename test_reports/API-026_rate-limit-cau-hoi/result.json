@@ -1,0 +1,66 @@
+{
+  "id": "API-026",
+  "title": "Rate limit câu hỏi",
+  "folder": "API-026_rate-limit-cau-hoi",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:18:33.810Z",
+  "finishedAt": "2026-10-27T14:20:57.421Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập Quản trị viên, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-quan-tri-vien-tai-hop-dong-a-pdf-va-cho-.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Gửi 10 câu hỏi khác nhau liên tiếp trong cùng một phút",
+      "expected": "10 phản hồi 200",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-gui-10-cau-hoi-khac-nhau-lien-tiep-trong-cung-mot-.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Gửi câu thứ 11",
+      "expected": "429 rate_limited; Retry-After > 0; RateLimit-Remaining: 0",
+      "actual": "Retry-After=54, RateLimit-Limit=10",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-gui-cau-thu-11.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Chờ hết Retry-After rồi gửi lại",
+      "expected": "200",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-cho-het-retry-after-roi-gui-lai.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-026-app.webm",
+    "video/API-026-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-026_rate-limit-cau-hoi.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

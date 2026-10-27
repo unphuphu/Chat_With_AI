@@ -1,0 +1,56 @@
+{
+  "id": "API-002",
+  "title": "Callback từ chối người ngoài nhóm và open redirect",
+  "folder": "API-002_callback-tu-choi-nguoi-ngoai-nhom-va-open-redirect",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:00:31.984Z",
+  "finishedAt": "2026-10-27T14:00:38.718Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Mở /api/v1/auth/login?return_to=https://evil.example rồi chọn P1",
+      "expected": "Sau callback về http://localhost:8080/ (không tới evil.example)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-mo-api-v1-auth-login-return-to-https-evil-example-.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Đăng xuất; mở / và chọn Người ngoài nhóm",
+      "expected": "URL /access-denied; trang Bạn chưa được cấp quyền",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-dang-xuat-mo-va-chon-nguoi-ngoai-nhom.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "GET /api/v1/me trong phiên đó",
+      "expected": "401 unauthenticated – không có phiên",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-get-api-v1-me-trong-phien-do.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-002-app.webm",
+    "video/API-002-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-002_callback-tu-choi-nguoi-ngoai-nhom-va-open-redirect.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

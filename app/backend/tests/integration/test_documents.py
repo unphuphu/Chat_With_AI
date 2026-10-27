@@ -172,3 +172,23 @@ async def test_unauthenticated_and_csrf(app_client) -> None:
     await login(app_client, "p1")
     r = await app_client.post("/api/v1/upload-batches", json={"files": [{"name": "a.pdf", "size_bytes": 1}]})
     assert r.status_code == 403 and r.json()["code"] == "csrf_invalid"
+
+
+async def test_ingest_large_document(app_client, worker, tmp_path, container) -> None:
+    """Tài liệu 40 trang → INSERT ~40 đoạn kèm vector vượt nhiều gói TCP 64 KB. devdb phải gom đủ message trước
+    khi chuyển cho PGlite (nếu không: WASM trap 'unreachable', CSDL chết – lỗi gặp khi demo 26/10)."""
+    from tests.fixtures.pdfgen import text_pdf
+
+    body = " ".join(f"Điều {i}. Bên B thực hiện nghĩa vụ số {i} theo phụ lục {i} của hợp đồng." for i in range(35))
+    big = text_pdf(tmp_path / "hop-dong-dai.pdf", [body] * 40)
+    container.settings.__dict__["max_pages"] = 60
+    try:
+        await login(app_client, "p1")
+        doc = await upload_ready(app_client, worker, big)
+    finally:
+        container.settings.__dict__["max_pages"] = 5
+    async with container.db.admin() as conn:
+        n = (await (await conn.execute("SELECT count(*) AS n FROM chunk WHERE document_id=%s",
+                                       (doc["id"],))).fetchone())["n"]
+    assert n >= 40
+    assert (await app_client.get("/api/v1/me")).status_code == 200  # CSDL vẫn sống

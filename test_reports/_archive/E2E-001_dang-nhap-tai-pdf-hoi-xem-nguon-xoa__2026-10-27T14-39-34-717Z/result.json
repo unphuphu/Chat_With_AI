@@ -1,0 +1,81 @@
+{
+  "id": "E2E-001",
+  "title": "Đăng nhập, tải PDF, hỏi, xem nguồn, xóa",
+  "folder": "E2E-001_dang-nhap-tai-pdf-hoi-xem-nguon-xoa",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:35:05.494Z",
+  "finishedAt": "2026-10-27T14:38:04.611Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2 (Trần Minh), xóa tài liệu cũ",
+      "expected": "Màn hình chính; Chưa có tài liệu nào; ô hỏi khóa",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tran-minh-xoa-tai-lieu-cu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chọn cùng lúc hop-dong-A.pdf, ho-so-scan-2019.pdf, bao-gia.docx",
+      "expected": "docx: Không nhận – \"không phải file PDF hợp lệ\"; 2 PDF vào hàng đợi",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-chon-cung-luc-hop-dong-a-pdf-ho-so-scan-2019-pdf-b.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Chờ xử lý xong",
+      "expected": "hop-dong-A.pdf Sẵn sàng; ho-so-scan-2019.pdf Thất bại (PDF scan), không có nút Xử lý lại",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-cho-xu-ly-xong.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Hỏi \"Bên B thanh toán trong vòng bao nhiêu ngày?\" (Enter)",
+      "expected": "Câu trả lời chứa \"30 ngày\" và chip [1] hop-dong-A.pdf · tr.2",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-hoi-ben-b-thanh-toan-trong-vong-bao-nhieu-ngay-ent.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Hỏi \"Đối thủ cạnh tranh tại thị trường Nhật Bản là ai?\"",
+      "expected": "Thẻ Chưa đủ thông tin, không có phần nguồn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-hoi-doi-thu-canh-tranh-tai-thi-truong-nhat-ban-la-.png"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Bấm chip [1] hop-dong-A.pdf · tr.2",
+      "expected": "Dialog trình xem: hop-dong-A.pdf, \"Mở từ nguồn [1] · trang 2\", PDF hiển thị",
+      "actual": "locator.click: Target page, context or browser has been closed Call log: \u001b[2m  - waiting for locator('article.a').last().getByRole('button', { name: /Mở nguồn 1/ })\u001b[22m ",
+      "status": "Không đạt",
+      "screenshots": []
+    }
+  ],
+  "videos": [
+    "video/E2E-001-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-001_dang-nhap-tai-pdf-hoi-xem-nguon-xoa.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

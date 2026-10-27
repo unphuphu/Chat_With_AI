@@ -1,0 +1,86 @@
+{
+  "id": "E2E-010",
+  "title": "Xử lý lại tài liệu lỗi tạm thời",
+  "folder": "E2E-010_xu-ly-lai-tai-lieu-loi-tam-thoi",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:21:33.286Z",
+  "finishedAt": "2026-10-27T15:25:43.963Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Khởi động lại với dịch vụ embedding không tồn tại",
+      "expected": "Ứng dụng sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-khoi-dong-lai-voi-dich-vu-embedding-khong-ton-tai.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và ho-so-scan-2019.pdf",
+      "expected": "Đang xử lý",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-dang-nhap-p2-tai-hop-dong-a-pdf-va-ho-so-scan-2019.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Chờ hết 3 lần thử (backoff 30 s + 120 s)",
+      "expected": "Dòng Thất bại – \"Lỗi xử lý tạm thời…\", có nút Xử lý lại",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-cho-het-3-lan-thu-backoff-30-s-120-s.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "So sánh với ho-so-scan-2019.pdf (R-03)",
+      "expected": "Không có nút Xử lý lại",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-so-sanh-voi-ho-so-scan-2019-pdf-r-03.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Cấu hình mặc định đã khôi phục; tải lại trang",
+      "expected": "Dòng hop-dong-A.pdf vẫn Thất bại R-04",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-cau-hinh-mac-dinh-da-khoi-phuc-tai-lai-trang.png"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Bấm Xử lý lại",
+      "expected": "Dòng chuyển Đang xử lý → Sẵn sàng; không phải tải lại file",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/06-bam-xu-ly-lai.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/E2E-010-app.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Khởi động lại ứng dụng với {\"EMBEDDING_PROVIDER\":\"http\",\"EMBEDDING_URL\":\"http://127.0.0.1:9\"}: [app] restart xong – http://localhost:8080/ sẵn sàng",
+    "Khởi động lại ứng dụng với {}: [app] restart xong – http://localhost:8080/ sẵn sàng"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-010_xu-ly-lai-tai-lieu-loi-tam-thoi.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "UT-004",
+  "title": "Trích văn bản và kiểm tra PDF",
+  "folder": "UT-004_trich-van-ban-va-kiem-tra-pdf",
+  "mode": "Tự động – dòng lệnh (app/frontend/evidence/record-cli.ts)",
+  "startedAt": "2026-10-27T13:56:48.786Z",
+  "finishedAt": "2026-10-27T13:57:01.885Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Chạy: .venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_algorithms.py::test_extract_and_inspect",
+      "expected": "Lệnh kết thúc với mã 0",
+      "actual": "Mã thoát 0",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-ket-qua-lenh.png",
+        "screenshots/02-toan-bo-output.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UT-004-cli.webm"
+  ],
+  "logs": [
+    "logs/output.log"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Thư mục chạy": "C:\\XUANPHU\\Hoc AI\\Chat_With_AI\\app\\backend"
+  },
+  "verdict": "ĐẠT"
+}

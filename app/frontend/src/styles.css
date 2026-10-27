@@ -198,3 +198,10 @@ button,input,textarea{font:inherit;color:inherit}
 .toast .timer span{animation:shrink 5s linear forwards;width:100%}
 @keyframes shrink{to{width:0}}
 .loading-page{min-height:100vh;display:grid;place-items:center;color:var(--text-muted)}
+
+/* ---------- sửa lỗi phát hiện qua test case ---------- */
+/* ACC-003: giao diện tối – nút nguy hiểm dùng nền sáng nên chữ phải tối (tương phản ≥ 4,5:1) */
+:root[data-theme="dark"] .btn-danger{color:var(--text-inverse)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn-danger{color:var(--text-inverse)}}
+/* ACC-007: phải đặt SAU các quy tắc định nghĩa animation (.spin, .dots span) thì mới thắng được */
+@media (prefers-reduced-motion: reduce){.spin,.dots span,.toast,.toast .timer span{animation:none!important}}

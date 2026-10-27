@@ -1,0 +1,53 @@
+{
+  "id": "UI-005",
+  "title": "Trạng thái chờ",
+  "folder": "UI-005_trang-thai-cho",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:00:05.330Z",
+  "finishedAt": "2026-10-27T16:00:15.651Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2; tải file (làm chậm request 3 s)",
+      "expected": "Đang tải lên x% + thanh tiến độ",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-file-lam-cham-request-3-s.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chụp khi đang xử lý",
+      "expected": "Đang xử lý có biểu tượng xoay",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-chup-khi-dang-xu-ly.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Gửi câu hỏi, chụp ngay",
+      "expected": "Thẻ Trợ lý tài liệu có ba chấm và \"Đang tìm trong tài liệu và soạn câu trả lời…\"",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-gui-cau-hoi-chup-ngay.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UI-005-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/UI-005_trang-thai-cho.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

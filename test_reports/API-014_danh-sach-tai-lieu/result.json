@@ -1,0 +1,46 @@
+{
+  "id": "API-014",
+  "title": "Danh sách tài liệu",
+  "folder": "API-014_danh-sach-tai-lieu",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:15:10.278Z",
+  "finishedAt": "2026-10-27T14:15:21.275Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-va-cho-san-sang.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "GET /api/v1/documents",
+      "expected": "200; items[0] đủ trường, status=READY; documents_used=1, documents_limit=100",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-get-api-v1-documents.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-014-app.webm",
+    "video/API-014-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-014_danh-sach-tai-lieu.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

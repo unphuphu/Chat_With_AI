@@ -1,0 +1,68 @@
+{
+  "id": "UI-008",
+  "title": "Giao diện tối",
+  "folder": "UI-008_giao-dien-toi",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:00:47.562Z",
+  "finishedAt": "2026-10-27T16:01:04.731Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf, hỏi một câu; bật colorScheme: dark",
+      "expected": "Nền tối, chữ sáng",
+      "actual": "body: nền rgb(17, 21, 27), chữ rgb(230, 234, 240)",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-hoi-mot-cau-bat-co.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chụp dialog xóa và trình xem trong giao diện tối",
+      "expected": "Không có khối màu sáng lạc",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-dialog-xoa-toi.png",
+        "screenshots/03-trinh-xem-toi.png",
+        "screenshots/04-chup-dialog-xoa-va-trinh-xem-trong-giao-dien-toi.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Chụp S09, S10, S11 giao diện tối",
+      "expected": "Đúng màu",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-trang-access-denied-toi.png",
+        "screenshots/06-trang-login-error-toi.png",
+        "screenshots/07-trang-session-expired-toi.png",
+        "screenshots/08-chup-s09-s10-s11-giao-dien-toi.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Designer đánh giá ảnh",
+      "expected": "Không lỗi màu",
+      "actual": "Ảnh giao diện tối đã chụp cho màn hình chính, dialog xóa, trình xem, S09–S11 – Designer xác nhận.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/09-designer-danh-gia-anh.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UI-008-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/UI-008_giao-dien-toi.spec.ts"
+  },
+  "verdict": "CẦN NGƯỜI XÁC NHẬN"
+}

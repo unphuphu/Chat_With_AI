@@ -1,0 +1,17 @@
+$ .venv/Scripts/python.exe scripts/audit_deps.py
+(cwd: C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend)
+
+
+=== pip-audit (backend)
+$ C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend\.venv\Scripts\python.exe -m pip_audit -r requirements.txt --progress-spinner off  (cwd: C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend)
+No known vulnerabilities found
+
+=== npm audit --omit=dev (frontend)
+$ C:\nvm4w\nodejs\npm.CMD audit --omit=dev --json  (cwd: C:\XUANPHU\Hoc AI\Chat_With_AI\app\frontend)
+Lỗ hổng: {'info': 0, 'low': 0, 'moderate': 0, 'high': 0, 'critical': 0, 'total': 0}
+
+=== npm audit --omit=dev (devdb)
+$ C:\nvm4w\nodejs\npm.CMD audit --omit=dev --json  (cwd: C:\XUANPHU\Hoc AI\Chat_With_AI\app\devdb)
+Lỗ hổng: {'info': 0, 'low': 0, 'moderate': 0, 'high': 0, 'critical': 0, 'total': 0}
+
+KẾT LUẬN: Không có lỗ hổng High/Critical

@@ -1,0 +1,76 @@
+{
+  "id": "PERF-006",
+  "title": "Hiệu năng giao diện",
+  "folder": "PERF-006_hieu-nang-giao-dien",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:24:34.284Z",
+  "finishedAt": "2026-10-27T16:31:11.661Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập Quản trị viên, xóa tài liệu cũ; tải 100 tài liệu (10 lô × 10 file)",
+      "expected": "documents_used = 100",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-quan-tri-vien-xoa-tai-lieu-cu-tai-100-ta.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Tải lại trang với 100 tài liệu; đo LCP",
+      "expected": "LCP < 2,5 s",
+      "actual": "LCP = 1112 ms",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-tai-lai-trang-voi-100-tai-lieu-do-lcp.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Cuộn danh sách 100 tài liệu từ đầu tới cuối",
+      "expected": "Không lỗi console; cuộn được",
+      "actual": "Chiều cao danh sách 9812 px; 0 lỗi trang",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-cuon-danh-sach-100-tai-lieu-tu-dau-toi-cuoi.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Bật CPU throttling 4×, tải lại, đo LCP",
+      "expected": "LCP < 4 s (ghi nhận)",
+      "actual": "LCP (CPU 4×) = 1360 ms",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-bat-cpu-throttling-4-tai-lai-do-lcp.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Dọn dẹp: xóa 100 tài liệu thử",
+      "expected": "Danh sách rỗng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-don-dep-xoa-100-tai-lieu-thu.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/PERF-006-app.webm",
+    "video/PERF-006-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/PERF-006_hieu-nang-giao-dien.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

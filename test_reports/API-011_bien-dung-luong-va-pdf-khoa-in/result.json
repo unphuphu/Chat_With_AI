@@ -1,0 +1,68 @@
+{
+  "id": "API-011",
+  "title": "Biên dung lượng và PDF khóa in",
+  "folder": "API-011_bien-dung-luong-va-pdf-khoa-in",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:12:53.790Z",
+  "finishedAt": "2026-10-27T14:13:26.675Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, xóa tài liệu cũ",
+      "expected": "Danh sách rỗng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-xoa-tai-lieu-cu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "PUT lon.pdf ~20,5 MB (qua API, bỏ qua kiểm tra phía giao diện)",
+      "expected": "422 too_large; detail nêu tên file và giới hạn 20 MB",
+      "actual": "HTTP 422; detail=\"\"lon.pdf\" vượt quá 20 MB.\"",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-put-lon-pdf-20-5-mb-qua-api-bo-qua-kiem-tra-phia-g.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Ghi nhận: detail có nêu dung lượng thực tế của file không",
+      "expected": "Ghi nhận (DEF-T-001)",
+      "actual": "detail chỉ nêu tên file và giới hạn 20 MB, KHÔNG nêu dung lượng thực tế (~20,5 MB) → DEF-T-001 vẫn mở",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-ghi-nhan-detail-co-neu-dung-luong-thuc-te-cua-file.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "PUT hop-dong-khoa-in.pdf",
+      "expected": "201 PROCESSING → READY",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-put-hop-dong-khoa-in-pdf.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-011-app.webm",
+    "video/API-011-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [
+    "DEF-T-001 (Medium): thông báo từ chối quá dung lượng chưa nêu dung lượng thực tế của file như US-004 AC 1."
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-011_bien-dung-luong-va-pdf-khoa-in.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

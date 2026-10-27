@@ -1,0 +1,46 @@
+{
+  "id": "E2E-011",
+  "title": "Vượt giới hạn số file và hạn mức",
+  "folder": "E2E-011_vuot-gioi-han-so-file-va-han-muc",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:56:17.031Z",
+  "finishedAt": "2026-10-27T14:57:06.017Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, xóa tài liệu cũ; chọn 12 file PDF cùng lúc",
+      "expected": "Thông báo \"Mỗi lần chỉ tải tối đa 10 file – bạn đã chọn 12 file\"; danh sách không đổi",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-xoa-tai-lieu-cu-chon-12-file-pdf-cung.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Khởi động lại với MAX_DOCS_PER_WORKSPACE=6; tải 2 file",
+      "expected": "Cảnh báo \"Sắp đạt giới hạn… còn 4 tài liệu\"; huy hiệu hạn mức màu cảnh báo",
+      "actual": "page.goto: Navigation to \"http://localhost:8080/\" is interrupted by another navigation to \"http://localhost:8080/\" Call log: \u001b[2m  - navigating to \"http://localhost:8080/\", waiting until \"load\"\u001b[22m ",
+      "status": "Không đạt",
+      "screenshots": [
+        "screenshots/02-khoi-dong-lai-voi-max-docs-per-workspace-6-tai-2-f.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/E2E-011-app.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Khởi động lại ứng dụng với {\"MAX_DOCS_PER_WORKSPACE\":\"6\"}: [app] restart xong – http://localhost:8080/ sẵn sàng",
+    "Khởi động lại ứng dụng với {}: [app] restart xong – http://localhost:8080/ sẵn sàng"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-011_vuot-gioi-han-so-file-va-han-muc.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

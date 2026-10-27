@@ -1,0 +1,66 @@
+{
+  "id": "SEC-004",
+  "title": "CSRF cho mọi thao tác ghi",
+  "folder": "SEC-004_csrf-cho-moi-thao-tac-ghi",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:46:00.777Z",
+  "finishedAt": "2026-10-27T15:46:17.821Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-va-cho-san-sang.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Gọi 5 thao tác ghi KHÔNG có X-CSRF-Token",
+      "expected": "Mỗi request 403 csrf_invalid",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-goi-5-thao-tac-ghi-khong-co-x-csrf-token.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Gọi lại với token sai (X-CSRF-Token: abc)",
+      "expected": "403",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-goi-lai-voi-token-sai-x-csrf-token-abc.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Kiểm tra trạng thái",
+      "expected": "Tài liệu vẫn còn; không có lượt hỏi mới",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-kiem-tra-trang-thai.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-004-app.webm",
+    "video/SEC-004-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/SEC-004_csrf-cho-moi-thao-tac-ghi.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

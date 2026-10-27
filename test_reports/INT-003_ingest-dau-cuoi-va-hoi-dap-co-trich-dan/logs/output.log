@@ -1,0 +1,15 @@
+$ .venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/integration/test_slice1.py::test_upload_process_ask
+(cwd: C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend)
+
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.14.2, pytest-9.1.1, pluggy-1.7.0 -- C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend\.venv\Scripts\python.exe
+hypothesis profile 'default'
+rootdir: C:\XUANPHU\Hoc AI\Chat_With_AI\app\backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.170.11, asyncio-1.4.1
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+[1mcollecting ... [0mcollected 1 item
+
+tests/integration/test_slice1.py::test_upload_process_ask [32mPASSED[0m[32m         [100%][0m
+
+[32m============================== [32m[1m1 passed[0m[32m in 7.79s[0m[32m ==============================[0m

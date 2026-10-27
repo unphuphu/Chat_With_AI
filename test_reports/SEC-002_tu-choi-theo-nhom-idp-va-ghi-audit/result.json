@@ -1,0 +1,53 @@
+{
+  "id": "SEC-002",
+  "title": "Từ chối theo nhóm IdP và ghi audit",
+  "folder": "SEC-002_tu-choi-theo-nhom-idp-va-ghi-audit",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:45:31.338Z",
+  "finishedAt": "2026-10-27T15:45:46.448Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập Người ngoài nhóm",
+      "expected": "Trang /access-denied",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-nguoi-ngoai-nhom.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Đọc cookie",
+      "expected": "Không có cookie sid",
+      "actual": "Cookie hiện có: (không có)",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-doc-cookie.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Kiểm tra audit: chạy pytest test_outsider_denied_and_audited",
+      "expected": "1 passed – có 1 bản ghi login_denied",
+      "actual": "\u001b[32m\u001b[32m\u001b[1m1 passed\u001b[0m\u001b[32m in 3.55s\u001b[0m\u001b[0m",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-kiem-tra-audit-chay-pytest-test-outsider-denied-an.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-002-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/SEC-002_tu-choi-theo-nhom-idp-va-ghi-audit.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

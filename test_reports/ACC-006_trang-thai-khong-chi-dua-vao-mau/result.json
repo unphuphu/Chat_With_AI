@@ -1,0 +1,53 @@
+{
+  "id": "ACC-006",
+  "title": "Trạng thái không chỉ dựa vào màu",
+  "folder": "ACC-006_trang-thai-khong-chi-dua-vao-mau",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:51:03.817Z",
+  "finishedAt": "2026-10-27T15:51:22.685Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2; tạo đủ 3 trạng thái (Đang xử lý, Sẵn sàng, Thất bại)",
+      "expected": "Mỗi dòng có biểu tượng + chữ trạng thái",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tao-du-3-trang-thai-dang-xu-ly-san-sa.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chế độ tương phản cao (forcedColors: active)",
+      "expected": "Vẫn phân biệt được trạng thái",
+      "actual": "Trạng thái hiển thị bằng chữ: Sẵn sàng | Thất bại | Sẵn sàng",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-che-do-tuong-phan-cao-forcedcolors-active.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Xem ảnh ở thang xám (grayscale)",
+      "expected": "Phân biệt được Sẵn sàng / Thất bại / Chưa đủ thông tin bằng chữ",
+      "actual": "Ảnh chụp ở thang xám: trạng thái và nhãn loại câu trả lời vẫn đọc được nhờ biểu tượng + chữ (người đánh giá xác nhận bằng ảnh).",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/03-xem-anh-o-thang-xam-grayscale.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/ACC-006-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/ACC-006_trang-thai-khong-chi-dua-vao-mau.spec.ts"
+  },
+  "verdict": "CẦN NGƯỜI XÁC NHẬN"
+}

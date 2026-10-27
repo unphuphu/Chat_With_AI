@@ -1,0 +1,83 @@
+{
+  "id": "ACC-005",
+  "title": "Quản lý focus",
+  "folder": "ACC-005_quan-ly-focus",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:36:11.486Z",
+  "finishedAt": "2026-10-27T16:36:24.551Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf, hỏi một câu",
+      "expected": "Có câu trả lời với nguồn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-hoi-mot-cau.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Mở dialog xóa",
+      "expected": "document.activeElement = nút Hủy",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-mo-dialog-xoa.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Esc",
+      "expected": "Dialog đóng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-esc.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Bấm chip nguồn",
+      "expected": "Focus ở nút Đóng của trình xem",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-bam-chip-nguon.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Esc",
+      "expected": "Focus về đúng chip vừa bấm",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-esc.png"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Kiểm tra focus không lọt ra phía sau dialog khi đang mở (Tab và Shift+Tab nhiều lần)",
+      "expected": "Focus chỉ xoay vòng trong dialog (bẫy focus)",
+      "actual": "12 lần Tab/Shift+Tab: trong-dialog → có bẫy focus",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/06-kiem-tra-focus-khong-lot-ra-phia-sau-dialog-khi-da.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/ACC-005-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/ACC-005_quan-ly-focus.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

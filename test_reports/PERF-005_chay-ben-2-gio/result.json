@@ -1,0 +1,35 @@
+{
+  "id": "PERF-005",
+  "title": "Chạy bền 2 giờ",
+  "folder": "PERF-005_chay-ben-2-gio",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:14:28.451Z",
+  "finishedAt": "2026-10-27T15:14:34.932Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Staging + k6 + giám sát bộ nhớ/kết nối trong 2 giờ.",
+      "actual": "Máy dev chưa có k6 và chưa có staging; kết quả trên PGlite (một kết nối) không đại diện cho hiệu năng thật.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/PERF-005-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Máy dev chưa có k6 và chưa có staging; kết quả trên PGlite (một kết nối) không đại diện cho hiệu năng thật.",
+    "Cần: Staging + k6 + giám sát bộ nhớ/kết nối trong 2 giờ."
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

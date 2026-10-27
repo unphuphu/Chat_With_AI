@@ -12,6 +12,7 @@ Ctrl+C dừng tất cả.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import shutil
 import socket
@@ -26,6 +27,7 @@ BACKEND = ROOT / "backend"
 FRONTEND = ROOT / "frontend"
 DEVDB = ROOT / "devdb"
 DATA = ROOT / ".data"
+PIDS = DATA / "run.pids.json"
 WIN = sys.platform == "win32"
 NPM = "npm.cmd" if WIN else "npm"
 NODE = shutil.which("node") or "node"
@@ -54,10 +56,16 @@ def port_busy(port: int) -> bool:
 def pump(name: str, proc: subprocess.Popen[bytes]) -> None:
     color = COLORS.get(name, "0")
     assert proc.stdout is not None
+    writable = True
     for raw in iter(proc.stdout.readline, b""):
+        if not writable:
+            continue  # vẫn đọc hết đường ống: nếu ngừng đọc, tiến trình con ghi log sẽ lỗi (BrokenPipe) → HTTP 500
         line = raw.decode("utf-8", "replace").rstrip()
-        sys.stdout.write(f"\x1b[{color}m{name:>6}\x1b[0m | {line}\n")
-        sys.stdout.flush()
+        try:
+            sys.stdout.write(f"\x1b[{color}m{name:>6}\x1b[0m | {line}\n")
+            sys.stdout.flush()
+        except (OSError, ValueError):  # console/tệp log của run.py không còn ghi được (vd. trình khởi chạy đã thoát)
+            writable = False
 
 
 def start(name: str, cmd: list[str], cwd: Path, env: dict[str, str] | None = None) -> subprocess.Popen[bytes]:
@@ -117,6 +125,9 @@ def main() -> None:
             p = start("web", [NODE, "node_modules/vite/bin/vite.js", "--host", "127.0.0.1"], FRONTEND)
             procs.append(("web", p))
             wait_port(8080, 90, p, "web")
+        # PID của run.py và các tiến trình con – để công cụ test (app/frontend/evidence/app.ts) dừng được cả cây
+        # tiến trình khi run.py bị dừng cưỡng bức (khi đó khối finally bên dưới không chạy)
+        PIDS.write_text(json.dumps({"run": os.getpid(), **{n: pr.pid for n, pr in procs}}), encoding="utf-8")
         url = "http://localhost:8080" if not args.no_web else "http://localhost:8000/api/v1/docs"
         print(f"\n[run] Sẵn sàng → {url}  (đăng nhập: chọn người dùng mẫu p1). Ctrl+C để dừng.\n", flush=True)
         while all(pr.poll() is None for _, pr in procs):
@@ -134,6 +145,7 @@ def main() -> None:
                 pr.wait(8)
             except subprocess.TimeoutExpired:
                 pr.kill()
+        PIDS.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":

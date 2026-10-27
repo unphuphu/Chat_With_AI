@@ -1,0 +1,66 @@
+{
+  "id": "SEC-001",
+  "title": "Truy cập không có phiên",
+  "folder": "SEC-001_truy-cap-khong-co-phien",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:45:21.497Z",
+  "finishedAt": "2026-10-27T15:45:29.820Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Gọi /me, /documents, /conversations/current, /events khi chưa đăng nhập",
+      "expected": "Mỗi request 401 unauthenticated",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-goi-me-documents-conversations-current-events-khi-.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Mở http://localhost:8080/",
+      "expected": "Chuyển tới trang IdP",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-mo-http-localhost-8080.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Đăng nhập P1, đăng xuất; gọi lại GET /documents",
+      "expected": "401",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-dang-nhap-p1-dang-xuat-goi-lai-get-documents.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Gửi cookie sid giả rồi gọi /me",
+      "expected": "401",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-gui-cookie-sid-gia-roi-goi-me.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-001-app.webm",
+    "video/SEC-001-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/SEC-001_truy-cap-khong-co-phien.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

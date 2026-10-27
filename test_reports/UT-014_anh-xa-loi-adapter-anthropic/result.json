@@ -1,0 +1,35 @@
+{
+  "id": "UT-014",
+  "title": "Ánh xạ lỗi adapter Anthropic",
+  "folder": "UT-014_anh-xa-loi-adapter-anthropic",
+  "mode": "Tự động – dòng lệnh (app/frontend/evidence/record-cli.ts)",
+  "startedAt": "2026-10-27T14:00:39.423Z",
+  "finishedAt": "2026-10-27T14:01:13.456Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Chạy: .venv/Scripts/python.exe -m pytest -v -p no:cacheprovider tests/unit/test_llm_anthropic.py",
+      "expected": "Lệnh kết thúc với mã 0",
+      "actual": "Mã thoát 0",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-ket-qua-lenh.png",
+        "screenshots/02-toan-bo-output.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UT-014-cli.webm"
+  ],
+  "logs": [
+    "logs/output.log"
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Thư mục chạy": "C:\\XUANPHU\\Hoc AI\\Chat_With_AI\\app\\backend"
+  },
+  "verdict": "ĐẠT"
+}

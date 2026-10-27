@@ -1,0 +1,88 @@
+{
+  "id": "API-010",
+  "title": "Từ chối file không hợp lệ",
+  "folder": "API-010_tu-choi-file-khong-hop-le",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:12:06.415Z",
+  "finishedAt": "2026-10-27T14:12:50.247Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, xóa tài liệu cũ",
+      "expected": "Danh sách rỗng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-xoa-tai-lieu-cu.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "PUT qua-nhieu-trang.pdf (301 trang)",
+      "expected": "422 too_many_pages; detail nêu tên file và giới hạn",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-put-qua-nhieu-trang-pdf-301-trang.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "PUT hop-dong-mat-khau.pdf",
+      "expected": "422 encrypted; \"… được bảo vệ bằng mật khẩu.\"",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-put-hop-dong-mat-khau-pdf.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "PUT hong.pdf, bao-gia.docx, gia-mao.pdf",
+      "expected": "Mỗi file 422 not_pdf, application/problem+json",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-put-hong-pdf-bao-gia-docx-gia-mao-pdf.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "PUT ho-so-scan-2019.pdf",
+      "expected": "201 PROCESSING",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-put-ho-so-scan-2019-pdf.png"
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Chờ xử lý; GET /documents",
+      "expected": "Chỉ có ho-so-scan-2019.pdf: FAILED R-03, retryable=false; file bị từ chối không xuất hiện",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/06-cho-xu-ly-get-documents.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-010-app.webm",
+    "video/API-010-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [
+    "DEF-T-002: PDF hỏng/có mật khẩu bị từ chối 422 ngay lúc tải lên (theo thiết kế), PRD yêu cầu \"Thất bại\" R-01/R-02 – chờ PO quyết định."
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-010_tu-choi-file-khong-hop-le.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

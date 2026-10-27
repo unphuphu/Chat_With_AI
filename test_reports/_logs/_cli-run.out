@@ -1,0 +1,34 @@
+[evidence] UT-001: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-001_chunker-thuoc-tinh-chia-doan
+[evidence] UT-002: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-002_chunker-doan-khong-vuot-ranh-gioi-trang
+[evidence] UT-003: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-003_chuan-hoa-van-ban-trich-xuat
+[evidence] UT-004: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-004_trich-van-ban-va-kiem-tra-pdf
+[evidence] UT-005: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-005_danh-so-lai-trich-dan-va-loai-ma-nguon-la
+[evidence] UT-006: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-006_chua-du-thong-tin-khi-khong-con-trich-dan-hop-le
+[evidence] UT-007: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-007_escape-noi-dung-nguon-trong-prompt
+[evidence] UT-008: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-008_chu-trinh-circuit-breaker
+[evidence] UT-009: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-009_embedding-hashing
+[evidence] UT-010: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-010_bo-tra-loi-trich-xuat-chon-dung-nguon
+[evidence] UT-011: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-011_loc-noi-dung-nhay-cam-khoi-log
+[evidence] UT-012: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-012_kiem-tra-cau-hinh-khong-an-toan
+[evidence] UT-013: KHÔNG ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-013_rate-limit-cua-so-co-dinh
+[evidence] UT-014: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-014_anh-xa-loi-adapter-anthropic
+[evidence] UT-015: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\UT-015_xac-thuc-id-token-oidc
+[evidence] INT-001: KHÔNG ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-001_schema-rls-va-trigger-bat-bien
+[evidence] INT-002: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-002_pham-vi-workspace-khong-ro-giua-transaction
+[evidence] INT-003: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-003_ingest-dau-cuoi-va-hoi-dap-co-trich-dan
+[evidence] INT-004: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-004_ingest-tai-lieu-lon-40-trang
+[evidence] INT-005: KHÔNG ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-005_loi-tam-thoi-khi-ingest-r-04-xu-ly-lai
+[evidence] INT-006: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-006_xoa-khi-dang-xu-ly-thi-huy-xu-ly
+[evidence] INT-007: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-007_xoa-va-purge-file-goc
+[evidence] INT-008: KHÔNG ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-008_sweep-phat-hien-purge-bi-sot
+[evidence] INT-009: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-009_tac-vu-bao-tri-dinh-ky
+[evidence] INT-010: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-010_cau-tra-loi-trich-dung-trang
+[evidence] INT-011: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-011_truy-xuat-da-tai-lieu-voi-nguong-dev
+[evidence] INT-012: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-012_cong-nguong-bo-qua-llm
+[evidence] INT-013: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-013_circuit-breaker-o-muc-api
+[evidence] INT-014: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-014_hop-dong-openapi
+[evidence] INT-017: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-017_chi-dung-tai-lieu-san-sang
+[evidence] INT-018: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\INT-018_su-kien-analytics-day-du
+[evidence] SEC-006: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\SEC-006_rls-o-muc-co-so-du-lieu
+[evidence] SEC-007: ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\SEC-007_du-lieu-gui-toi-nha-cung-cap-ai
+[evidence] SEC-008: KHÔNG ĐẠT → C:\XUANPHU\Hoc AI\Chat_With_AI\test_reports\SEC-008_khong-lo-noi-dung-trong-analytics-audit-log

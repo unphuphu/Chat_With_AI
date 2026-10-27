@@ -1,0 +1,65 @@
+{
+  "id": "UI-004",
+  "title": "Trạng thái trống và lỗi",
+  "folder": "UI-004_trang-thai-trong-va-loi",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:11:20.146Z",
+  "finishedAt": "2026-10-27T16:11:42.506Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Chưa có tài liệu (E-01)",
+      "expected": "Chưa có tài liệu nào + hướng dẫn 3 bước; ô hỏi khóa: \"Cần ít nhất một tài liệu Sẵn sàng…\"",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-chua-co-tai-lieu-e-01.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Tải 1 file, chụp ngay khi đang xử lý (E-02)",
+      "expected": "Ô hỏi khóa: \"Đang xử lý tài liệu, bạn có thể hỏi khi…\"",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-tai-1-file-chup-ngay-khi-dang-xu-ly-e-02.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Xóa hết, chỉ tải ho-so-scan-2019.pdf (mọi tài liệu Thất bại – E-03)",
+      "expected": "Ô hỏi khóa; dòng Thất bại có lý do",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-xoa-het-chi-tai-ho-so-scan-2019-pdf-moi-tai-lieu-t.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "So với PRD E-03: có gợi ý \"kiểm tra lý do và tải file khác\" ở ô hỏi không",
+      "expected": "Ghi nhận",
+      "actual": "Lời nhắc ở ô hỏi: \"Cần ít nhất một tài liệu Sẵn sàng để bắt đầu hỏi.\". PRD E-03 yêu cầu thêm gợi ý kiểm tra lý do/tải file khác → khác biệt nhỏ, cần người xác nhận.",
+      "status": "Cần người xác nhận",
+      "screenshots": [
+        "screenshots/04-so-voi-prd-e-03-co-goi-y-kiem-tra-ly-do-va-tai-fil.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UI-004-app.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "E-03: ô hỏi chỉ hiện \"Cần ít nhất một tài liệu Sẵn sàng để bắt đầu hỏi.\" – chưa có gợi ý riêng \"kiểm tra lý do và tải file khác\" như PRD E-03; lý do thất bại hiển thị trên dòng tài liệu."
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/UI-004_trang-thai-trong-va-loi.spec.ts"
+  },
+  "verdict": "CẦN NGƯỜI XÁC NHẬN"
+}

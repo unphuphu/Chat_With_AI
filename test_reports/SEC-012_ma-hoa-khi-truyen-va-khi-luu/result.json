@@ -1,0 +1,35 @@
+{
+  "id": "SEC-012",
+  "title": "Mã hóa khi truyền và khi lưu",
+  "folder": "SEC-012_ma-hoa-khi-truyen-va-khi-luu",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:13:41.127Z",
+  "finishedAt": "2026-10-27T15:13:46.941Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Staging có HTTPS (COOKIE_SECURE=true), cấu hình mã hóa ổ đĩa CSDL/object storage, người đánh giá IT/Security.",
+      "actual": "Ứng dụng dev chạy HTTP trên localhost; chưa có TLS và chưa có hạ tầng lưu trữ mã hóa. Chưa có môi trường staging (HTTPS, PostgreSQL thật, S3, embedding bge-m3, LLM được duyệt) – T10-05 chưa triển khai.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/SEC-012-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Ứng dụng dev chạy HTTP trên localhost; chưa có TLS và chưa có hạ tầng lưu trữ mã hóa. Chưa có môi trường staging (HTTPS, PostgreSQL thật, S3, embedding bge-m3, LLM được duyệt) – T10-05 chưa triển khai.",
+    "Cần: Staging có HTTPS (COOKIE_SECURE=true), cấu hình mã hóa ổ đĩa CSDL/object storage, người đánh giá IT/Security."
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

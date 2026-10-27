@@ -1,0 +1,35 @@
+{
+  "id": "ACC-002",
+  "title": "Trình đọc màn hình NVDA",
+  "folder": "ACC-002_trinh-doc-man-hinh-nvda",
+  "mode": "Không thực thi – bị chặn (evidence/blocked.ts)",
+  "startedAt": "2026-10-27T15:16:52.275Z",
+  "finishedAt": "2026-10-27T15:16:58.973Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Kiểm tra điều kiện thực thi",
+      "expected": "Cài NVDA + Speech Viewer, người thực hiện, quay toàn màn hình.",
+      "actual": "Cần NVDA (trình đọc màn hình) trên máy Windows và người nghe/đánh giá đầu ra giọng đọc; Playwright không điều khiển được NVDA.",
+      "status": "Bị chặn",
+      "screenshots": [
+        "screenshots/01-ly-do-bi-chan.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/ACC-002-blocked.webm"
+  ],
+  "logs": [],
+  "notes": [
+    "Bị chặn: Cần NVDA (trình đọc màn hình) trên máy Windows và người nghe/đánh giá đầu ra giọng đọc; Playwright không điều khiển được NVDA.",
+    "Cần: Cài NVDA + Speech Viewer, người thực hiện, quay toàn màn hình."
+  ],
+  "verdict": "BỊ CHẶN",
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "UI-009",
+  "title": "Tương thích Chrome và Edge",
+  "folder": "UI-009_tuong-thich-chrome-va-edge",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T16:11:58.486Z",
+  "finishedAt": "2026-10-27T16:18:57.189Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Chạy luồng chính trên Edge",
+      "expected": "Đăng nhập → tải → hỏi → xem nguồn → xóa đều đạt",
+      "actual": "Bước không hoàn tất (test bị ngắt hoặc hết thời gian)",
+      "status": "Không đạt",
+      "screenshots": []
+    }
+  ],
+  "videos": [
+    "video/UI-009-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/UI-009_tuong-thich-chrome-va-edge.spec.ts"
+  },
+  "verdict": "KHÔNG ĐẠT"
+}

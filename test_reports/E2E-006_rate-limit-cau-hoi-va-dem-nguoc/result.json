@@ -1,0 +1,73 @@
+{
+  "id": "E2E-006",
+  "title": "Rate limit câu hỏi và đếm ngược",
+  "folder": "E2E-006_rate-limit-cau-hoi-va-dem-nguoc",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:45:32.556Z",
+  "finishedAt": "2026-10-27T14:47:01.552Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập Quản trị viên, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-quan-tri-vien-tai-hop-dong-a-pdf-va-cho-.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Chờ đầu phút kế tiếp rồi gửi liên tiếp 10 câu hỏi ngắn",
+      "expected": "10 câu trả lời",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-cho-dau-phut-ke-tiep-roi-gui-lien-tiep-10-cau-hoi-.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Gõ câu thứ 11 và gửi",
+      "expected": "Cảnh báo \"Bạn thao tác quá nhanh… N giây\"; nội dung câu hỏi còn trong ô; nút Gửi khóa",
+      "actual": "Đếm ngược ban đầu: 85 giây",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-go-cau-thu-11-va-gui.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Chụp ảnh sau 5 s",
+      "expected": "Số giây đếm ngược giảm",
+      "actual": "Còn 51 giây (trước đó 85)",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-chup-anh-sau-5-s.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Chờ hết đếm ngược",
+      "expected": "Cảnh báo biến mất; gửi được câu hỏi",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-cho-het-dem-nguoc.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/E2E-006-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/E2E-006_rate-limit-cau-hoi-va-dem-nguoc.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

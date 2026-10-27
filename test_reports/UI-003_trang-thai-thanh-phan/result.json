@@ -1,0 +1,73 @@
+{
+  "id": "UI-003",
+  "title": "Trạng thái thành phần",
+  "folder": "UI-003_trang-thai-thanh-phan",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T15:55:47.209Z",
+  "finishedAt": "2026-10-27T15:55:58.354Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2 (chưa có tài liệu): ô hỏi",
+      "expected": "Khóa, nền xám, dòng lý do có biểu tượng ổ khóa",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-chua-co-tai-lieu-o-hoi.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Tải file, Sẵn sàng; hover nút Chọn file PDF",
+      "expected": "Màu hover khác màu thường",
+      "actual": "Nền thường rgb(29, 91, 184) → hover rgb(23, 74, 150)",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-tai-file-san-sang-hover-nut-chon-file-pdf.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Ô hỏi trống",
+      "expected": "Nút Gửi vô hiệu",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-o-hoi-trong.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Focus vào ô hỏi",
+      "expected": "Có viền/đổ bóng focus",
+      "actual": "rgb(29, 91, 184) | rgb(231, 239, 251) 0px 0px 0px 3px",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-focus-vao-o-hoi.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Gửi câu hỏi (làm chậm 2,5 s)",
+      "expected": "Nút đổi thành \"Đang gửi…\", ô hỏi khóa tới khi có kết quả",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-gui-cau-hoi-lam-cham-2-5-s.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/UI-003-app.webm"
+  ],
+  "logs": [],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/UI-003_trang-thai-thanh-phan.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

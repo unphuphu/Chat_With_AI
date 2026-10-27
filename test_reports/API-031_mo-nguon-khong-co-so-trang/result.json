@@ -1,0 +1,56 @@
+{
+  "id": "API-031",
+  "title": "Mở nguồn không có số trang",
+  "folder": "API-031_mo-nguon-khong-co-so-trang",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:22:46.462Z",
+  "finishedAt": "2026-10-27T14:23:17.922Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "Đăng nhập P2, tải hop-dong-A.pdf và chờ Sẵn sàng",
+      "expected": "Dòng Sẵn sàng",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-dang-nhap-p2-tai-hop-dong-a-pdf-va-cho-san-sang.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "GET /documents/{id}/file?from=citation (không có page)",
+      "expected": "200 PDF",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-get-documents-id-file-from-citation-khong-co-page.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Hỏi, giả lập page_number = null (page.route), tải lại trang, bấm chip nguồn",
+      "expected": "Chip không có \"tr.\"; trình xem mở trang 1, iframe có #page=1",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-hoi-gia-lap-page-number-null-page-route-tai-lai-tr.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-031-app.webm",
+    "video/API-031-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-031_mo-nguon-khong-co-so-trang.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}

@@ -73,7 +73,7 @@ def database_url() -> Iterator[str]:
     proc = subprocess.Popen(["node", "server.mjs"], cwd=APP_DIR / "devdb", env=env,  # noqa: S607
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     url = f"postgresql://postgres:postgres@127.0.0.1:{port}/postgres?sslmode=disable"
-    deadline = time.time() + 60
+    deadline = time.time() + 120
     while time.time() < deadline:
         try:
             psycopg.connect(url, connect_timeout=2).close()

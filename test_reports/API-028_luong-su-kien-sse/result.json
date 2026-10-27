@@ -1,0 +1,78 @@
+{
+  "id": "API-028",
+  "title": "Luồng sự kiện SSE",
+  "folder": "API-028_luong-su-kien-sse",
+  "mode": "Tự động – Playwright (app/frontend/evidence/fixture.ts)",
+  "startedAt": "2026-10-27T14:21:15.154Z",
+  "finishedAt": "2026-10-27T14:22:29.101Z",
+  "steps": [
+    {
+      "n": 1,
+      "title": "GET /api/v1/events khi chưa đăng nhập",
+      "expected": "401",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/01-get-api-v1-events-khi-chua-dang-nhap.png"
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Đăng nhập P2, xóa tài liệu; mở EventSource trong trang",
+      "expected": "Kết nối mở (readyState = OPEN)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/02-dang-nhap-p2-xoa-tai-lieu-mo-eventsource-trong-tra.png"
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Tải hop-dong-A.pdf qua API",
+      "expected": "Nhận document.status_changed (PROCESSING rồi READY) và quota.changed",
+      "actual": "Sự kiện nhận được: document.status_changed, quota.changed, document.status_changed",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/03-tai-hop-dong-a-pdf-qua-api.png"
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Xóa tài liệu",
+      "expected": "Nhận thêm quota.changed",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/04-xoa-tai-lieu.png"
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Giữ kết nối 30 s",
+      "expected": "Kết nối vẫn mở (ping 25 s giữ kết nối; EventSource không hiển thị dòng comment)",
+      "actual": "Như mong đợi",
+      "status": "Đạt",
+      "screenshots": [
+        "screenshots/05-giu-ket-noi-30-s.png"
+      ]
+    }
+  ],
+  "videos": [
+    "video/API-028-app.webm",
+    "video/API-028-page2.webm"
+  ],
+  "logs": [
+    "logs/api.log"
+  ],
+  "notes": [
+    "Dòng \": ping\" là comment SSE nên EventSource không phát ra sự kiện; kiểm chứng gián tiếp bằng việc kết nối giữ mở > 25 s."
+  ],
+  "env": {
+    "URL ứng dụng": "http://localhost:8080/",
+    "Bản build": "166929f + thay đổi chưa commit trong app/",
+    "Trình duyệt": "Microsoft Edge (Playwright, channel msedge)",
+    "Hệ điều hành": "win32 x64",
+    "Spec": "app/frontend/testcases/API-028_luong-su-kien-sse.spec.ts"
+  },
+  "verdict": "ĐẠT"
+}
